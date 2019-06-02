@@ -1,0 +1,21 @@
+生成器 generator
+定义：一边循环一边计算的机制，称为生成器generator
+
+例如：g = (x * x for x in range(10))
+print(g):  <generator object <genexpr> at 0x1022ef630>
+L = [x * x for x in range(10)]
+创建L和g的区别仅在于最外层的[ ]和( )，L是一个list，而g是一个generator
+generator保存的是算法，每次调用可以用next(g)，直到最后一个抛出StopIteration的错误
+
+一般来说使用for循环来调用，因为generator也是可迭代对象
+"def fib(max):
+    n, a, b = 0, 0, 1
+    while n < max:
+        yield b
+        a, b = b, a + b
+        n = n + 1
+    return 'done'"
+
+generator和函数的执行流程不一样。
+函数是顺序执行，遇到return语句或者最后一行函数语句就返回。
+generator在每次调用next( )的时候执行，遇到yield语句返回，再次执行时从上次返回的yield语句处继续执行。
