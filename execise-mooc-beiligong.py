@@ -160,7 +160,33 @@ def main():
     turtle.hideturtle()
     turtle.done()
     
-#    
+#函数递归5.2.1 将字符串s反转后输出
+def rvs(s):
+    if s=="":   #字符串的最小形式 基例
+        return s
+    else:
+        return rvs(s[1:])+s[0]  #把s的首字符放到最后
+
+#函数递归5.2.2  斐波那契数列  f（n）=f（n-1）+f（n-2）  n>=3, n=1时f=1，n=2时f=1
+def f(n):
+    if n==1 or n==2:
+        return 1
+    else:
+        return f(n-1)+f(n-2)
+
+#函数递归5.2.3 汉诺塔
+count = 0
+def hanoi(n,src,dst,mid):   #n =圆盘的数量，src=初始柱子 ，dst=目的柱子   , mid=中间的过渡柱子
+    global count
+    if  n==1:
+        print("{}:{}->{}".format(1,src,dst))
+        count +=1
+    else:
+        hanoi(n-1,src,mid,dst)
+        print("{}:{}->{}".format(1,src,dst))
+        count +=1
+        hanoi(n-1,mid,dst,src)
+        
   
        
     
