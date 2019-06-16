@@ -20,14 +20,14 @@
     >>>fact(10,5)         位置传递
        fact(m=5, n=10)    名称传递
 
-   位置参数：
-   调用函数时，根据函数定义的参数位置来传递参数，如：
-   def print_hello(name,sex):
-       sex_dict={1:u'先生',2:u'女士'}
-   >>>print( 'hello %s %s,welcome to python world' % (name,sex_dict.get(sex,u'先生') )
+    位置参数：
+    调用函数时，根据函数定义的参数位置来传递参数，如：
+    def print_hello(name,sex):
+        sex_dict={1:u'先生',2:u'女士'}
+    >>>print( 'hello %s %s,welcome to python world' % (name,sex_dict.get(sex,u'先生') )
    
-   调用时，两个参数的顺序必须一一对应，且少一个参数都不行
-   >>>print_hello('duoduo',1)
+    调用时，两个参数的顺序必须一一对应，且少一个参数都不行
+    >>>print_hello('duoduo',1)
 
 3 可选参数/默认参数
 
