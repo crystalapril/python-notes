@@ -238,12 +238,20 @@ lambda函数返回函数名作为结果
     
     例 8.1： 
     将字符串反转后输出
-    -函数      def rvs(s):
-    -分支语句      if s == "":
-    -递归基例          return s
-                  else:
-    -递归链条          return rvs(s[1:])+s[0]
+    -函数        def rvs(s):
+    -分支语句        if s == "":
+    -递归基例            return s
+                    else:
+    -递归链条、基例       return rvs(s[1:])+s[0]
     
+    例 8.2：
+    斐波那契数列
+    -函数        def rvs(n):
+    -分支语句        if n == 1 or n ==2 :
+    -递归基例            return 1
+                    else:
+    -递归链条            return f(n-1) + f(n-2)
+       
             
     
            
