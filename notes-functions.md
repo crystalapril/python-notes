@@ -258,5 +258,9 @@ lambda函数返回函数名作为结果
 
 
 附录：
+
 http://www.icourse163.org/learn/BIT-268001?tid=1206073223#/learn/content?type=detail&id=1210530410&cid=1212669782&replay=true
-https://python123.io/student/courses/688/intro    北京理工大学 嵩天 《python语言程序设计》讲义
+
+https://python123.io/student/courses/688/intro    
+
+北京理工大学 嵩天 《python语言程序设计》讲义
