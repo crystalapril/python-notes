@@ -15,13 +15,33 @@ melting_point = [
 ]
 
 def get_symbol(xs):
+    l=[]
+    for x in xs:
+        l.append(x[0])
+    return l
+
+def get_symbol(xs):
     return list(map(lambda x:x[0],xs))
+  
+
+def get_melting_point(xs):
+    l=[]
+    for x in xs:
+        l.append(x[1])
+    return l
 
 def get_melting_point(xs):
     return list(map(lambda x:x[1],xs))
 
 get_symbol       (melting_point) == ['C' , 'Al'  , 'Fe', 'Cu'   , 'W' , 'Pt'  ]
 get_melting_point(melting_point) == [3800, 933.47, 1811, 1357.77, 3695, 2041.4]
+
+
+def to_celsius(xs):
+    l=[]
+    for x in xs:
+        l.append(x[0],x[1]-273.15)
+    return l
 
 def to_celsius(xs):
     return list(map(lambda x:(x[0],x[1]-273.15),xs))
