@@ -4,16 +4,16 @@
 # https://en.wikipedia.org/wiki/Fahrenheit
 
 def celsius_to_kelvin(xs):
-  pass
+    return list(map(lambda x:x+273.15,xs))
 
 def kelvin_to_celsius(xs):
-  pass
+    return list(map(lambda x:x-273.15,xs))
 
 def celsius_to_fahrenheit(xs):
-  pass
+    return list(map(lambda x:x*1.8+32,xs))
 
 def fahrenheit_to_celsius(xs):
-  pass
+    return list(map(lambda x:(x-32)/1.8,xs))
 
 celsius_to_kelvin([0, 1, 2]) == [273.15, 274.15, 275.15]
 kelvin_to_celsius([0, 1, 2]) == [-273.15, -272.15, -271.15]
