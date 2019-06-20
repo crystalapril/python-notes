@@ -57,3 +57,24 @@ to_celsius(melting_point) == [
   # ('Au', 1064.18),
   # ('Hg',  -38.72),
 ]
+
+def below(xs, y):
+  pass
+
+def above(xs, y):
+  pass
+
+def between(xs, y, z):
+  pass
+
+below(melting_point, 1000) == [('Al', 933.47)]
+below(melting_point, 1500) == [('Al', 933.47), ('Cu', 1357.77)]
+below(melting_point, 2000) == [('Al', 933.47), ('Fe', 1811), ('Cu', 1357.77)]
+
+above(melting_point, 3000) == [('C', 3800), ('W', 3695)]
+above(melting_point, 2000) == [('C', 3800), ('W', 3695), ('Pt', 2041.4)]
+above(melting_point, 1500) == [('C', 3800), ('Fe', 1811), ('W', 3695), ('Pt', 2041.4)]
+
+between(melting_point, 1000, 1500) == [('Cu', 1357.77)]
+between(melting_point, 1500, 2000) == [('Fe', 1811)]
+between(melting_point, 2000, 3000) == [('Pt', 2041.4)]
