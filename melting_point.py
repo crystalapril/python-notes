@@ -15,16 +15,16 @@ melting_point = [
 ]
 
 def get_symbol(xs):
-  pass
+    return list(map(lambda x:x[0],xs))
 
 def get_melting_point(xs):
-  pass
+    return list(map(lambda x:x[1],xs))
 
 get_symbol       (melting_point) == ['C' , 'Al'  , 'Fe', 'Cu'   , 'W' , 'Pt'  ]
 get_melting_point(melting_point) == [3800, 933.47, 1811, 1357.77, 3695, 2041.4]
 
 def to_celsius(xs):
-  pass
+    return list(map(lambda x:(x[0],x[1]-273.15),xs))
 
 to_celsius(melting_point) == [
   ('C' , 3526.85),
