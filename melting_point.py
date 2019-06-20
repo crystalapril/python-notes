@@ -78,3 +78,25 @@ above(melting_point, 1500) == [('C', 3800), ('Fe', 1811), ('W', 3695), ('Pt', 20
 between(melting_point, 1000, 1500) == [('Cu', 1357.77)]
 between(melting_point, 1500, 2000) == [('Fe', 1811)]
 between(melting_point, 2000, 3000) == [('Pt', 2041.4)]
+
+
+def below_symbol(xs, y):
+  pass
+
+def above_symbol(xs, y):
+  pass
+
+def between_symbol(xs, y, z):
+  pass
+
+below_symbol(melting_point, 1000) == ['Al']
+below_symbol(melting_point, 1500) == ['Al', 'Cu']
+below_symbol(melting_point, 2000) == ['Al', 'Fe', 'Cu']
+
+above_symbol(melting_point, 3000) == ['C', 'W']
+above_symbol(melting_point, 2000) == ['C', 'W', 'Pt']
+above_symbol(melting_point, 1500) == ['C', 'Fe', 'W', 'Pt']
+
+between_symbol(melting_point, 1000, 1500) == ['Cu']
+between_symbol(melting_point, 1500, 2000) == ['Fe']
+between_symbol(melting_point, 2000, 3000) == ['Pt']
