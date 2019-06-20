@@ -100,3 +100,25 @@ above_symbol(melting_point, 1500) == ['C', 'Fe', 'W', 'Pt']
 between_symbol(melting_point, 1000, 1500) == ['Cu']
 between_symbol(melting_point, 1500, 2000) == ['Fe']
 between_symbol(melting_point, 2000, 3000) == ['Pt']
+
+
+def to_celsius_below(xs, y):
+  pass
+
+def to_celsius_above(xs, y):
+  pass
+
+def to_celsius_between(xs, y, z):
+  pass
+
+to_celsius_below(melting_point, 1000) == [('Al', 660.32)]
+to_celsius_below(melting_point, 1500) == [('Al', 660.32), ('Cu', 1084.62)]
+to_celsius_below(melting_point, 2000) == [('Al', 660.32), ('Fe', 1537.85), ('Cu', 1084.62), ('Pt', 1768.25)]
+
+to_celsius_above(melting_point, 3000) == [('C', 3526.85), ('W', 3421.85)]
+to_celsius_above(melting_point, 2000) == [('C', 3526.85), ('W', 3421.85)]
+to_celsius_above(melting_point, 1500) == [('C', 3526.85), ('Fe', 1537.85), ('W', 3421.85), ('Pt', 1768.25)]
+
+to_celsius_between(melting_point, 1000, 1500) == [('Cu', 1084.62)]
+to_celsius_between(melting_point, 1500, 2000) == [('Fe', 1537.85), ('Pt', 1768.25)]
+to_celsius_between(melting_point, 2000, 3000) == []
