@@ -94,13 +94,13 @@ def above(xs, y):
 def between(xs, y, z):
     l=[]
     for x in xs:
-        if x[1]>=y and x[1]<=z:
+        if y <= x[1]<=z:
             l.append(x)
     return l
 
 # 4.3.2 获取高于y温度（开氏），同时低于z温度（开氏）的元素和温度集合
 def between(xs, y, z):
-    return list(filter(lambda x: x[1]>=y and x[1]<=z,xs))
+    return list(filter(lambda x: y <= x[1]<=z,xs))
 
 # 4.4 输出结果  
 below(melting_point, 1000) == [('Al', 933.47)]
@@ -144,13 +144,13 @@ def above_symbol(xs, y):
 def between_symbol(xs, y, z):
     l=[]
     for x in xs:
-        if x[1]>=y and x[1]<=z:
+        if y <= x[1]<=z:
             l.append(x[0])
     return l            
 
 # 5.3.2 获取高于y温度（开氏），同时低于z温度（开氏）的元素集合
 def between_symbol(xs, y, z):
-    return list(map(lambda x:x[0],filter(lambda x:x[1]>=y and x[1]<=z,xs)))
+    return list(map(lambda x:x[0],filter(lambda x:y <= x[1]<=z,xs)))
 
 # 5.4 输出结果
 below_symbol(melting_point, 1000) == ['Al']
