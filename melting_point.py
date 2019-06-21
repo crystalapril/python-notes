@@ -46,7 +46,7 @@ get_melting_point(melting_point) == [3800, 933.47, 1811, 1357.77, 3695, 2041.4]
 def to_celsius(xs):
     l=[]
     for x in xs:
-        l.append(x[0],x[1]-273.15)
+        l.append((x[0],x[1]-273.15))
     return l
 
 # 3.1.2 温度转换：开氏温度-摄氏度
@@ -94,7 +94,7 @@ def above(xs, y):
 def between(xs, y, z):
     l=[]
     for x in xs:
-        if x<=y and x>=z:
+        if x[1]<=y and x[1]>=z:
             l.append(x)
     return l
 
@@ -126,7 +126,7 @@ def below_symbol(xs, y):
 
 # 5.1.2 获取低于y温度（开氏）的元素集合
 def below_symbol(xs, y):
-    return list(map(lambda x:x[0],(filter(lambda x:x[1]<=y,xs))))
+    return list(map(lambda x:x[0],filter(lambda x:x[1]<=y,xs)))
 
 # 5.2.1 获取高于y温度（开氏）的元素集合
 def above_symbol(xs, y):
@@ -138,7 +138,7 @@ def above_symbol(xs, y):
 
 # 5.2.2 获取高于y温度（开氏）的元素集合
 def above_symbol(xs, y):
-    return list(map(lambda x:x[0],list(filter(lambda x:x[1]>=y,xs))))
+    return list(map(lambda x:x[0],filter(lambda x:x[1]>=y,xs)))
 
 # 5.3.1 获取高于y温度（开氏），同时低于z温度（开氏）的元素集合
 def between_symbol(xs, y, z):
@@ -150,7 +150,7 @@ def between_symbol(xs, y, z):
 
 # 5.3.2 获取高于y温度（开氏），同时低于z温度（开氏）的元素集合
 def between_symbol(xs, y, z):
-    return list(map(lambda x:x[0],list(filter(lambda x:x[1]>=y and x[1]<=z,xs))))
+    return list(map(lambda x:x[0],filter(lambda x:x[1]>=y and x[1]<=z,xs)))
 
 # 5.4 输出结果
 below_symbol(melting_point, 1000) == ['Al']
@@ -176,7 +176,7 @@ def to_celsius_below(xs, y):
 
 # 6.1.2 获取低于y温度（摄氏度）的元素和温度（摄氏度）集合 输入是开氏温度，需转换
 def to_celsius_below(xs, y):
-    return list(map(lambda x:(x[0],x[1]-273.15),list(filter(lambda x:x[1]-273.15<=y,xs))))
+    return list(map(lambda x:(x[0],x[1]-273.15),filter(lambda x:x[1]-273.15<=y,xs)))
 
 # 6.2.1 获取高于y温度（摄氏度）的元素和温度（摄氏度）集合 输入是开氏温度，需转换
 def to_celsius_above(xs, y):
@@ -188,7 +188,7 @@ def to_celsius_above(xs, y):
 
 # 6.2.2 获取高于y温度（摄氏度）的元素和温度（摄氏度）集合 输入是开氏温度，需转换
 def to_celsius_above(xs, y):
-    return list(map(lambda x:(x[0],x[1]-273.15),list(filter(lambda x:x[1]-273.15>=y,xs))))
+    return list(map(lambda x:(x[0],x[1]-273.15),filter(lambda x:x[1]-273.15>=y,xs)))
 
 
 # 6.3.1 获取高于y温度（摄氏度），同时低于z温度（摄氏度）的元素和温度（摄氏度）集合 输入是开氏温度，需转换
@@ -201,7 +201,7 @@ def to_celsius_between(xs, y, z):
 
 # 6.3.2 获取高于y温度（摄氏度），同时低于z温度（摄氏度）的元素和温度（摄氏度）集合 输入是开氏温度，需转换
 def to_celsius_between(xs, y, z):
-    return list(map(lambda x:(x[0],x[1]-273.15),list(filter(lambda x:y <= x[1]-273.15 <= z,xs))))
+    return list(map(lambda x:(x[0],x[1]-273.15),filter(lambda x:y <= x[1]-273.15 <= z,xs)))
 
 # 6.4 输出结果
 to_celsius_below(melting_point, 1000) == [('Al', 660.32)]
