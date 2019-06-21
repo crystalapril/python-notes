@@ -94,7 +94,7 @@ def above(xs, y):
 def between(xs, y, z):
     l=[]
     for x in xs:
-        if x[1]<=y and x[1]>=z:
+        if x[1]>=y and x[1]<=z:
             l.append(x)
     return l
 
