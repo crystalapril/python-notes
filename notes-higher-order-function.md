@@ -231,7 +231,104 @@
 
 ### Sorted
 
+    对于一个指定的列表，对它进行排序，可以用sorted()函数或list.sort()方法
+       
+    sorted(iterable, key=None, reverse=False)     
+    
+    例 5.1：
+    >>> x = [36, 5, -12, 9, -21]
+    >>> y = sorted(x)
+    >>> print(x)
+    [36, 5, -12, 9, -21]
+    >>> print(y)
+    [-21, -12, 5, 9, 36]    
+    sorted(x)返回的是一个新的 list，不对原来的list做出修改。
+        
+    sorted可以对所有可迭代的对象进行排序，包括tuple，str，dict，例 5.2：
+    >>> u = {"a":"1", "c":"3", "b":"2"}
+    >>> v=sorted(u)
+    >>> print(u)
+    {"a":"1", "c":"3", "b":"2"}
+    >>> print(v)
+    ['a', 'b', 'c']
+    对dict排序默认会按照dict的key值进行排序，最后返回的结果是一个对key值排序好的list。 
+    
+    key参数
+    sorted()函数是一个高阶函数，它可以通过key参数指定一个函数来实现自定义的排序，例 5.3：
+    >>> sorted([36, 5, -12, 9, -21], key=abs)
+    [5, 9, -12, -21, 36]
+    key指定的函数将作用于list的每一个元素上，并根据key函数返回的结果进行排序。
+    
+                  keys排序结果 => [5, 9,  12,  21, 36]
+                                  |  |    |    |   |
+                  最终结果     => [5, 9, -12, -21, 36]
+    
+    例 5.4： 默认sorted()对dict的key排序的，现在key指定函数要求对dict的value排序
+    >>> u = {"a":"1", "c":"3", "b":"2"}
+    >>> sorted(u, key=lambda v : u[v] )
+    ['b', 'a', 'c']
+    
+    例 5.5：
+    >>> t = [ ('john', 'A', 15),  ('jane', 'B', 12),  ('dave', 'B', 10)]
+    >>> sorted(t, key=lambda s: s[2])"
+    [('dave', 'B', 10), ('jane', 'B', 12), ('john', 'A', 15)]
+    
+    例 5.6 ：对字符串排序
+    >>> sorted(['bob', 'about', 'Zoo', 'Credit'])
+    ['Credit', 'Zoo', 'about', 'bob']
+    默认情况下，对字符串排序，是按照ASCII的大小比较的，大写字母Z会排在小写字母a的前面。
+    例 5.7 ： 忽略大小写，按照字母序排序
+    >>> sorted(['bob', 'about', 'Zoo', 'Credit'], key=str.lower)
+    ['about', 'bob', 'Credit', 'Zoo']
+    
+    reverse参数
+    可以传入第三个参数reverse=True，来进行反向排序，默认升序，反向排序也即降序
+    例 5.7：
+    >>> sorted(['bob', 'about', 'Zoo', 'Credit'], key=str.lower, reverse=True)
+    ['Zoo', 'Credit', 'bob', 'about']
 
+
+    两个特别提示：list.sort，cmp_to_key
+    
+    list.sort(key=None, reverse=False)
+    
+    sort() 函数用于对原列表进行排序，如果指定参数，则使用比较函数指定的比较函数    
+    例 5.8：
+    >>> x =[3, 5, 1, 4, 2]
+    >>> x.sort()
+    >>> x 
+    [1, 2, 3, 4, 5]
+    sort()方法没有返回值，它对list进行排序，会修改list本身
+  
+    sort()与sorted()的比较：
+    ▪ 相同点：sort()与sorted()都可以用于排序，参数均包括key，reverse
+    ▪ 不同点：sorted()是python的内置函数，用于对所有可迭代的对象包括dict，tuple，str进行排序；
+             sort()是list的内置方法，只能对list进行排序，不能对dict等进行排序。
+             sorted()返回一个新的序列,不修改原序列；sort()没有返回值，对原序列进行修改。        
+            
+    因此，sort是list的一种方法，sorted是一个函数，如果不需要保留原来的list，sort()更有效。
+  
+    cmp_to_key
+    
+    在python2中，sort，sorted有一个参数cmp：
+    list.sort(cmp=None, key=None, reverse=False)  (cmp是可比较参数）
+    sorted(iterable[, cmp[, key[, reverse]]])    （cmp是可比较函数）
+
+    python3里面，该参数被删除，想要用cmp功能，可以用key来实现，如：
+    sorted(L1, key=lambda x:x.name)   
+    L1.sort(key=lambda x:x.name)
+    
+    但key只能接受一个参数为一个的函数
+    如果需要构造的比较函数，需要至少2个或以上的参数时，可以结合functools模块里的cmp_to_key函数：
+    
+    sorted(iterable, key=cmp_to_key(locale.strcoll))  
+    例 5.9：
+    >>> from functools import cmp_to_key
+    >>> l = [1, 3, 2, 4]
+    >>> def numeric_compare(x, y):
+            return x - y    
+    >>> sorted(l , key=cmp_to_key(numeric_compare))
+    [1, 2, 3, 4]      
 
 
 ### Zip
