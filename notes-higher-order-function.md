@@ -64,13 +64,6 @@
   - Reduce 
   - Filter 
   - Sorted 
-  - Reserved  
-  - return to a function(返回函数，英文名不确定)  
-  - Enumerate
-  - Zip 
-  - Apply
-  - closure
-  - decorator
   
 
 ### Map
@@ -330,8 +323,3 @@
     >>> sorted(l , key=cmp_to_key(numeric_compare))
     [1, 2, 3, 4]      
 
-
-### Zip
-
-
-### Apply
