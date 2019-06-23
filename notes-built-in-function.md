@@ -26,7 +26,7 @@
 
 ### 序列操作 
 
-```sh
+```python
 list(), tuple(), sorted(), reversed(), slice(), zip(), len(), set(), dict(), enumerate(), all(), any()     
 ```
 
@@ -67,13 +67,13 @@ Reversed():
 
 ### 数据类型 
 
-```sh
+```python
 int(), str(), complex(), isinstance(), format()
 ```
 
 ### 数学函数
 
-```sh
+```python
 min(), max(), round(), pow(), float(), int(), sum()
 ```
 
