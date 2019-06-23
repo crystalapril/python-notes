@@ -1,6 +1,7 @@
 # 文本字符串 STR
 
   - 字符串类型的表示  
+  - 字符串的转义字符
   - 字符串操作符  
   - 字符串处理函数
   - 字符串处理方法
@@ -57,16 +58,172 @@
       "一三五七"
       >> "〇一二三四五六七八九十"[::-1]
       "十九八七六五四三二一〇"
+ 
+ 
+ ###  字符串类型的表示      
       
-      字符串的转义字符：
-      如果字符串内部既包含'又包含"怎么处理，可以用转义字符\来标识
-      例 1.8：
-      >> 'I\'m \"OK\"!'
-      I'm "OK"!
+    如果字符串内部既包含'又包含"怎么处理，可以用转义字符\来标识。
+     
+    例 2.1：
+    >> 'I\'m \"OK\"!'
+    I'm "OK"!
       
+    转义字符\可以转义很多字符，比如\n表示换行，\t表示制表符，字符\本身也要转义，\\表示的字符就是\:
+      
+    使用\n换行，例 2.2 :  
+     >> print('duo \nduo')      
+     "duo
+           duo"
+      
+    使用转义字符"\t"制表符，可以看到打印结果中间隔了一个制表符，例 2.3 ：
+    >> print('duo \tduo')      
+    duo  duo
 
+    使用转义字符"\""引号，例 2.4：
+    >> print('duo \"duo')      
+    duo "duo
+
+    使用转义字符"\\"引号，例 2.5 ：
+    >> print('duo \\duo')
+    duo \duo
+    >> print('\\\n\\')
+    \
+    \
+    
+    原始字符串
+    如果字符串里面有很多\，为了简化，Python允许用r''表示''内部的字符串默认不转义
+    例 2.6：
+    >> print(r'duo \\duo')
+    duo \\duo
+    >> print('\\\t\\')
+    \       \
+    >> print(r'\\\t\\')
+    \\\t\\
+
+转义字符表
+
+|   转义字符  |                 描述            	   |
+| ---------- | ------------------------------------ |
+| \(在行尾时) | 续行符                                |
+| \\         | 反斜杠符号                            |
+| \’	       | 单引号                                |
+| \”         | 双引号                                |
+| \a	       | 响铃                                  |
+| \b         | 退格(Backspace)                       |
+| \e	       | 转义                                  |
+| \000       | 空                                    |
+| \n         | 换行                                  |
+| \v         | 纵向制表符                            |
+| \t         | 横向制表符                            |
+| \r         | 回车                                  |
+| \f	       | 换页                                  |
+| \oyy       | 八进制数yy代表的字符，例如：\o12代表换行 |
+| \xyy       | 十进制数yy代表的字符，例如：\x0a代表换行 |
+| \other     | 其它的字符以普通格式输出                |
+
+ 
+ ###  字符串操作符
+ 
+|  操作符及使用   |                   描述                |
+| -------------- | ------------------------------------- |
+| x + y          | 连接两个字符串x和y                     |
+| n * x 或 x * n | 赋值n次字符串x                         |
+| x in s         | 如果x是s的子串，返回True，否则返回False |
+ 
+ 
+ ###  字符串处理函数
       
-      
+|     函数及使用    |                                 描述                                  |
+| ---------------- | --------------------------------------------------------------------- |
+| len(x)           | 返回字符串的长度，len('一二三456') = 6                                  |
+| str(x)           | 任意类型x所对应的字符串形式， str([1,2])='[1,2]'                        |
+| hex(x) 或 oct(x) | 整数x的十六进制或八进制小写形式字符串，hex(425)='0x1a9',oct(425)='0o651' |
+| chr(x)           | x为Unicode编码，返回其对应的字符                                        |
+| ord(x)           | x为字符，返回其对应的Unicode编码                                        |
+
+    
+                chr(u)
+              --------->
+    Unicode                 单字符
+              <---------
+                 ord(x)         
+    例 3.1：
+    >>> ord('A')
+    65
+    >>> ord('中')
+    20013
+    >>> chr(66)
+    'B'
+    >>> chr(25991)
+    '文'
+    
+    Unicode编码
+    
+    python字符串的编码形式
+    - 统一字符编码，即覆盖了几乎所有字符的编码方式，支持多个语言
+    - 从0到1114111（0x10FFFF）空间，每个编码对应一个字符
+    - python字符串中每个字符都是Unicode编码字符
+    
+    如果知道字符的整数编码，还可以用十六进制这么写str：
+    >>> '\u4e2d\u6587'
+    '中文'
+
+    由于Python的字符串类型是str，在内存中以Unicode表示，一个字符对应若干个字节。
+    如果要在网络上传输，或者保存到磁盘上，需要把str变为以字节为单位的bytes。
+    Python对bytes类型的数据用带b前缀的单引号或双引号表示：    
+    x = b'ABC'
+
+    以Unicode表示的str通过encode()方法可以编码为指定的bytes，例如：
+    >>> 'ABC'.encode('ascii')
+    b'ABC'
+    >>> '中文'.encode('utf-8')
+    b'\xe4\xb8\xad\xe6\x96\x87'
+    >>> '中文'.encode('ascii')
+    Traceback (most recent call last):
+      File "<stdin>", line 1, in <module>
+    UnicodeEncodeError: 'ascii' codec can't encode characters in position 0-1: ordinal not in range(128)
+    纯英文的str可以用ASCII编码为bytes，内容是一样的，含有中文的str可以用UTF-8编码为bytes。
+    含有中文的str无法用ASCII编码，因为中文编码的范围超过了ASCII编码的范围，Python会报错。
+    在bytes中，无法显示为ASCII字符的字节，用\x##显示。
+
+    反过来，如果我们从网络或磁盘上读取了字节流，那么读到的数据就是bytes。要把bytes变为str，需要用decode()方法：
+    >>> b'ABC'.decode('ascii')
+    'ABC'
+    >>> b'\xe4\xb8\xad\xe6\x96\x87'.decode('utf-8')
+    '中文'
+
+    如果bytes中包含无法解码的字节，decode()方法会报错：
+    >>> b'\xe4\xb8\xad\xff'.decode('utf-8')
+    Traceback (most recent call last):
+      ...
+    UnicodeDecodeError: 'utf-8' codec can't decode byte 0xff in position 3: invalid start byte
+    如果bytes中只有一小部分无效的字节，可以传入errors='ignore'忽略错误的字节：
+    >>> b'\xe4\xb8\xad\xff'.decode('utf-8', errors='ignore')
+    '中'
+
+ ###  字符串处理方法   
+
+    “方法”特指<a>.<b>()风格中的函数<b>()
+    
+    -方法本身也是函数，但是与<a>有关，<a>.<b>()风格使用    
+    -字符串或字符串变量是<a>，存在一些可用方法
+    
+|     方法及使用    |                                 描述                                  |
+| ---------------- | --------------------------------------------------------------------- |
+| str.lower() 或 str.upper()  |                                  |
+| str.split(sep=None)          |                        |
+| str.count(sub)|  |
+| str.replace(old,new)          |                                         |
+| str.center(width[,fillchar])        |                                        |
+| str.strip(chars)          |                                         |
+| str.join(iter)      |                                        |
+
+
+
+ ###  字符串格式化   
+    
+    
+    
       
       
 
