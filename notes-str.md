@@ -178,13 +178,13 @@
               <---------
                  ord(x)         
     例 3.1：
-    >>> ord('A')
+    >> ord('A')
     65
-    >>> ord('中')
+    >> ord('中')
     20013
-    >>> chr(66)
+    >> chr(66)
     'B'
-    >>> chr(25991)
+    >> chr(25991)
     '文'
     
     Unicode编码
@@ -195,7 +195,7 @@
     - python字符串中每个字符都是Unicode编码字符
     
     如果知道字符的整数编码，还可以用十六进制这么写str：
-    >>> '\u4e2d\u6587'
+    >> '\u4e2d\u6587'
     '中文'
 
     由于Python的字符串类型是str，在内存中以Unicode表示，一个字符对应若干个字节。
@@ -204,9 +204,9 @@
     x = b'ABC'
 
     以Unicode表示的str通过encode()方法可以编码为指定的bytes，例如：
-    >>> 'ABC'.encode('ascii')
+    >> 'ABC'.encode('ascii')
     b'ABC'
-    >>> '中文'.encode('utf-8')
+    >> '中文'.encode('utf-8')
     b'\xe4\xb8\xad\xe6\x96\x87'
     >>> '中文'.encode('ascii')
     Traceback (most recent call last):
@@ -217,9 +217,9 @@
     在bytes中，无法显示为ASCII字符的字节，用\x##显示。
 
     反过来，如果我们从网络或磁盘上读取了字节流，那么读到的数据就是bytes。要把bytes变为str，需要用decode()方法：
-    >>> b'ABC'.decode('ascii')
+    >> b'ABC'.decode('ascii')
     'ABC'
-    >>> b'\xe4\xb8\xad\xe6\x96\x87'.decode('utf-8')
+    >> b'\xe4\xb8\xad\xe6\x96\x87'.decode('utf-8')
     '中文'
 
     如果bytes中包含无法解码的字节，decode()方法会报错：
@@ -252,58 +252,97 @@
 
 常用字符串方法
 
-    5.1 查找 string.find(),string.index(),string.rindex() 
+    5.1 查找 string.find(),string.index(),string.rfind(),string.rindex() 
     
-    string.find(str, beg=0, end=len(string))
-    检测 str 是否包含在 string 中，如果 beg 和 end 指定范围，则检查是否包含在指定范围内，如果是返回开始的索引值，否则返回-1
-    >> str1 = "this is string example....wow!!!"
-    >> str2 = "exam" 
-    >> print str1.find(str2)
-    15
-    
-    >>>info = 'abca'
-    >>> print info.find('a')    # 从下标0开始，查找在字符串里第一个出现的子串，返回结果：0
-    0
-    >>> print info.find('a',1)  # 从下标1开始，查找在字符串里第一个出现的子串：返回结果3
+    string.find(str, beg=0, end=len(string))  
+    检测 str 是否包含在string中，如果 beg 和 end 指定范围，则检查是否包含在指定范围内，如果是返回开始的索引值，否则返回-1
+    >> info = 'abca'
+    >> info.find('bc')    # 从下标0开始，查找在字符串里第一个出现的子串，返回结果：0
+    1
+    >> info.find('a',1)   # 从下标1开始，查找在字符串里第一个出现的子串：返回结果3
     3
-    >>> print info.find('3')    # 查找不到返回-1
+    >> info.find('3')    # 查找不到返回-1
     -1
+    	
+    string.index(str, beg=0, end=len(string))
+    跟find()方法一样，只不过如果str不在字符串中会报一个异常
+    >> str1 = "Runoob example....wow!!!
+    >> str2 = "exam"
+    >> str1.index(str2)
+    7
+    >> str1.index(str2, 10)
+    Traceback (most recent call last):
+	File "test.py", line 8, in <module>
+	    print (str1.index(str2, 10))
+	ValueError: substring not found
     
-    string.index() 
+    string.rfind(),string.rindex() 分别与 string.find(),string.index() 类似，只是从右边开始查找。 
+
+    5.2 计数    string.count() 
+    str.count(sub, start= 0,end=len(string))
+    返回 str 在 string 里面出现的次数，如果 beg 或者 end 指定则返回指定范围内 str 出现的次数
+    >> str="www.runoob.com"
+    >> str.count('o')
+    3
     
-    string.rindex() 
+    5.3 连接 string.join(sequence)
+    以指定字符串作为分隔符，将 seq 中所有的元素(的字符串表示)合并为一个新的字符串
+    >> seq = ("r", "u", "n", "o", "o", "b") 
+    >> '-'.join( seq )
+    r-u-n-o-o-b
+    >> ''.join( seq ))
+    runoob
     
+    5.4 分割 string.split(),string.splitlines(),string.partition(),string.rpartition()  
+    
+    str.split(str="", num=string.count(str))
+    split()通过指定分隔符对字符串进行切片，如果参数 num 有指定值，则仅分隔 num+1 个子字符串
+    >> str = "this is string example....wow!!!"
+    >> str.split( )      # 以空格为分隔符
+    ['this', 'is', 'string', 'example....wow!!!']
+    >> str.split('i',1)  # 以 i 为分隔符，分隔 1次
+    ['th', 's is string example....wow!!!']   # 分隔一次，得到2个字符串
+    >> str.split('w')     # 以 w 为分隔符
+    ['this is string example....', 'o', '!!!']
+    
+    string.splitlines([keepends])
+    splitlines() 按照行('\r','\r\n',\n')分隔，返回一个包含各行作为元素的列表，参数keepends默认为False，不包含换行符，如果keepends为True，则保留换行符。
+    >> str1 = 'ab c\n\nde fg\rkl\r\n'
+    str1.splitlines()
+    ['ab c', '', 'de fg', 'kl']
+    >> str2.splitlines(True)
+    ['ab c\n', '\n', 'de fg\r', 'kl\r\n']
+    
+    string.partition(str)
+    如果字符串包含指定的分隔符，则返回一个3元的元组：（分隔符左边的子串，分隔符本身，分隔符右边的子串）
+    >> str1 = "www.runoob.com" 
+    >> str1.partition(".")
+    ('www', '.', 'runoob.com')
+    
+    string.rpartition(str) 是类似于 partition()函数,不过是从右边开始查找。
+    
+        
+    5.5 替换
+    string.repalce(),string.maketrans()，string.translate() 
 
-
-    5.3 
-    string.count() 
-
-
-    5.4 
-    string.join(seq) 
-
-
-    5.5
-    string.split(),string.splitlines(),string.partition() ,string.rpartition()   
-
-    5.6
-    string.find() string.rfind() 
-
-
-    5.7 判断字母或数字
+    5.6 判断字母或数字
     string.isnumeric(),string.isalnum() ,string.isdecimal(), string.isdigit()，,string.isalpha(),string.isspace() 
     
     
 
-    5.8 判断、改变大小写
+    5.7 判断、改变大小写
     string.swapcase(),string.lower() ,string.upper(),string.capitalize(),string.title()  
     string.istitle() ,string.isupper() ,string.islower() 
 
+    5.8
     string.strip() ,string.rstrip() ,string.lstrip()  
 
-    string.zfill(width),string.ljust() ,string.rjust()  
+    5.9
+    string.zfill(width),string.ljust() ,string.rjust()，center(width, fillchar)  ，	
+
     
-    string.maketrans()
+    5.10
+    string.startswith()，string.endswith()
 	
 
 
