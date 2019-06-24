@@ -236,15 +236,15 @@
     “方法”特指<a>.<b>()风格中的函数<b>()
     
     -方法本身也是函数，但是与<a>有关，<a>.<b>()风格使用    
-    -字符串或字符串变量是<a>，存在一些可用方法
+    -字符串或字符串变量是<a>，存在一些可用方法    
     
-|                                                   字符串的方法                                                |
+|                     |                     |       字符串的方法    |                     |                    | 
 | --------------------|-------------------- | --------------------|---------------------|-------------------- |
 | string.capitalize() | string.center()     | string.count()      | string.docode()     | string.encode()     | 
 | string.endswith()   | string.expandtabs() | string.find()       | string.format()     | string.index()      |   
 | string.isalnum()    | string.isalpha()    | string.isdecimal()  | string.isdigit()    | string.islower()    |
 | string.isnumeric()  | string.isspace()    | string.istitle()    | string.isupper()    | string.join(seq)    |	
-| string.ljust()      | string.lower()      |	string.lstrip()     | string.maketrans()  | string.partition()  | 
+| string.ljust()      | string.lower()      | string.lstrip()     | string.maketrans()  | string.partition()  | 
 | string.replace()    | string.rfind()      | string.rindex()     | string.rjust()      | string.rpartition() |
 | string.rstrip()     | string.split()      | string.splitlines() | string.startswith() | string.strip()      |
 | string.swapcase()   | string.title()      | string.translate()  | string.upper()      | string.zfill()      |
@@ -252,35 +252,58 @@
 
 常用字符串方法
 
-    5.1 
-    string.index()  ,string.rindex() 
+    5.1 查找 string.find(),string.index(),string.rindex() 
+    
+    string.find(str, beg=0, end=len(string))
+    检测 str 是否包含在 string 中，如果 beg 和 end 指定范围，则检查是否包含在指定范围内，如果是返回开始的索引值，否则返回-1
+    >> str1 = "this is string example....wow!!!"
+    >> str2 = "exam" 
+    >> print str1.find(str2)
+    15
+    
+    >>>info = 'abca'
+    >>> print info.find('a')    # 从下标0开始，查找在字符串里第一个出现的子串，返回结果：0
+    0
+    >>> print info.find('a',1)  # 从下标1开始，查找在字符串里第一个出现的子串：返回结果3
+    3
+    >>> print info.find('3')    # 查找不到返回-1
+    -1
+    
+    string.index() 
+    
+    string.rindex() 
+    
 
-    5.2
-    string.find() 
 
-
+    5.3 
     string.count() 
 
 
-
+    5.4 
     string.join(seq) 
 
 
-
+    5.5
     string.split(),string.splitlines(),string.partition() ,string.rpartition()   
 
+    5.6
     string.find() string.rfind() 
 
 
+    5.7 判断字母或数字
+    string.isnumeric(),string.isalnum() ,string.isdecimal(), string.isdigit()，,string.isalpha(),string.isspace() 
+    
+    
 
-    string.isnumeric(),string.isalnum() ,string.isdecimal() , string.isdigit()，,string.isalpha(),string.isspace() 
-
+    5.8 判断、改变大小写
     string.swapcase(),string.lower() ,string.upper(),string.capitalize(),string.title()  
     string.istitle() ,string.isupper() ,string.islower() 
 
     string.strip() ,string.rstrip() ,string.lstrip()  
 
-    string.zfill(width)
+    string.zfill(width),string.ljust() ,string.rjust()  
+    
+    string.maketrans()
 	
 
 
