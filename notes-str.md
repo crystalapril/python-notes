@@ -124,23 +124,53 @@
  
  ###  字符串操作符
  
-|  操作符及使用   |                   描述                |
+|  操作符及使用   |                   描述                 |
 | -------------- | ------------------------------------- |
-| x + y          | 连接两个字符串x和y                     |
-| n * x 或 x * n | 赋值n次字符串x                         |
-| x in s         | 如果x是s的子串，返回True，否则返回False |
- 
+| x + y          | 连接两个字符串x和y                      |
+| n * x 或 x * n | 赋值n次字符串x                          |
+| x in s         | 如果x是s的子串，返回True，否则返回False   |
+| x not in x     | 如果x不是s的子串，返回True，否则返回False |
+
+    例 3.1：
+    >> 'a' + 'b'          >> 'b' + 'a'
+    'ab'                  'ba'
+    >> 3 * 'ab'           >> 'ab' * 3
+    'ababab'              'ababab'
+    >> 'a' in 'ab'        >> 'c' in 'ab'
+    True                  False
+    >> 'a' not in 'ab'    >> 'c' not in 'ab'
+    False                 True 
  
  ###  字符串处理函数
       
-|     函数及使用    |                                 描述                                  |
-| ---------------- | --------------------------------------------------------------------- |
-| len(x)           | 返回字符串的长度，len('一二三456') = 6                                  |
-| str(x)           | 任意类型x所对应的字符串形式， str([1,2])='[1,2]'                        |
-| hex(x) 或 oct(x) | 整数x的十六进制或八进制小写形式字符串，hex(425)='0x1a9',oct(425)='0o651' |
-| chr(x)           | x为Unicode编码，返回其对应的字符                                        |
-| ord(x)           | x为字符，返回其对应的Unicode编码                                        |
+|     函数及使用    |                 描述              |
+| ---------------- | -------------------------------- |
+| len(x)           | 返回字符串的长度                   |
+| str(x)           | 任意类型x所对应的字符串形           |
+| max(x)           | 返回字符串 x 中最大的字母           |
+| min(x)           | 返回字符串 x 中最小的字母           |
+| hex(x) 或 oct(x) | 整数x的十六进制或八进制小写形式字符串 |
+| chr(x)           | x为Unicode编码，返回其对应的字符    |
+| ord(x)           | x为字符，返回其对应的Unicode编码    |
 
+    例 4.1：
+    >> len('ab')      >> len('一二三456')
+    2                 6
+    >> str(12)        >> str([1,2])
+    '12'              '[1,2]' 
+    
+    >> max('ab')
+    'b'
+    >> min('ab')
+    'a'
+    
+    >> hex(425)
+    '0x1a9'
+    >> oct(425)
+    '0o651' 
+    
+    
+    chr(x),ord(x)
     
                 chr(u)
               --------->
@@ -208,15 +238,51 @@
     -方法本身也是函数，但是与<a>有关，<a>.<b>()风格使用    
     -字符串或字符串变量是<a>，存在一些可用方法
     
-|     方法及使用    |                                 描述                                  |
-| ---------------- | --------------------------------------------------------------------- |
-| str.lower() 或 str.upper()  |                                  |
-| str.split(sep=None)          |                        |
-| str.count(sub)|  |
-| str.replace(old,new)          |                                         |
-| str.center(width[,fillchar])        |                                        |
-| str.strip(chars)          |                                         |
-| str.join(iter)      |                                        |
+|                                                   字符串的方法                                                |
+| --------------------|-------------------- | --------------------|---------------------|-------------------- |
+| string.capitalize() | string.center()     | string.count()      | string.docode()     | string.encode()     | 
+| string.endswith()   | string.expandtabs() | string.find()       | string.format()     | string.index()      |   
+| string.isalnum()    | string.isalpha()    | string.isdecimal()  | string.isdigit()    | string.islower()    |
+| string.isnumeric()  | string.isspace()    | string.istitle()    | string.isupper()    | string.join(seq)    |	
+| string.ljust()      | string.lower()      |	string.lstrip()     | string.maketrans()  | string.partition()  | 
+| string.replace()    | string.rfind()      | string.rindex()     | string.rjust()      | string.rpartition() |
+| string.rstrip()     | string.split()      | string.splitlines() | string.startswith() | string.strip()      |
+| string.swapcase()   | string.title()      | string.translate()  | string.upper()      | string.zfill()      |
+
+
+常用字符串方法
+
+    5.1 
+    string.index()  ,string.rindex() 
+
+    5.2
+    string.find() 
+
+
+    string.count() 
+
+
+
+    string.join(seq) 
+
+
+
+    string.split(),string.splitlines(),string.partition() ,string.rpartition()   
+
+    string.find() string.rfind() 
+
+
+
+    string.isnumeric(),string.isalnum() ,string.isdecimal() , string.isdigit()，,string.isalpha(),string.isspace() 
+
+    string.swapcase(),string.lower() ,string.upper(),string.capitalize(),string.title()  
+    string.istitle() ,string.isupper() ,string.islower() 
+
+    string.strip() ,string.rstrip() ,string.lstrip()  
+
+    string.zfill(width)
+	
+
 
 
 
