@@ -238,7 +238,7 @@
     -方法本身也是函数，但是与<a>有关，<a>.<b>()风格使用    
     -字符串或字符串变量是<a>，存在一些可用方法    
     
-|                     |                     |       字符串的方法    |                     |                    | 
+|                     |                     |      字符串的方法     |                     |                     | 
 | --------------------|-------------------- | --------------------|---------------------|-------------------- |
 | string.capitalize() | string.center()     | string.count()      | string.docode()     | string.encode()     | 
 | string.endswith()   | string.expandtabs() | string.find()       | string.format()     | string.index()      |   
@@ -266,10 +266,10 @@
     	
     string.index(str, beg=0, end=len(string))
     跟find()方法一样，只不过如果str不在字符串中会报一个异常
-    >> str1 = "Runoob example....wow!!!
-    >> str2 = "exam"
+    >> str1 = "april is too diligent....wow!!!"
+    >> str2 = "is"
     >> str1.index(str2)
-    7
+    
     >> str1.index(str2, 10)
     Traceback (most recent call last):
 	File "test.py", line 8, in <module>
@@ -281,52 +281,85 @@
     5.2 计数    string.count() 
     str.count(sub, start= 0,end=len(string))
     返回 str 在 string 里面出现的次数，如果 beg 或者 end 指定则返回指定范围内 str 出现的次数
-    >> str="www.runoob.com"
-    >> str.count('o')
-    3
+    >> "crystalapril".count('a')
+    2
     
     5.3 连接 string.join(sequence)
     以指定字符串作为分隔符，将 seq 中所有的元素(的字符串表示)合并为一个新的字符串
-    >> seq = ("r", "u", "n", "o", "o", "b") 
+    >> seq = ("c","r", "y", "s", "t", "a", "l") 
     >> '-'.join( seq )
-    r-u-n-o-o-b
+    'c-r-y-s-t-a-l'
     >> ''.join( seq ))
-    runoob
+    'crystal'
     
-    5.4 分割 string.split(),string.splitlines(),string.partition(),string.rpartition()  
+    5.4 分隔 string.split(),string.splitlines(),string.partition(),string.rpartition()  
     
     str.split(str="", num=string.count(str))
     split()通过指定分隔符对字符串进行切片，如果参数 num 有指定值，则仅分隔 num+1 个子字符串
-    >> str = "this is string example....wow!!!"
-    >> str.split( )      # 以空格为分隔符
-    ['this', 'is', 'string', 'example....wow!!!']
-    >> str.split('i',1)  # 以 i 为分隔符，分隔 1次
-    ['th', 's is string example....wow!!!']   # 分隔一次，得到2个字符串
-    >> str.split('w')     # 以 w 为分隔符
-    ['this is string example....', 'o', '!!!']
+    >> str1 = "april is too diligent....wow!!!"
+    >> str1.split( )      # 以空格为分隔符
+    ['april', 'is', 'too', 'diligent....wow!!!']
+    >> str1.split('p',1)  # 以 p 为分隔符，分隔 1次
+    ['a', 'ril is too diligent....wow!!!']   # 分隔一次，得到2个字符串，注意分隔符 p 没有了，'april' --> 'a', 'ril'
+    >> str.split('i')     # 以 i 为分隔符
+    ['apr', 'l ', 's too d', 'l', 'gent....wow!!!']
     
     string.splitlines([keepends])
     splitlines() 按照行('\r','\r\n',\n')分隔，返回一个包含各行作为元素的列表，参数keepends默认为False，不包含换行符，如果keepends为True，则保留换行符。
-    >> str1 = 'ab c\n\nde fg\rkl\r\n'
+    >> str1 = 'april is\n\neating peach\rhappily\r\n'
     str1.splitlines()
-    ['ab c', '', 'de fg', 'kl']
+    ['april is', '', 'eating peach', 'happily']
     >> str2.splitlines(True)
-    ['ab c\n', '\n', 'de fg\r', 'kl\r\n']
+    ['april is\n', '\n', 'eating peach\r', 'happily\r\n']
     
     string.partition(str)
     如果字符串包含指定的分隔符，则返回一个3元的元组：（分隔符左边的子串，分隔符本身，分隔符右边的子串）
-    >> str1 = "www.runoob.com" 
+    >> str1 = "crystal.april" 
     >> str1.partition(".")
-    ('www', '.', 'runoob.com')
+    ('crystal', '.', 'april')
     
-    string.rpartition(str) 是类似于 partition()函数,不过是从右边开始查找。
+    str.rpartition(str) 是类似于 partition()函数,不过是从右边开始查找。
     
         
     5.5 替换
-    string.repalce(),string.maketrans()，string.translate() 
+    string.replace(),string.maketrans()，string.translate() 
+    
+    string.replace(old, new[, max])
+    replace() 方法把字符串中的 old（旧字符串） 替换成 new(新字符串)，如果指定第三个参数max，则替换不超过 max 次
+    >> str1 = "my name is april"
+    >> str1.replace("april", "crystal")
+    'my name is crystal'
+    >> str2 = "april is too diligent....wow!!!"
+    >> str2.replace("il", "cc", 3)
+    'aprcc is too dccigent....wow!!!'
+    
+    string.maketrans()，string.translate()通常结合起来使用
+    str.maketrans(intab, outtab)方法用于创建字符映射的转换表，接受两个参数，intab是需要转换的字符，outtab是转换的目标
+    str.translate(table)方法根据参数table (通过 maketrans() 方法创建) 转换字符串的字符    
+    >> intab = "aeiou"
+    >> outtab = "12345"
+    >> trantab = str.maketrans(intab, outtab)
+    >> str1 = "april is too diligent....wow!!!"
+    >> str1.translate(trantab)
+    '1pr3l 3s t44 d3l3g2nt....w4w!!!'
+     
 
     5.6 判断字母或数字
     string.isnumeric(),string.isalnum() ,string.isdecimal(), string.isdigit()，,string.isalpha(),string.isspace() 
+    
+    string.isalnum()  
+    如果 string 至少有一个字符并且所有字符都是字母或数字则返回 True,否则返回 False
+    >> "abc123".isalnum()        >> "abc...123".isalnum() 
+    True                         False
+    
+    string.isnumeric()
+    如果字符串中只包含数字字符，则返回 True，否则返回 False
+    >> '123'.isnumeric()         >> '1.23'.isnumeric()
+    True                         False
+    
+    string.isdigit()
+    
+    
     
     
 
@@ -338,7 +371,7 @@
     string.strip() ,string.rstrip() ,string.lstrip()  
 
     5.9
-    string.zfill(width),string.ljust() ,string.rjust()，center(width, fillchar)  ，	
+    string.zfill(width),string.ljust() ,string.rjust()，center(width, fillchar) 	
 
     
     5.10
