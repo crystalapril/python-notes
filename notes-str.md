@@ -60,7 +60,7 @@
       "十九八七六五四三二一〇"
  
  
- ###  字符串类型的表示      
+ ###  字符串的转义字符      
       
     如果字符串内部既包含'又包含"怎么处理，可以用转义字符\来标识。
      
@@ -213,12 +213,9 @@ https://github.com/crystalapril/python-notes-april/blob/master/notes-str-functio
 
  ###  字符串格式化
 
- 
-格式化是对字符串进行格式表达的方式
- 
-    字符串格式化可以用 % 运算符，也可以使用.format()方法。
-     
-    5.1 ： % (取模) 运算符
+ 字符串格式化可以用 % 运算符，也可以使用.format()方法。     
+    
+    5.1 % (取模) 运算符 ： 
     
     有时需要输出类似'亲爱的xxx你好！你的地址是xx，电话是xx'的字符串，xxx的内容是变化的，所以需要简便的格式化字符串的方式。
     
@@ -228,21 +225,62 @@ https://github.com/crystalapril/python-notes-april/blob/master/notes-str-functio
     有几个%?占位符，后面就跟几个变量或者值，顺序一一对应。如果只有一个%?，括号可以省略。 
     
     例： 
-    >> 'Hello, %s' % 'world'
-    'Hello, world'
-    >> 'Age: %s. Gender: %s' % (25,True)   # %s 可以把任何类型转换为字符串
-    'Age: 25. Gender: True'
+    # %s 可以把任何类型转换为字符串
+    >> 'my name is %s.' % ('april')      
+    'my name is april.'
     
-    >> 'Hi, %s you have $%d.' % ('April',1000000)
-    'Hi, April you have $1000000.'    
-
-    >> 'growth rate: %d %%' % 7    # %%表示一个%(转义)
+    # %d 整数
+    >> 'april is %d years old.' % (18)   
+    'april is 18 years old.'
+    
+    # %f 浮点数
+    >> 'her weight is %f kg.' % (37.5)  
+    'her weight is 37.500000 kg.'
+    
+    # %.2f 浮点数，指定保留2位小数点
+    >> 'her weight is %.2f kg.' % (37.262)  
+    'her weight is 37.26 kg.'
+    
+    # 指定占位符宽度  默认空格
+    >> 'name:%10s age:%10d weight:%10.2f' % ('april',18,37.2666)  
+    'name:     april age:        18 weight:     37.27'
+    
+    # 指定占位符宽度  左对齐
+    >> 'name:%-10s age:%-10d weight:%-10.2f' % ('april',18,37.2666)  
+    'name:april      age:18         weight:37.27     '
+    
+    # 指定0为占位符
+    >> 'name:%-10s age:%08d weight:%08.2f' % ('april',18,37.2666) 
+    'name:april      age:00000018 weight:00037.27'
+    
+    # 科学计数法，默认保留小数点后6位 
+    >> '%e' % (3.2666666)    
+    '3.266667e+00'
+    
+    # 科学计数法，指定保留小数点后3位 
+    >> '%.3e' % (3.2666666) 
+    '3.267e+00'
+    
+    # %g  保证6位有效数字的前提下用 %f表示，否则用 %e  
+    >> '%g' % (3266.666666)           
+    '3266.67'
+    
+    >> '%g' % (32666666.66)  
+    '3.26667e+07'
+    
+    # %g  此时7是有效数字的个数  
+    >> '%.7g' % (3266.666666)         
+    '3266.667'
+    
+    >> '%.3g' % (3266.666666)     
+    '3.27e+03'
+    
+    # %%表示一个%(转义)
+    >> 'growth rate: %d %%' % 7    
     'growth rate: 7 %'
-
-
     
     
-    5.2： format()方法
+    5.2 format()方法 ： 
      
          <模板字符串>.format(<逗号分隔的参数>)
 	 
@@ -259,6 +297,10 @@ https://github.com/crystalapril/python-notes-april/blob/master/notes-str-functio
     
     >> 'hello, {0}, 成绩提升了 {1:.2f}%'.format('april',4.05326)
     'hello, april, 成绩提升了 4.05%'
+    
+    >> format(0.0026,'.2e')
+	#输出效果：
+    '2.60e-03'
     
     也可以设置参数：
     
