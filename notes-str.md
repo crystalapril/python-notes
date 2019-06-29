@@ -214,7 +214,7 @@ https://github.com/crystalapril/python-notes-april/blob/master/notes-str-functio
 
  ###  字符串格式化
 
- 字符串格式化可以用 % 运算符，也可以使用.format()方法。     
+ 字符串格式化可以用 % 运算符，也可以使用.format()方法，或f-string。     
     
     5.1 % (取模) 运算符 ： 
     
@@ -422,8 +422,81 @@ format数字格式化表
 |11         |'{:b}'.format(11) , '{:d}'.format(11) , '{:o}'.format(11) , '{:x}'.format(11) , '{:#x}'.format(11) , '{:#X}'.format(11)| 1011 , 11 , 13 , b , 0xb , 0XB    | 进制 |
 
 	
+    5.3 f-string
+    
+    f-string，亦称为格式化字符串常量（formatted string literals），是Python3.6新引入的一种字符串格式化方法。
+    
+    f-string在形式上是以 f 或 F 修饰符引领的字符串（f'xxx' 或 F'xxx'），以大括号 {} 标明被替换的字段，例如：
+    >> name = 'april'
+    >> f'Hello, my name is {name}'
+    'Hello, my name is april'
+    
+    f-string在本质上并不是字符串常量，而是一个在运行时运算求值的表达式：
+    While other string literals always have a constant value, formatted strings are really expressions evaluated at run time.
+    （与具有恒定值的其它字符串常量不同，格式化字符串实际上是运行时运算求值的表达式。）
+    —— Python Documentation
 
+    f-string在功能方面不逊于传统的%-formatting语句和str.format()函数，同时性能又优于二者，用法举例：
+    
+    5.3.1 简单例子
 
+	>> name = 'april'
+	>> age = 18
+	>> f"Hello, {name}. you are {age}" 
+	'Hello, april. you are 18'
+
+    5.3.2 任意表达式及函数调用
+
+	f字符串是在运行时进行渲染，因此可以将任何有效的Python表达式或函数放入其中；
+	>> f"{2*26}"
+	'52'
+
+	>> f"{name.lower()} is funny."
+	'april is funny.'
+	
+	>> import math
+	>> f'The answer is {math.log(math.pi)}'
+	'The answer is 1.1447298858494002'
+
+	可以使用带有f字符串的类创建对象。
+	class f_str:
+	    def __init__(self, name, age, sex):
+		self.name = name
+		self.age = age
+		self.sex = sex
+	    def __repr__(self):
+		return f"your name is {self.name}, and age is {self.age}, but you are {self.sex}, Surprise!"
+
+	you_self = f_str("april", 18, "female") 
+	you_self
+	--> Your name is april, and age is 18, but you are female, Surprise!
+
+    5.3.3 多行 f-string
+
+	每一行开头放一个 f；
+	>> profession = "comedian"
+	>> affiliation = "Monty Python"
+	>> message = (f"Hi {name}. "
+		      f"You are a {profession}. "
+		      f"You were in {affiliation}.")
+	>> message
+	'Hi april. You are a comedian. You were in Monty Python.'
+
+	某一行放个 f ，仅该行进行匹配，其它行不变；
+	>> message = (f"Hi {name}. "
+	  	      "You are a {profession}. "
+		      "You were in {affiliation}.")
+	>> message
+	'Hi april. You are a {profession}. You were in {affiliation}.'
+
+	多行一个f且使用三个引号时，返回时有换行符。
+	>> message = f"""
+	  	     Hi {name}. 
+		     You are a {profession}. 
+		     You were in {affiliation}.
+		     """
+	>> message
+	'\n    Hi april. \n    You are a comedian. \n    You were in Monty Python.\n 
 	
 
 
@@ -434,6 +507,8 @@ format数字格式化表
 
 https://www.icourse163.org/learn/BIT-268001?tid=1206073223#/learn/content?type=detail&id=1210530417&cid=1212669817 北京理工大学 嵩天 python语言程序设计
  
+https://blog.csdn.net/sunxb10/article/details/81036693  f-string简介 
+https://www.jianshu.com/p/d0aa54e497ba                  f-string
  
  
  
