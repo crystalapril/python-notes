@@ -158,12 +158,11 @@
     IndexError: list index out of range
     当索引超出了范围时，Python会报IndexError错误，所以要确保索引不要越界，最后一个元素的索引是len(ls) - 1
         
-    函数和方法                   描述
-    len(s)                      返回序列s的长度，即元素个数
-    min(s)                      返回序列s的最小值，s中元素需要可比较
-    max(s)                      返回序列s的最大值，s中元素需要可比较
-    s.index(x)或s.index(x,i,j)  返回序列s从i开始到j位置中第一次出现元素x的位置
-    s.count(x)                  返回序列s中出现x的总次数
+    函数                        描述
+    len(list)                   返回序列s的长度，即元素个数
+    min(list)                   返回序列s的最小值，s中元素需要可比较
+    max(list)                   返回序列s的最大值，s中元素需要可比较
+    list(seq)                   将元组转换为列表
     
     例 2.2.2：
     >>> ls = ["python" ,123,".io"]
@@ -172,6 +171,79 @@
     >>> s = "python123.io"
     >>> max(s)
     'y'       
+    
+    方法                            描述
+    l.append(obj)                   在列表末尾添加新的对象
+    l.count(obj)                    统计某个元素在列表中出现的次数
+    l.extend(seq)                   在列表末尾一次性追加另一个序列中的多个值（用新列表扩展原来的列表）
+    l.index(x)或l.index(x,i,j)      返回序列s从i开始到j位置中第一次出现元素x的位置
+	l.insert(index, obj)            将对象插入列表
+	l.pop([index=-1])               移除列表中的一个元素（默认最后一个元素），并且返回该元素的值
+	l.remove(obj)                   移除列表中某个值的第一个匹配项
+	l.reverse()                     反向列表中元素
+	l.sort(key=None, reverse=False) 对原列表进行排序
+	l.clear()                       清空列表
+	l.copy()                        复制列表
+       
+    例 2.2.3：
+    #count
+    >> aList = [123, 'april', 'duoduo', 'crystal', 123]
+    >> aList.count(123)
+    2
+    
+    #extend
+    >> list1 = ['april', 'duoduo', 'crystal']
+    >> list1.extend([0,1,2,3,4]) 
+    >> list1
+    ['april', 'duoduo', 'crystal', 0, 1, 2, 3, 4]
+    
+    #index
+    >> list1 = ['april', 'duoduo', 'crystal']
+    >> list1.index('duoduo')
+    1
+    
+    #insert
+    >> list1 = ['april', 'duoduo', 'crystal']
+    >> list1.insert(1, 'pengpeng')
+    >> list1
+    ['april', 'pengpeng','duoduo', 'crystal']
+    
+    #remove
+    >> list1 = ['april','pengpeng', 'duoduo', 'crystal']
+    >> list1.remove('april')
+    >> list1
+    ['pengpeng', 'duoduo', 'crystal']
+    
+    #pop
+    >> list1 = ['april','pengpeng', 'duoduo', 'crystal']
+    >> list1.pop()
+    >> list1
+    ['april','pengpeng', 'duoduo']
+    
+    #reverse
+    >> list1 = ['april', 'duoduo', 'crystal']
+    >> list1.reverse()
+    >> list1
+    ['crystal', 'duoduo', 'april']    
+    
+    #sort
+    >> list1 = ['april', 'duoduo', 'crystal']
+    >> list1.sort()
+    >> list1
+    ['april', 'crystal', 'duoduo']
+    
+    #clear
+    >> list1 = ['april', 'duoduo', 'crystal']
+    >> list1.clear()
+    >> list1
+    []
+    
+    #copy
+    >> list1 = ['april', 'duoduo', 'crystal']
+    >> list2 = list1.copy()
+    >> list2
+    ['april', 'duoduo', 'crystal']
+    
 
 2.3 元祖类型及操作
 
