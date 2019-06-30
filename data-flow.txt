@@ -1,0 +1,27 @@
+duplicateCount
+  =   map toLower
+  >>> sort
+  >>> group
+  >>> map tail
+  >>> map null
+  >>> filter not
+  >>> length
+
+-> map toLower -> sort -> group -> map tail -> map null -> filter not -> length ->
+
+                  "Indivisibilities"
+-- map toLower -> "indivisibilities"
+-- sort        -> "bdeiiiiiiilnsstv"
+-- group       -> ["b","d","e","iiiiiii","l","n","ss","t","v"]
+-- map tail    -> ["","","","iiiiii","","","s","",""]
+-- map null    -> [True,True,True,False,True,True,False,True,True]
+-- filter not  -> [False,False]
+-- length      -> 2
+
+
+def average(xs):
+  return sum(xs) / len(xs)
+
+-> sum  \
+          - div ->
+-> len  /
