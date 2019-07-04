@@ -31,3 +31,11 @@ def search_by_serial(books, serial):
 search_by_serial(sfw, 381) == {'date': '2018-02', 'serial': 381, 'other': '...'}
 search_by_serial(sfw, 368) == {'date': '2017-01', 'serial': 368, 'other': '...'}
 search_by_serial(sfw, 800) == None
+
+def search_by_date(books, date):
+  pass
+
+search_by_date(sfw, '2018-02') == {'date': '2018-02', 'serial': 381, 'other': '...'}
+search_by_date(sfw, '2017-01') == {'date': '2017-01', 'serial': 368, 'other': '...'}
+search_by_date(sfw, '1970-01') == None
+search_by_date(sfw, '201802')  == None
