@@ -26,7 +26,8 @@ sfw = [
 ]
 
 def search_by_serial(books, serial):
-    if serial>368 or serial<381 :
+    l=[x['serial'] for x in books]
+    if serial not in l :
         return None
     a=dict()
     for x in books:
@@ -39,7 +40,8 @@ search_by_serial(sfw, 368) == {'date': '2017-01', 'serial': 368, 'other': '...'}
 search_by_serial(sfw, 800) == None
 
 def search_by_date(books, date):
-    if date not in ['2018-02','2018-01','2017-12','2017-11','2017-10','2017-09','2017-08','2017-07','2017-06','2017-05','2017-04','2017-03','2017-02','2017-01']:
+    l=[x['date'] for x in books]
+    if date not in l:
         return None
     a=dict()
     for x in books:
@@ -177,7 +179,8 @@ element = [
 ]
 
 def search_by_atomic_number(element, Z):
-    if Z not in list(range(1,119)):
+    l=[x[0] for x in element]
+    if Z not in l:
         return None
     a=tuple()
     for x in element:
