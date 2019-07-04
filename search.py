@@ -173,7 +173,11 @@ element = [
 ]
 
 def search_by_atomic_number(element, Z):
-  pass
+    a=tuple()
+    for x in element:
+        if x[0]==Z:
+            a=x
+    return a
 
 search_by_atomic_number(element, 1) == (1, 'H', 'Hydrogen')
 search_by_atomic_number(element, 6) == (6, 'C', 'Carbon')
@@ -181,7 +185,11 @@ search_by_atomic_number(element, 8) == (8, 'O', 'Oxygen')
 search_by_atomic_number(element, 0) == None
 
 def search_by_symbol(element, x):
-  pass
+    a=tuple()
+    for y in element:
+        if y[1]==x:
+            a=y
+    return a
 
 search_by_symbol(element, 'H') == (1, 'H', 'Hydrogen')
 search_by_symbol(element, 'C') == (6, 'C', 'Carbon')
@@ -189,7 +197,11 @@ search_by_symbol(element, 'O') == (8, 'O', 'Oxygen')
 search_by_symbol(element, '')  == None
 
 def search_by_name(element, x):
-  pass
+    a=tuple()
+    for y in element:
+        if y[2]==x:
+            a=y
+    return a
 
 search_by_name(element, 'Hydrogen') == (1, 'H', 'Hydrogen')
 search_by_name(element, 'Carbon')   == (6, 'C', 'Carbon')
