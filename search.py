@@ -26,6 +26,8 @@ sfw = [
 ]
 
 def search_by_serial(books, serial):
+    if serial>368 or serial<381 :
+        return None
     a=dict()
     for x in books:
         if x['serial']==serial:
@@ -37,6 +39,8 @@ search_by_serial(sfw, 368) == {'date': '2017-01', 'serial': 368, 'other': '...'}
 search_by_serial(sfw, 800) == None
 
 def search_by_date(books, date):
+    if date not in ['2018-02','2018-01','2017-12','2017-11','2017-10','2017-09','2017-08','2017-07','2017-06','2017-05','2017-04','2017-03','2017-02','2017-01']:
+        return None
     a=dict()
     for x in books:
         if x['date']==date:
@@ -173,6 +177,8 @@ element = [
 ]
 
 def search_by_atomic_number(element, Z):
+    if Z not in list(range(1,119)):
+        return None
     a=tuple()
     for x in element:
         if x[0]==Z:
@@ -185,6 +191,9 @@ search_by_atomic_number(element, 8) == (8, 'O', 'Oxygen')
 search_by_atomic_number(element, 0) == None
 
 def search_by_symbol(element, x):
+    l=[x[1] for x in element]
+    if x not in l:
+        return None
     a=tuple()
     for y in element:
         if y[1]==x:
@@ -197,6 +206,9 @@ search_by_symbol(element, 'O') == (8, 'O', 'Oxygen')
 search_by_symbol(element, '')  == None
 
 def search_by_name(element, x):
+    l=[x[2] for x in element]
+    if x not in l:
+        return None    
     a=tuple()
     for y in element:
         if y[2]==x:
