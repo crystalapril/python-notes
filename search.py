@@ -26,28 +26,20 @@ sfw = [
 ]
 
 def search_by_serial(books, serial):
-    l=[x['serial'] for x in books]
-    if serial not in l :
-        return None
-    a=dict()
     for x in books:
         if x['serial']==serial:
-            a=x
-    return a
+            return x
+    return None
 
 search_by_serial(sfw, 381) == {'date': '2018-02', 'serial': 381, 'other': '...'}
 search_by_serial(sfw, 368) == {'date': '2017-01', 'serial': 368, 'other': '...'}
 search_by_serial(sfw, 800) == None
 
 def search_by_date(books, date):
-    l=[x['date'] for x in books]
-    if date not in l:
-        return None
-    a=dict()
     for x in books:
         if x['date']==date:
-            a=x
-    return a
+            return x
+    return None
 
 search_by_date(sfw, '2018-02') == {'date': '2018-02', 'serial': 381, 'other': '...'}
 search_by_date(sfw, '2017-01') == {'date': '2017-01', 'serial': 368, 'other': '...'}
@@ -179,14 +171,10 @@ element = [
 ]
 
 def search_by_atomic_number(element, Z):
-    l=[x[0] for x in element]
-    if Z not in l:
-        return None
-    a=tuple()
     for x in element:
         if x[0]==Z:
-            a=x
-    return a
+            return x
+    return None
 
 search_by_atomic_number(element, 1) == (1, 'H', 'Hydrogen')
 search_by_atomic_number(element, 6) == (6, 'C', 'Carbon')
@@ -194,14 +182,10 @@ search_by_atomic_number(element, 8) == (8, 'O', 'Oxygen')
 search_by_atomic_number(element, 0) == None
 
 def search_by_symbol(element, x):
-    l=[x[1] for x in element]
-    if x not in l:
-        return None
-    a=tuple()
     for y in element:
         if y[1]==x:
-            a=y
-    return a
+            return y
+    return None
 
 search_by_symbol(element, 'H') == (1, 'H', 'Hydrogen')
 search_by_symbol(element, 'C') == (6, 'C', 'Carbon')
@@ -209,14 +193,10 @@ search_by_symbol(element, 'O') == (8, 'O', 'Oxygen')
 search_by_symbol(element, '')  == None
 
 def search_by_name(element, x):
-    l=[x[2] for x in element]
-    if x not in l:
-        return None    
-    a=tuple()
     for y in element:
         if y[2]==x:
-            a=y
-    return a
+            return y
+    return None
 
 search_by_name(element, 'Hydrogen') == (1, 'H', 'Hydrogen')
 search_by_name(element, 'Carbon')   == (6, 'C', 'Carbon')
