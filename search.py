@@ -204,6 +204,9 @@ search_by_name(element, 'Oxygen')   == (8, 'O', 'Oxygen')
 search_by_name(element, '')         == None
 
 
+# https://en.wikipedia.org/wiki/History_of_programming_languages
+# https://en.wikipedia.org/wiki/Timeline_of_programming_languages
+
 language = [
     ('Fortran'    , 1957, {'John Backus'}),
     ('Lisp'       , 1958, {'John McCarthy'}),
@@ -230,6 +233,7 @@ language = [
     ('PHP'        , 1995, {'Rasmus Lerdorf'}),
     ('OCaml'      , 1996, {'Xavier Leroy'}),
     ('C#'         , 2000, {'Anders Hejlsberg'}),
+    ('D'          , 2001, {'Andrei Alexandrescu'},
     ('Factor'     , 2003, {'Slava Pestov'}),
     ('Scala'      , 2004, {'Martin Odersky'}),
     ('F#'         , 2005, {'Don Syme'}),
