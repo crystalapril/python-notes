@@ -166,16 +166,31 @@
 | len(s)                      | 返回序列s的长度，即元素个数                   |
 | min(s)                      | 返回序列s的最小元素，s中元素需要可比较         |
 | max(s)                      | 返回序列s的最大元素，s中元素需要可比较         |
+| sum(iterable[,start=0])     | 对可迭代对象求和，如果start不为0，则加上strat  |
+| sorted()                    | 对可迭代对象排序                             |
+| reversed()                  | 对序列进行翻转                               |
+| enumerate()                 | 返回序列索引和值的元祖                        |
+| zip()                       | 两个参数，返回两个序列组成的元祖               |
+| list()                      | 把一个可迭代对象变成一个列表                   |
+| tuple()                     | 把一个可迭代对象变成一个元祖                   |
+| str()                       | 把对象转化为字符串                            |
 | s.index(x) 或 s.index(x,i,j) | 返回序列s从i开始到j位置中第一次出现元素x的位置 |
 | ls.count(x)                 | 返回序列s中出现x的总次数                      |
        
     例 2.2.2：
-    >>> ls = ["python" ,123,".io"]
-    >>> len(ls)
-    3
     >>> s = "python123.io"
     >>> max(s)
     'y'
+    
+    >>> seasons = ['Spring', 'Summer', 'Fall', 'Winter']
+    >>> list(enumerate(seasons))
+    [(0, 'Spring'), (1, 'Summer'), (2, 'Fall'), (3, 'Winter')]
+    
+    >>> a = [1,2,3]
+    >>> b = [4,5,6]
+    >>> zipped = zip(a,b)     # 打包为元组的列表
+    [(1, 4), (2, 5), (3, 6)]   
+    
 
 2.3 元祖类型及操作
 
