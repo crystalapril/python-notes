@@ -26,18 +26,18 @@
 
 1.2 集合操作符（6个操作符， 4个增强操作符）
     
-    操作符及应用      描述
-    S | T            并，返回一个新集合，包括在集合S和T中的所有元素    
-    S - T            差，返回一个新集合，包括在集合S但不在T中的元素    
-    S & T            交，返回一个新集合，包括同时在集合S和T中的元素 
-    S ^ T            补，返回一个新集合，包括集合S和T中的非相同元素 
-    S <= T 或 S < T   返回True/False，判断S和T的子集关系
-    S >= T 或 S > T   返回True/False，判断S和T的包含关系    
- 
-    S |= T           并，更新集合S，包括在集合S和T中的所有元素 
-    S -= T           差，更新集合S，包括在集合S但不在T中的元素 
-    S &= T           交，更新集合S，包括同时在集合S和T中的元素 
-    S ^= T           补，更新集合S，包括集合S和T中的非相同元素 
+| 集合操作符及应用 |                   描述                      |
+|-----------------|-------------------------------------------- |
+|      S | T      |  并，返回一个新集合，包括在集合S和T中的所有元素 |    
+|      S - T      |  差，返回一个新集合，包括在集合S但不在T中的元素 |   
+|      S & T      |  交，返回一个新集合，包括同时在集合S和T中的元素 |
+|      S ^ T      |  补，返回一个新集合，包括集合S和T中的非相同元素 |
+| S <= T 或 S < T |  返回True/False，判断S和T的子集关系           |
+| S >= T 或 S > T |  返回True/False，判断S和T的包含关系           |
+|    S |= T       |  并，更新集合S，包括在集合S和T中的所有元素     |
+|    S -= T       |  差，更新集合S，包括在集合S但不在T中的元素     |
+|    S &= T       |  交，更新集合S，包括同时在集合S和T中的元素     |
+|    S ^= T       |  补，更新集合S，包括集合S和T中的非相同元素     |
     
     例 1.2：
     >>> A = {"p","y",123}
@@ -57,17 +57,18 @@
 
 1.3 集合处理方法
 
-    操作函数或方法   描述
-    S.add(x)       如果x不在集合S中，将x增加到S
-    S.discard(x)   移除S中元素x，如果x不在集合S中，不报错
-    S.remove(s)    移除S中元素x，如果x不在集合S中，产生KeyError异常
-    S.clear()      移除S中所有的元素
-    S.pop()        随机返回S的一个元素，更新S，若S为空产生KeyError异常
-    S.copy()       返回集合S的一个副本
-    len(S)         返回集合S的元素个数
-    x in S         判断S中元素x，x在集合S中，返回True，否则返回False
-    x not in S     判断S中元素x，x不在集合S中，返回True，否则返回False
-    set(x)         将其他类型变量x转变为集合类型
+| 集合操作函数或方法 |                      描述                       |
+|------------------|-------------------------------------------------|
+| S.add(x)         | 如果x不在集合S中，将x增加到S                      |
+| S.discard(x)     | 移除S中元素x，如果x不在集合S中，不报错             |
+| S.remove(s)      | 移除S中元素x，如果x不在集合S中，产生KeyError异常   |
+| S.clear()        | 移除S中所有的元素                                |
+| S.pop()          | 随机返回S的一个元素，更新S，若S为空产生KeyError异常 |
+| S.copy()         | 返回集合S的一个副本                               |
+| len(S)           | 返回集合S的元素个数                               |
+| x in S           | 判断S中元素x，x在集合S中，返回True，否则返回False   |
+| x not in S       | 判断S中元素x，x不在集合S中，返回True，否则返回False |
+| set(x)           | 将其他类型变量x转变为集合类型                      |
     
     例 1.3：
     >>> A = {"p","y",123}
@@ -130,15 +131,16 @@
                       正向递增序号
         
 
-2.2 序列处理函数及方法
+2.2 序列通用处理函数及方法
 
-    操作符及应用          描述
-    x in s              如果 x 是序列 s 的元素，返回True，否则返回Fasle
-    x not in s          如果 x 是序列 s 的元素，返回Fasle，否则返回True
-    s + t               连接两个序列 s 和 t
-    s*n 或 n*s          将序列 s 复制 n 次
-    s[i]                索引，返回 s 中的第 i 个元素，i是序列的序号
-    s[i:j] 或 s[i:j:k]  切片，返回序列 s 中第 i 到 j 以 k 为步长的元素子序列
+| 序列通用操作符及应用 |                   描述                          |
+|--------------------|-------------------------------------------------|
+| x in s             | 如果 x 是序列 s 的元素，返回True，否则返回Fasle    |
+| x not in s         | 如果 x 是序列 s 的元素，返回Fasle，否则返回True    |
+| s + t              | 连接两个序列 s 和 t                               |
+| s*n 或 n*s         | 将序列 s 复制 n 次                                |
+| s[i]               | 索引，返回 s 中的第 i 个元素，i是序列的序号         |
+| s[i:j] 或 s[i:j:k] | 切片，返回序列 s 中第 i 到 j 以 k 为步长的元素子序列 |
     
     例 2.2.1：
     >>> ls = ["python" ,123,".io"]
@@ -157,93 +159,23 @@
     File "<stdin>", line 1, in <module>
     IndexError: list index out of range
     当索引超出了范围时，Python会报IndexError错误，所以要确保索引不要越界，最后一个元素的索引是len(ls) - 1
-        
-    函数                        描述
-    len(list)                   返回序列s的长度，即元素个数
-    min(list)                   返回序列s的最小值，s中元素需要可比较
-    max(list)                   返回序列s的最大值，s中元素需要可比较
-    list(seq)                   将元组转换为列表
-    
+
+   
+|      序列通用函数或方法      |                    描述                     |
+|-----------------------------|--------------------------------------------|
+| len(s)                      | 返回序列s的长度，即元素个数                   |
+| min(s)                      | 返回序列s的最小元素，s中元素需要可比较         |
+| max(s)                      | 返回序列s的最大元素，s中元素需要可比较         |
+| s.index(x) 或 s.index(x,i,j) | 返回序列s从i开始到j位置中第一次出现元素x的位置 |
+| ls.count(x)                 | 返回序列s中出现x的总次数                      |
+       
     例 2.2.2：
     >>> ls = ["python" ,123,".io"]
-    >>> len(s)
+    >>> len(ls)
     3
     >>> s = "python123.io"
     >>> max(s)
-    'y'       
-    
-    方法                            描述
-    l.append(obj)                   在列表末尾添加新的对象
-    l.count(obj)                    统计某个元素在列表中出现的次数
-    l.extend(seq)                   在列表末尾一次性追加另一个序列中的多个值（用新列表扩展原来的列表）
-    l.index(x)或l.index(x,i,j)      返回序列s从i开始到j位置中第一次出现元素x的位置
-	l.insert(index, obj)            将对象插入列表
-	l.pop([index=-1])               移除列表中的一个元素（默认最后一个元素），并且返回该元素的值
-	l.remove(obj)                   移除列表中某个值的第一个匹配项
-	l.reverse()                     反向列表中元素
-	l.sort(key=None, reverse=False) 对原列表进行排序
-	l.clear()                       清空列表
-	l.copy()                        复制列表
-       
-    例 2.2.3：
-    #count
-    >> aList = [123, 'april', 'duoduo', 'crystal', 123]
-    >> aList.count(123)
-    2
-    
-    #extend
-    >> list1 = ['april', 'duoduo', 'crystal']
-    >> list1.extend([0,1,2,3,4]) 
-    >> list1
-    ['april', 'duoduo', 'crystal', 0, 1, 2, 3, 4]
-    
-    #index
-    >> list1 = ['april', 'duoduo', 'crystal']
-    >> list1.index('duoduo')
-    1
-    
-    #insert
-    >> list1 = ['april', 'duoduo', 'crystal']
-    >> list1.insert(1, 'pengpeng')
-    >> list1
-    ['april', 'pengpeng','duoduo', 'crystal']
-    
-    #remove
-    >> list1 = ['april','pengpeng', 'duoduo', 'crystal']
-    >> list1.remove('april')
-    >> list1
-    ['pengpeng', 'duoduo', 'crystal']
-    
-    #pop
-    >> list1 = ['april','pengpeng', 'duoduo', 'crystal']
-    >> list1.pop()
-    >> list1
-    ['april','pengpeng', 'duoduo']
-    
-    #reverse
-    >> list1 = ['april', 'duoduo', 'crystal']
-    >> list1.reverse()
-    >> list1
-    ['crystal', 'duoduo', 'april']    
-    
-    #sort
-    >> list1 = ['april', 'duoduo', 'crystal']
-    >> list1.sort()
-    >> list1
-    ['april', 'crystal', 'duoduo']
-    
-    #clear
-    >> list1 = ['april', 'duoduo', 'crystal']
-    >> list1.clear()
-    >> list1
-    []
-    
-    #copy
-    >> list1 = ['april', 'duoduo', 'crystal']
-    >> list2 = list1.copy()
-    >> list2
-    ['april', 'duoduo', 'crystal']
-    
+    'y'
 
 2.3 元祖类型及操作
 
@@ -309,7 +241,6 @@
     因此，要创建一个内容也不变的tuple，就必须保证tuple的每一个元素本身也不能变。
 
 
-
 2.4 列表类型及操作
 
     列表是序列类型的一种扩展，十分常用
@@ -328,13 +259,14 @@
     注意： 这里ls和lt都指向了["cat","dog","tiger",1024]，这是个赋值的过程，并没有创建新的list
           方括号[]真正创建一个列表，而赋值仅传递引用
     
-    函数或方法         描述
-    ls[i] = x         替换列表ls第i元素为x
-    ls[i:j:k] = lt    用列表lt替换ls切片后对应元素子列表
-    del ls[i]         删除列表ls第i元素
-    del ls[i:j:k]     删除列表ls中第i到第j以k为步长的元素
-    ls += lt          更新列表ls，将列表lt元素增加到列表ls中
-    ls *= n           更新列表ls，其元素重复n次
+|  列表操作符     |              描述                  |
+|----------------|------------------------------------|
+| ls[i] = x      | 替换列表ls第i元素为x                 |
+| ls[i:j:k] = lt | 用列表lt替换ls切片后对应元素子列表    |
+| del ls[i]      | 删除列表ls第i元素                    |
+| del ls[i:j:k]  | 删除列表ls中第i到第j以k为步长的元素    |
+| ls + = lt      | 更新列表ls，将列表lt元素增加到列表ls中 |
+| ls * = n       | 更新列表ls，其元素重复n次             |
     
     例 2.4.2：
     >>> ls = ["cat","dog","tiger",1024]
@@ -344,24 +276,95 @@
     [1,2,4,'tiger']
     >>> ls *2
     [1,2,4,'tiger',1,2,4,'tiger']
-  
-    函数或方法         描述
-    ls.append(x)      在列表ls最后增加一个元素x
-    ls.clear()        删除列表ls中所有的元素
-    ls.copy()         生成一个新列表，赋值ls中所有元素
-    ls.insert(i,x)    在列表ls的第i位置增加元素x
-    ls.pop(i)         将列表ls中第i位置元素取出并删除该元素
-    ls.remove(x)      将列表ls中出现的第一个元素x删除
-    ls.reverse()      将列表ls中的元素反转
     
-    例 2.4.3：
-    >>> ls = ["cat","dog","tiger",1024]
-    >>> ls.append(1234)
-    ['cat','dog','tiger',1024,1234]
-    >>> ls.insert(3,"human")
-    ['cat','dog','tiger','human',1024,1234]
-    >>> ls.reverse()
-    [1234,1024,'human','tiger','dog','cat']
+    
+|  列表函数  |                 描述             |
+|-----------|-----------------------------------|
+| len(list) | 返回序列s的长度，即元素个数         |
+| min(list) | 返回序列s的最小值，s中元素需要可比较 |
+| max(list) | 返回序列s的最大值，s中元素需要可比较 |
+| list(seq) | 将元组转换为列表                   |
+    
+    例 2.2.2：
+    >>> ls = ["python" ,123,".io"]
+    >>> len(s)
+    3
+    >>> s = "python123.io"
+    >>> max(s)
+    'y'       
+    
+|            列表方法              |                           描述                              |
+|---------------------------------|------------------------------------------------------------|
+| l.append(obj)                   | 在列表末尾添加新的对象                                       |
+| l.count(obj)                    | 统计某个元素在列表中出现的次数                                |
+| l.extend(seq)                   | 在列表末尾一次性追加另一个序列中的多个值（用新列表扩展原来的列表）|
+| l.index(x)或l.index(x,i,j)      | 返回序列s从i开始到j位置中第一次出现元素x的位置                  |
+| l.insert(index, obj)            | 将对象插入列表                                               |
+| l.pop([index=-1])               | 移除列表中的一个元素（默认最后一个元素），并且返回该元素的值     |
+| l.remove(obj)                   | 移除列表中某个值的第一个匹配项                                |
+| l.reverse()                     | 反向列表中元素                                               |
+| l.sort(key=None, reverse=False) | 对原列表进行排序                                             |
+| l.clear()                       | 清空列表                                                     |
+| l.copy()                        | 复制列表                                                     |
+       
+    例 2.2.3：
+    #count
+    >> aList = [123, 'april', 'duoduo', 'crystal', 123]
+    >> aList.count(123)
+    2
+    
+    #extend
+    >> list1 = ['april', 'duoduo', 'crystal']
+    >> list1.extend([0,1,2,3,4]) 
+    >> list1
+    ['april', 'duoduo', 'crystal', 0, 1, 2, 3, 4]
+    
+    #index
+    >> list1 = ['april', 'duoduo', 'crystal']
+    >> list1.index('duoduo')
+    1
+    
+    #insert
+    >> list1 = ['april', 'duoduo', 'crystal']
+    >> list1.insert(1, 'pengpeng')
+    >> list1
+    ['april', 'pengpeng','duoduo', 'crystal']
+    
+    #remove
+    >> list1 = ['april','pengpeng', 'duoduo', 'crystal']
+    >> list1.remove('april')
+    >> list1
+    ['pengpeng', 'duoduo', 'crystal']
+    
+    #pop
+    >> list1 = ['april','pengpeng', 'duoduo', 'crystal']
+    >> list1.pop()
+    >> list1
+    ['april','pengpeng', 'duoduo']
+    
+    #reverse
+    >> list1 = ['april', 'duoduo', 'crystal']
+    >> list1.reverse()
+    >> list1
+    ['crystal', 'duoduo', 'april']    
+    
+    #sort
+    >> list1 = ['april', 'duoduo', 'crystal']
+    >> list1.sort()
+    >> list1
+    ['april', 'crystal', 'duoduo']
+    
+    #clear
+    >> list1 = ['april', 'duoduo', 'crystal']
+    >> list1.clear()
+    >> list1
+    []
+    
+    #copy
+    >> list1 = ['april', 'duoduo', 'crystal']
+    >> list2 = list1.copy()
+    >> list2
+    ['april', 'duoduo', 'crystal']    
     
 2.5 序列类型应用场景
 
