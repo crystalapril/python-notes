@@ -477,31 +477,78 @@
     
 3.2 字典处理函数及方法
 
-    函数或方法    描述
-    del d[k]    删除字典d中键k对应的数据值 
-    k in d      判断键k是否在字典d中，如果在返回True，否则False
-    d.keys()    返回字典d中所有的键信息
-    d.values()  返回字典d中所有的值信息
-    d.items()   返回字典d中所有的键值对信息
+|  字典函数  |                       描述                       |
+|-----------|--------------------------------------------------|
+| len(d)         | 返回字典d中元素的个数                         |
+| str(dict)      | 输出字典，以可打印的字符串表示                 |
+| type(variable) | 返回输入的变量类型，如果变量是字典就返回字典类型 |
+| del d[k]       | 删除字典d中键k对应的数据值                     |
+
     
     例 3.2.1
+    >>> dict1 = {'Name': 'april', 'Age': 18, 'Class': 'First'}
+    >>> len(dict1)
+    3
+    
+    >>> dict1 = {'Name': 'april', 'Age': 18, 'Class': 'First'}
+    >>> str(dict1)
+    "{'Name': 'april', 'Class': 'First', 'Age': 18}"
+    
+    >>> dict1 = {'Name': 'april', 'Age': 18, 'Class': 'First'}
+    >>> type(dict1)
+    <class 'dict'>  
+    
+    >>> dict1 = {'Name': 'april', 'Age': 18, 'Class': 'First'}
+    >>> del dict1['Class']
+    >>> dict1
+    {'Name': 'april', 'Age': 18}
+    >>> del dict1
+    >>> dict1
+    NameError                                 Traceback (most recent call last)
+    <ipython-input-138-e36219336d90> in <module>
+    ----> 1 dict1
+
+    NameError: name 'dict1' is not defined
+
+    
+|            字典方法             |                             描述                                 |
+|--------------------------------|------------------------------------------------------------------|
+| d.clear()                      | 删除字典内所有元素                                                 |
+| d.copy()                       | 返回一个字典的浅复制                                               |    
+| d.fromkeys()                   | 创建一个新字典，以序列seq中元素做字典的键，val为字典所有键对应的初始值 |
+| d.get(key,default=None)        | 返回指定键的值，如果值不在字典中返回default值                        |
+| k in d                         | 如果键在字典dict里返回true，否则返回false                           |
+| d.items()                      | 以列表返回可遍历的(键, 值) 元组数组                                 |
+| d.keys()                       | 返回一个迭代器，可以使用 list() 来转换为列表                         |
+| d.setdefault(key,default=None) | 和get()类似, 但如果键不存在于字典中，将会添加键并将值设为default      |
+| d.update(dict2)                | 把字典dict2的键/值对更新到dict里                                    |
+| d.values()                     | 返回一个迭代器，可以使用 list() 来转换为列表                         |
+| d.pop(k,<default>)        |字典给定键key所对应的值，返回值为被删除的值。key值必须给出。否则，返回default值|
+| d.popitem()                    | 随机返回并删除字典中的一对键和值(一般删除末尾对)                       |
+  
+
+    
+    例 3.2.2
+    
+    # d.clear()
+    >> dict1 = {'Name': 'april', 'Age': 18}
+    >> dict1.clear()
+    >> dict1
+    {}
+    
+    # d.copy() 浅复制
+    
+
     >>> d = {"中国":"北京","美国":"华盛顿","法国":"巴黎"}
     >>> "中国" in d
     True
+    
     >>> d.keys()
     dict_keys(['中国','美国','法国'])
     >>> d.values()
     dict_values(['北京','华盛顿','巴黎'])
     注意：这里返回的不是list，而是返回的一个可迭代的对象，如果需要转换成列表，可以用list(d.values())
     
-    函数或方法             描述
-    d.get(k,<default>)    键k存在，则返回相应值，不在可以返回None，或返回指定的<default>值      (特别为重要)
-    d.pop(k,<default>)    键k存在，则取出相应值，不在则返回<default>值  
-    d.popitem()           随机从字典d中取出一个键值对，以元祖形式返回
-    d.clear()             删除所有的键值对
-    len(d)                返回字典d中元素的个数
-    
-    例 3.2.2
     >>> d = {"中国":"北京","美国":"华盛顿","法国":"巴黎"}
     >>> d.get("中国","伊斯兰堡") 
     '北京'
