@@ -170,36 +170,77 @@ between_symbol(melting_point, 2000, 3000) == ['Pt']
 def to_celsius_below(xs, y):
     l=[]
     for x in xs:
-        if x[1]-273.15 <=y:
-            l.append((x[0],x[1]-273.15))
+        a = x[1]-273.15 
+        if a <=y:
+            l.append((x[0],a))
     return l
 
+def to_celsius_below(xs, y):
+    l=[]
+    xs_n=[(x[0],x[1]-273.15) for x in xs]
+    for x in xs_n:
+        if x[1] <=y:
+            l.append((x[0],x[1]))
+    return l
+  
 # 6.1.2 获取低于y温度（摄氏度）的元素和温度（摄氏度）集合 输入是开氏温度，需转换
 def to_celsius_below(xs, y):
+    a = y + 273.15
+    return list(map(lambda x:(x[0],x[1]-273.15),filter(lambda x:x[1]<=a,xs)))
+  
+def to_celsius_below(xs, y):
     return list(map(lambda x:(x[0],x[1]-273.15),filter(lambda x:x[1]-273.15<=y,xs)))
+    
 
 # 6.2.1 获取高于y温度（摄氏度）的元素和温度（摄氏度）集合 输入是开氏温度，需转换
 def to_celsius_above(xs, y):
     l=[]
     for x in xs:
-        if x[1]-273.15 >=y:
-            l.append((x[0],x[1]-273.15))
+        a = x[1]-273.15 
+        if a >= y:
+            l.append((x[0],a))
+    return l 
+  
+def to_celsius_above(xs, y):
+    l=[]
+    xs_n=[(x[0],x[1]-273.15) for x in xs]
+    for x in xs_n:
+        if x[1] >=y:
+            l.append((x[0],x[1]))
     return l
 
 # 6.2.2 获取高于y温度（摄氏度）的元素和温度（摄氏度）集合 输入是开氏温度，需转换
 def to_celsius_above(xs, y):
+    a = y + 273.15
+    return list(map(lambda x:(x[0],x[1]-273.15),filter(lambda x:x[1]>=a,xs)))  
+  
+def to_celsius_above(xs, y):
     return list(map(lambda x:(x[0],x[1]-273.15),filter(lambda x:x[1]-273.15>=y,xs)))
+  
 
 
 # 6.3.1 获取高于y温度（摄氏度），同时低于z温度（摄氏度）的元素和温度（摄氏度）集合 输入是开氏温度，需转换
 def to_celsius_between(xs, y, z):
     l=[]
     for x in xs:
-        if y <= x[1]-273.15 <=z:
-            l.append((x[0],x[1]-273.15))
+        a = x[1]-273.15 
+        if y <= a <=z:
+            l.append((x[0],a))
+    return l
+
+def to_celsius_between(xs, y, z):
+    l=[]
+    xs_n=[(x[0],x[1]-273.15) for x in xs]
+    for x in xs_n:
+        if y <= x[1]<=z:
+            l.append((x[0],x[1]))
     return l
 
 # 6.3.2 获取高于y温度（摄氏度），同时低于z温度（摄氏度）的元素和温度（摄氏度）集合 输入是开氏温度，需转换
+def to_celsius_between(xs, y, z):
+    a,b = y + 273.15,z + 273.15
+    return list(map(lambda x:(x[0],x[1]-273.15),filter(lambda x:a <= x[1] <= b,xs))) 
+  
 def to_celsius_between(xs, y, z):
     return list(map(lambda x:(x[0],x[1]-273.15),filter(lambda x:y <= x[1]-273.15 <= z,xs)))
 
