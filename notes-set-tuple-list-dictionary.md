@@ -526,7 +526,7 @@
 | d.setdefault(key,default=None) | 和get()类似, 但如果键不存在于字典中，将会添加键并将值设为default       |
 | d.update(dict2)                | 把字典dict2的键/值对更新到dict里                                   |
 | d.values()                     | 返回一个迭代器，可以使用 list() 来转换为列表                         |
-| d.pop(k,<default>)        |字典给定键key所对应的值，返回值为被删除的值。key值必须给出。否则，返回default值|
+| d.pop(key,<default>)      |字典给定键key所对应的值，返回值为被删除的值。key值必须给出。否则，返回default值|
 | d.popitem()                    | 随机返回并删除字典中的一对键和值(一般删除末尾对)                      |
   
     
