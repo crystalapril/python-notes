@@ -26,8 +26,8 @@
 
 1.2 集合操作符（6个操作符， 4个增强操作符）
     
-| 集合操作符及应用 |                   描述                      |
-|-----------------|-------------------------------------------- |
+|  集合操作符及应用 |                   描述                     |
+|-----------------|------------------------------------------ |
 |      S | T      |  并，返回一个新集合，包括在集合S和T中的所有元素 |    
 |      S - T      |  差，返回一个新集合，包括在集合S但不在T中的元素 |   
 |      S & T      |  交，返回一个新集合，包括同时在集合S和T中的元素 |
@@ -308,26 +308,26 @@
     >>> max(s)
     'y'       
     
-|            列表方法              |                           描述                              |
-|---------------------------------|------------------------------------------------------------|
-| l.append(obj)                   | 在列表末尾添加新的对象                                       |
-| l.count(obj)                    | 统计某个元素在列表中出现的次数                                |
+|            列表方法              |                           描述                            |
+|---------------------------------|----------------------------------------------------------|
+| l.append(obj)                   | 在列表末尾添加新的对象                                      |
+| l.count(obj)                    | 统计某个元素在列表中出现的次数                               |
 | l.extend(seq)                   | 在列表末尾一次性追加另一个序列中的多个值（用新列表扩展原来的列表）|
-| l.index(x)或l.index(x,i,j)      | 返回序列s从i开始到j位置中第一次出现元素x的位置                  |
-| l.insert(index, obj)            | 将对象插入列表                                               |
+| l.index(x)或l.index(x,i,j)      | 返回序列s从i开始到j位置中第一次出现元素x的位置                 |
+| l.insert(index, obj)            | 将对象插入列表                                             |
 | l.pop([index=-1])               | 移除列表中的一个元素（默认最后一个元素），并且返回该元素的值     |
-| l.remove(obj)                   | 移除列表中某个值的第一个匹配项                                |
-| l.reverse()                     | 反向列表中元素                                               |
-| l.sort(key=None, reverse=False) | 对原列表进行排序                                             |
-| l.clear()                       | 清空列表                                                     |
-| l.copy()                        | 复制列表                                                     |
+| l.remove(obj)                   | 移除列表中某个值的第一个匹配项                               |
+| l.reverse()                     | 反向列表中元素                                             |
+| l.sort(key=None, reverse=False) | 对原列表进行排序                                           |
+| l.clear()                       | 清空列表                                                  |
+| l.copy()                        | 复制列表                                                  |
        
     例 2.2.3：
     #count
     >> aList = [123, 'april', 'duoduo', 'crystal', 123]
     >> aList.count(123)
-    2
-    
+    2    
+       
     #extend
     >> list1 = ['april', 'duoduo', 'crystal']
     >> list1.extend([0,1,2,3,4]) 
@@ -477,27 +477,31 @@
     
 3.2 字典处理函数及方法
 
-|  字典函数  |                       描述                       |
-|-----------|--------------------------------------------------|
-| len(d)         | 返回字典d中元素的个数                         |
-| str(dict)      | 输出字典，以可打印的字符串表示                 |
+|    字典函数     |                    描述                    |
+|----------------|-------------------------------------------|
+| len(d)         | 返回字典d中元素的个数                        |
+| str(dict)      | 输出字典，以可打印的字符串表示                |
 | type(variable) | 返回输入的变量类型，如果变量是字典就返回字典类型 |
-| del d[k]       | 删除字典d中键k对应的数据值                     |
+| del d[k]       | 删除字典d中键k对应的数据值                    |
 
     
     例 3.2.1
+    # len(d)
     >>> dict1 = {'Name': 'april', 'Age': 18, 'Class': 'First'}
     >>> len(dict1)
     3
     
+    # str(d)
     >>> dict1 = {'Name': 'april', 'Age': 18, 'Class': 'First'}
     >>> str(dict1)
     "{'Name': 'april', 'Class': 'First', 'Age': 18}"
     
+    # type(d)
     >>> dict1 = {'Name': 'april', 'Age': 18, 'Class': 'First'}
     >>> type(dict1)
     <class 'dict'>  
     
+    # del d[k] , del d
     >>> dict1 = {'Name': 'april', 'Age': 18, 'Class': 'First'}
     >>> del dict1['Class']
     >>> dict1
@@ -507,26 +511,24 @@
     NameError                                 Traceback (most recent call last)
     <ipython-input-138-e36219336d90> in <module>
     ----> 1 dict1
-
     NameError: name 'dict1' is not defined
 
     
-|            字典方法             |                             描述                                 |
-|--------------------------------|------------------------------------------------------------------|
-| d.clear()                      | 删除字典内所有元素                                                 |
-| d.copy()                       | 返回一个字典的浅复制                                               |    
-| d.fromkeys()                   | 创建一个新字典，以序列seq中元素做字典的键，val为字典所有键对应的初始值 |
+|            字典方法             |                             描述                                |
+|--------------------------------|----------------------------------------------------------------|
+| d.clear()                      | 删除字典内所有元素                                                |
+| d.copy()                       | 返回一个字典的浅复制                                              |    
+| d.fromkeys()                   | 创建一个新字典，以序列seq中元素做字典的键，val为字典所有键对应的初始值   |
 | d.get(key,default=None)        | 返回指定键的值，如果值不在字典中返回default值                        |
 | k in d                         | 如果键在字典dict里返回true，否则返回false                           |
 | d.items()                      | 以列表返回可遍历的(键, 值) 元组数组                                 |
 | d.keys()                       | 返回一个迭代器，可以使用 list() 来转换为列表                         |
-| d.setdefault(key,default=None) | 和get()类似, 但如果键不存在于字典中，将会添加键并将值设为default      |
-| d.update(dict2)                | 把字典dict2的键/值对更新到dict里                                    |
+| d.setdefault(key,default=None) | 和get()类似, 但如果键不存在于字典中，将会添加键并将值设为default       |
+| d.update(dict2)                | 把字典dict2的键/值对更新到dict里                                   |
 | d.values()                     | 返回一个迭代器，可以使用 list() 来转换为列表                         |
 | d.pop(k,<default>)        |字典给定键key所对应的值，返回值为被删除的值。key值必须给出。否则，返回default值|
-| d.popitem()                    | 随机返回并删除字典中的一对键和值(一般删除末尾对)                       |
+| d.popitem()                    | 随机返回并删除字典中的一对键和值(一般删除末尾对)                      |
   
-
     
     例 3.2.2
     
@@ -536,26 +538,99 @@
     >> dict1
     {}
     
-    # d.copy() 浅复制
-    
+    # d.copy() 浅复制（区别于直接赋值，以及copy模块里的深拷贝deepcopy）
+    >> dict1 = {'Name': 'april', 'Age': 18, 'Class': 'First'}
+    >> dict2 = dict1.copy()
+    >> dict2
+    {'Age': 7, 'Name': 'Runoob', 'Class': 'First'}    
+   
+    直接赋值、浅拷贝和深度拷贝区别
+    >> import copy
+    >> a = {'Name': 'april', 'Age': 18, 'location': ['beijing','jingzhou']}  #原始对象
+       b = a                        #赋值，传对象的引用
+       c = dict1.copy(a)            #对象拷贝，浅拷贝
+       d = copy.deepcopy(a)         #对象拷贝，深拷贝
+       
+    >> a['condidant']='duoduo'      #修改对象a，添加元素
+       a['Age']=20    
+       a['location'].remove('jingzhou')  #修改对象a中的['beijing','jingzhou']数组对象  
+            
+    >> print(a,b,c,d )
+    ({'Name': 'april', 'Age': 20, 'location': ['beijing'], 'condidant': 'duoduo'},
+     {'Name': 'april', 'Age': 20, 'location': ['beijing'], 'condidant': 'duoduo'},
+     {'Name': 'april', 'Age': 18, 'location': ['beijing']},
+     {'Name': 'april', 'Age': 18, 'location': ['beijing', 'jingzhou']})
+     
+    b 其实是 a 的引用（别名），所以输出结果都是一致的
+    c 父对象进行了深拷贝，不会随 a 修改而修改，‘Age’ 的值不变，子对象['beijing','jingzhou']是浅拷贝所以随 a 的修改而修改
+    d 完全拷贝了 a 的父对象及其子对象，两者是完全独立的，所以不随 a 的修改而修改
+     
+    详细讨论见：https://www.runoob.com/w3cnote/python-understanding-dict-copy-shallow-or-deep.html 
 
-    >>> d = {"中国":"北京","美国":"华盛顿","法国":"巴黎"}
-    >>> "中国" in d
+    # d.fromkeys()  创建一个新字典，以序列 seq 中元素做字典的键，value 为字典所有键对应的初始值
+    >> seq = ('name', 'age', 'sex')    
+    
+    >> dict2 = dict1.fromkeys(seq)
+    >> dict2
+    {'name': None, 'age': None, 'sex': None}
+    
+    >> dict3 = dict1.fromkeys(seq,10)
+    >> dict3
+    {'name': 10, 'age': 10, 'sex': 10}    
+    
+    # d.get(key,default=None)  函数返回指定键的值，如果值不在字典中返回默认值 
+    >>> d = {"name":"april","age":18,"location":"beijing"}
+    >>> d.get("name","condidant") 
+    'april'
+    >>> d.get("condidant","duoduo")
+    'duoduo'
+    
+    # key in dict    
+    >>> d = {"name":"april","age":18,"location":"beijing"}
+    >>> "name" in d
     True
     
-    >>> d.keys()
-    dict_keys(['中国','美国','法国'])
-    >>> d.values()
-    dict_values(['北京','华盛顿','巴黎'])
-    注意：这里返回的不是list，而是返回的一个可迭代的对象，如果需要转换成列表，可以用list(d.values())
+    # d.items()  以列表返回可遍历的(键, 值) 元组数组
+    >>> d = {"name":"april","age":18,"location":"beijing"}
+    >>> d.items()
+    dict_items([('name', 'april'), ('age', 18), ('location', 'beijing')])
     
-    >>> d = {"中国":"北京","美国":"华盛顿","法国":"巴黎"}
-    >>> d.get("中国","伊斯兰堡") 
-    '北京'
-    >>> d.get("巴基斯坦","伊斯兰堡")
-    '伊斯兰堡'
-    >>> d.popitem()
-    ('美国','华盛顿')
+    # d.keys()   返回一个可迭代对象，可以使用 list() 来转换为列表 
+    >>> d = {"name":"april","age":18,"location":"beijing"}
+    >>> d.keys()
+    dict_keys(['name', 'age', 'location'])
+    
+    # d.setdefault(key, default=None)  和 get()类似, 如果键不已经存在于字典中，将添加键并将值设为默认值
+    >> d = {"name":"april","age":18}
+    >> d.setdefault('age',None)
+    >> d.setdefault('location',None)
+    >> d
+    {'name': 'april', 'age': 18, 'location': None}
+    
+    # d.update(dict2)   把字典参数 dict2 的 key/value(键/值) 对更新到字典 dict 里
+    >> dict1 = {'Name': 'name', 'Age': 18}
+    >> dict2 = {'Sex': 'female' }
+    >> dict1.update(dict2)
+    >> dict1
+    {'Name': 'name', 'Age': 18, 'Sex': 'female'}
+    
+    # d.values()  返回一个迭代器，可以使用 list() 来转换为列表，列表为字典中的所有值
+    >>> d = {"name":"april","age":18,"location":"beijing"}
+    >>> d.values()
+    dict_values(['april', 18, 'beijing'])    
+    
+    # pop(key[,default])  删除给定键 key 对应的值，返回值为被删除的值。key值必须给出。否则，返回default值
+    >> d = {"name":"april","age":18,"location":"beijing"}
+    >> a=d.pop('location')
+    >> print(d,a)
+    {'name': 'april', 'age': 18},
+    'beijing'
+    
+    # popitem()  随机返回并删除字典中的一对键和值(一般删除末尾对)
+    >> d = {"name":"april","age":18,"location":"beijing"}
+    >> a = d.popitem()
+    >> print(d,a)
+    {'name': 'april', 'age': 18}, ('location', 'beijing')
     
 3.3 字典类型应用场景
     
@@ -630,3 +705,6 @@ https://www.icourse163.org/learn/BIT-268001?tid=1206073223#/learn/content?type=d
 北京理工大学 嵩天 python语言程序设计
 
 https://www.liaoxuefeng.com/wiki/1016959663602400/1017104324028448 廖雪峰python教程
+
+https://www.runoob.com/python3/python3-dictionary.html
+
