@@ -249,3 +249,26 @@ language = [
     ('Swift'      , 2014, {'Chris Lattner'}),
     ('Crystal'    , 2014, {'Ary Borenszweig', 'Juan Wajnerman', 'Brian Cardiff'}),
 ]
+     
+
+# 构造 index 函数     
+def index1(xs,x):
+    for i,y in enumerate(xs):
+        if x==y:
+            return i
+     
+def index2(xs,x):
+    for i,y in enumerate(xs):
+        if x==y:
+            return i
+    return None
+        
+def index3(xs,x):
+    for i,y in enumerate(xs):
+        if x==y:
+            return i
+    else :
+        print(f"ValueError: {x} not found") 
+     
+     
+            return i 
