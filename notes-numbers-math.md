@@ -342,7 +342,7 @@
 |幂函数与对数函数|                                描述                                     |
 |--------------|-------------------------------------------------------------------------|
 | exp(x)       | 返回 e 次 x 幂，其中 e = 2.718281... 是自然对数的基数                      |
-| expml(x)     | 返回 e 的 x 次幂，减1                                                     |
+| expm1(x)     | 返回 e 的 x 次幂，减1                                                     |
 | log(x[,base])| 使用两个参数，返回给定的 base 的对数 x ，计算为 log(x)/log(base)，默认base为e |
 | log1p(x)     | 返回 1+x (base e) 的自然对数,以对于接近零的 x 精确的方式计算结果              |
 | log2(x)      | 返回 x 以2为底的对数                                                       |
@@ -354,26 +354,37 @@
     
     import math
     
-    # math.exp(x)  
+    # math.exp(x)   返回x的指数,eˣ
+    >> math.exp(2)              >> math.exp(-4.05)
+    7.38905609893065            0.017422374639493515
     
-    # math.expml(x)
+    # math.expm1(x) 返回x的指数,eˣ -1
+    >> math.exp(2)              >> math.exp(-4.05)
+    6.38905609893065            -0.9825776253605065
     
-    # math.log(x[,base])
+    # math.log(x[,base])  返回 log(x)/log(base)，默认base为e 
+    >> math.log(10)             >> math.log(10,2)
+    2.302585092994046c          3.3219280948873626    
     
-    # math.log1p(x)  
+    # math.log1p(x)  返回 1+x (base e) 的自然对数
+    >> math.log1p(10)
+    2.3978952727983707
     
-    # math.log2(x) 
+    # math.log2(x)   返回 x 以2为底的对数。这通常比 log(x, 2) 更准确
+    >> math.log2(10)
+    3.321928094887362    
     
-    # math.log10(x) 
+    # math.log10(x)  返回 x 底为10的对数。这通常比 log(x, 10) 更准确
+    >> math.log10(2)
+    0.3010299956639812
     
-    # math.pow(x,y)  
+    # math.pow(x,y)  返回 x 的 y 次幂。如果 x 是负数，会引发 ValueError 
+    >> math.pow(2,3)        >> math.pow(2,-3)       >> math.pow(2,2.5)  
+    8                       0.125                   5.656854249492381
     
-    
-    
-    # math.sqrt( x )
-    >> 
-
-
+    # math.sqrt( x )    返回 x 的平方根   
+    >> math.sqrt(4)         >> math.sqrt(5)
+    2.0                     2.23606797749979
 
 
 |常量 |              描述              |
@@ -381,5 +392,12 @@
 | pi | 数学常量 pi（圆周率，一般以π来表示）|
 | e  | 数学常量 e，e即自然常数（自然常数） |
     
-    
+
+### 附录
+
+https://docs.python.org/3/library/math.html
+
+https://www.runoob.com/python3/python3-number.html
+
+
     
