@@ -250,29 +250,93 @@
 | fabs(x)        | 返回 x 的绝对值                                                 |
 | factorial(x)   | 以一个整数返回 x 的阶乘。 如果 x 不是整数或为负数时则将引发 ValueError|
 | floor(x)       | 返回 x 的向下取整，小于或等于 x 的最大整数                          |
-| fmod(x,y)      | 取模运算                                                        |
-| frexp(x)       | 返回 x 的尾数和指数作为对``(m, e)``                               |
-| fsum(iterable) | 返回迭代中的精确浮点值                                            |
-| gcd(a,b)       | 返回整数 a 和 b 的最大公约数                                      |
-| isclose(a, b)  | 若 a 和 b 的值比较接近则返回 True，否则返回 False                  |
-| isfinite(x)    | 如果 x 既不是无穷大也不是NaN，则返回 True ，否则返回 False          |
-| isinf(x)       | 如果 x 是正或负无穷大，则返回 True ，否则返回 False                 |
-| isnan(x)       | 如果 x 是 NaN（不是数字），则返回 True ，否则返回 False             |
-| ldexp(x,i)     | 返回 x * (2**i)                                                |
-| modf(x)        | 返回 x 的小数和整数部分。两个结果都带有 x 的符号并且是浮点数          |
-| remainder(x,y) | 返回 IEEE 754 风格的 x 相对于 y 的余数                            |
-| trunc(x)       | 返回 Real 值 x 截断为 Integral （通常是整数）                      |
+| fmod(x,y)      | 取模运算                                                          |
+| frexp(x)       | 返回 x 的尾数和指数作为对``(m, e)``                                |
+| fsum(iterable) | 返回迭代中的精确浮点值                                             |
+| gcd(a,b)       | 返回整数 a 和 b 的最大公约数                                       |
+| hypot(x, y)    | 欧几里德范数 sqrt(x*x + y*y)                                      |
+| isclose(a, b)  | 若 a 和 b 的值比较接近则返回 True，否则返回 False                   |
+| isfinite(x)    | 如果 x 既不是无穷大也不是NaN，则返回 True ，否则返回 False           |
+| isinf(x)       | 如果 x 是正或负无穷大，则返回 True ，否则返回 False                  |
+| isnan(x)       | 如果 x 是 NaN（不是数字），则返回 True ，否则返回 False              |
+| ldexp(x,i)     | 返回 x * (2**i)                                                   |
+| modf(x)        | 返回 x 的小数和整数部分。两个结果都带有 x 的符号并且是浮点数           |
+| remainder(x,y) | 返回 IEEE 754 风格的 x 相对于 y 的余数                              |
+| trunc(x)       | 返回 Real 值 x 截断为 Integral （通常是整数）                       |
 
     例 7.1：
     import math
     
-    # math.ceil(x)
+    # math.ceil(x)    向上取整
+    >> math.ceil(405.326)      >> math.ceil(-40.5)      >> math.ceil(math.pi)
+    406                        -40                      4
+        
+    # math.copysign()   返回一个基于 x 的绝对值和 y 的符号的浮点数
+    >> math.copysign(3,-2)     >> math.copysign(-3,2)
+    -3.0                       3.0
+        
+    # math.fabs(x) 
+    # 区别于内置函数abs()：fabs() 函数只对浮点型跟整型数值有效， abs() 还可以运用在复数中
+    >> math.fabs(-40.5)         >> math.fabs(32.6)
+    40.5                        32.6
     
+    # math.factorial(x)   阶乘
+    >> math.factorial(3)        >> math.factorial(4)
+    6                           24    
     
+    # math.floor(x)   向下取整
+    >> math.floor(-40.5)        >> math.floor(32.6) 
+    -41                         32
     
+    # math.fmod(x,y)   模运算, fmod() 在使用浮点数时通常是首选，而x % y 在使用整数时是首选
+    >> math.fmod(3.1,2)        >> math.fmod(3,2)
+    1.1                        1.0
     
+    # math.fsum(iterable)
+    >> math.fsum((1,2,3,4))
+    10.0
     
+    # math.gcd(a,b)  返回最大公约数
+    >> math.gcd(8,6)          >> math.gcd(27,36)
+    2                         9
     
+    # math.hypot(x, y)  返回欧几里德范数 sqrt(x*x + y*y)
+    >> math.hypot(1,2)        >> math.hypot(0,2)
+    2.23606797749979          2.0
+    
+    # math.isclose(a, b, *, rel_tol=1e-09, abs_tol=0.0)   若 a 和 b 的值比较接近则返回 True，否则返回 False       
+    # el_tol 是相对容差 —— 它是 a 和 b 之间允许的最大差值，相对于 a 或 b 的较大绝对值。例如，要设置5％的容差，请传递 rel_tol=0.05 。默认容差为 1e-09，确保两个值在大约9位十进制数字内相同。 rel_tol 必须大于零。
+    # abs_tol 是最小绝对容差 —— 对于接近零的比较很有用。 abs_tol 必须至少为零
+    >> math.isclose(1,1.01)  >> math.isclose(1,1.01,rel_tol=0.1)  >> math.isclose(1,1.0000000001)  
+    False                    True                                 True
+    
+    # math.isfinite()   如果 x 既不是无穷大也不是NaN，则返回 True ，否则返回 False
+    >> math.isfinite(0.1)     >> math.isfinite(3)
+    True                      True
+    
+    # math.isinf()   如果 x 是正或负无穷大，则返回 True ，否则返回 False  
+    >> math.isinf(405)
+    False
+    
+    # math.isnan(x)   如果 x 是 NaN（不是数字），则返回 True ，否则返回 False   
+    >> math.isnan(405)
+    False
+    
+    # math.ldexp(x,i)     返回 x * (2**i)  
+    >> math.ldexp(5,2)
+    20.0
+    
+    # math.modf(x)   返回 x 的小数和整数部分组成的元祖
+    >> math.modf(math.pi)
+    (0.14159265358979312, 3.0)
+    
+    # math.remainder(x,y)   返回 IEEE 754 风格的 x 相对于 y 的余数  
+    >> math.remainder(4,3)
+    1.0
+    
+    # math.trunc(x)   返回 Real 值 x 截断为 Integral （通常是整数）    
+    >> math.trunc(4.05)
+    4    
     
     
 |幂函数与对数函数|                                描述                                     |
@@ -290,11 +354,19 @@
     
     import math
     
-    # exp(x)  
+    # math.exp(x)  
     
-    # 
+    # math.expml(x)
     
-    # 
+    # math.log(x[,base])
+    
+    # math.log1p(x)  
+    
+    # math.log2(x) 
+    
+    # math.log10(x) 
+    
+    # math.pow(x,y)  
     
     
     
