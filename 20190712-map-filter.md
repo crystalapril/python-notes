@@ -65,4 +65,4 @@
 * [iterable](https://docs.python.org/3/glossary.html#term-iterable)
 * [list comprehension](https://docs.python.org/3/glossary.html#term-list-comprehension)
 * [generator expression](https://docs.python.org/3/glossary.html#term-generator-expression)
-  [zh-cn](https://docs.python.org/zh-cn/3/glossary.html#term-generator-expression)
+  ([zh-cn](https://docs.python.org/zh-cn/3/glossary.html#term-generator-expression))
