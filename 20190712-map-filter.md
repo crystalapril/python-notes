@@ -59,29 +59,10 @@
     
     [(x,y)]  [x,y]
 
-
 ### 术语表
 
-    term-generator-expression
-    
-    term-iterator
-    
-    term-iterable
-    
-    term-generator-expression
-    
-    term-list-comprehension
-       
-
-
-### 附录
-
-https://docs.python.org/zh-cn/3/glossary.html#term-generator-expression
-
-https://docs.python.org/3/glossary.html#term-iterator
-
-https://docs.python.org/3/glossary.html#term-iterable
-
-https://docs.python.org/3/glossary.html#term-generator-expression
-
-https://docs.python.org/3/glossary.html#term-list-comprehension
+* [iterator](https://docs.python.org/3/glossary.html#term-iterator)
+* [iterable](https://docs.python.org/3/glossary.html#term-iterable)
+* [list comprehension](https://docs.python.org/3/glossary.html#term-list-comprehension)
+* [generator expression](https://docs.python.org/3/glossary.html#term-generator-expression)
+  [zh-cn](https://docs.python.org/zh-cn/3/glossary.html#term-generator-expression)
