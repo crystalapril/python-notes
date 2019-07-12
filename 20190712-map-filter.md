@@ -85,12 +85,3 @@ https://docs.python.org/3/glossary.html#term-iterable
 https://docs.python.org/3/glossary.html#term-generator-expression
 
 https://docs.python.org/3/glossary.html#term-list-comprehension
-
-
-
-
-
-
-
-
-
