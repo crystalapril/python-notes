@@ -31,6 +31,9 @@
 
 要点 2：
 
+    range in python2 返回 list
+    range in python3 返回 iterable
+
 
 ### 术语表
 
@@ -38,7 +41,7 @@
     
     term-iterator
     
-    range iterable
+    term-iterable
     
     term-generator-expression
     
