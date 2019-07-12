@@ -36,7 +36,7 @@
     
 要点 3：
 
-    generator的括号有时候可以省，如：
+    generator expression 的括号有时候可以省，如：
         
     sum(i*i for i in range(10)) 
     
