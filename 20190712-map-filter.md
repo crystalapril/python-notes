@@ -1,4 +1,4 @@
-# map filter 
+# map filter range
 
  - map
  - filter
@@ -33,6 +33,31 @@
 
     range in python2 返回 list
     range in python3 返回 iterable
+    
+要点 3：
+
+    generator的括号有时候可以省，如：
+        
+    sum(i*i for i in range(10)) 
+    
+    
+    tuple的括号
+    
+    有时候可以省略：
+    x, y = y, x
+    
+    x0, x1 = 1, 2
+
+    def divmod(x, y):
+        return x//y, x%y
+           
+    有时候不能省略：
+    
+    melting_point = [ ('C'  , 3800   ),('Al' , 933.47), ...]   
+    
+    f(x,y)  f((x,y))    
+    
+    [(x,y)]  [x,y]
 
 
 ### 术语表
