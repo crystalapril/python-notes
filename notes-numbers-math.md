@@ -288,11 +288,23 @@
     >> math.floor(-40.5)        >> math.floor(32.6) 
     -41                         32
     
-    # math.fmod(x,y)   模运算, fmod() 在使用浮点数时通常是首选，而x % y 在使用整数时是首选
-    >> math.fmod(3.1,2)        >> math.fmod(3,2)
-    1.1                        1.0
+    # math.fmod(x,y)  
+    # 模运算, 与运算符号%的区别：
+      - fmod默认返回浮点数，fmod() 在使用浮点数时通常是首选，而x % y 在使用整数时是首选
+      - 对于x、y符号一致时，%与fmod结果一致
+      - 但x、y符号不一致时，结果不同      
+    >> math.fmod(3.1,2)       >> math.fmod(-3,-2)     >> math.fmod(-3,2)      >> math.fmod(3,-2)
+    1.1                       -1.0                    -1.0                    1.0             
+    >> 3.1 % 2                >> -3 % -2              >> -3 % 2               >> 3 % -2
+    1.1                       -1                      1                       -1
     
-    # math.fsum(iterable)
+    # math.frexp(x)  将x分解为尾数与指数  x = 尾数 * 2^指数
+    >> math.frexp(3)       >> math.frexp(-32)
+    (0.75, 2)              (-0.5, 6)
+    >> 0.75*2**2           >> -0.5*2**6
+    3.0                    -32
+    
+    # math.fsum(iterable)    功能同内置函数sum()，但精度更高
     >> math.fsum((1,2,3,4))
     10.0
     
@@ -304,9 +316,11 @@
     >> math.hypot(1,2)        >> math.hypot(0,2)
     2.23606797749979          2.0
     
-    # math.isclose(a, b, *, rel_tol=1e-09, abs_tol=0.0)   若 a 和 b 的值比较接近则返回 True，否则返回 False       
-    # el_tol 是相对容差 —— 它是 a 和 b 之间允许的最大差值，相对于 a 或 b 的较大绝对值。例如，要设置5％的容差，请传递 rel_tol=0.05 。默认容差为 1e-09，确保两个值在大约9位十进制数字内相同。 rel_tol 必须大于零。
-    # abs_tol 是最小绝对容差 —— 对于接近零的比较很有用。 abs_tol 必须至少为零
+    # math.isclose(a, b, *, rel_tol=1e-09, abs_tol=0.0)   
+    # a与b “接近” 的判定条件是： 
+      - a与b的差距是否小于ab较大的那个乘以rel_tol
+      - 或a、b差距小于abs_tol
+      - 也即 abs(a-b) <= max(rel_tol * max(abs(a), abs(b)), abs_tol)
     >> math.isclose(1,1.01)  >> math.isclose(1,1.01,rel_tol=0.1)  >> math.isclose(1,1.0000000001)  
     False                    True                                 True
     
@@ -322,7 +336,7 @@
     >> math.isnan(405)
     False
     
-    # math.ldexp(x,i)     返回 x * (2**i)  
+    # math.ldexp(x,i)     返回 x * (2**i)  ，math.frexp(x)的逆运算
     >> math.ldexp(5,2)
     20.0
     
@@ -354,7 +368,7 @@
     
     import math
     
-    # math.exp(x)   返回x的指数,eˣ
+    # math.exp(x)   返回e为底的指数,eˣ
     >> math.exp(2)              >> math.exp(-4.05)
     7.38905609893065            0.017422374639493515
     
@@ -366,7 +380,7 @@
     >> math.log(10)             >> math.log(10,2)
     2.302585092994046c          3.3219280948873626    
     
-    # math.log1p(x)  返回 1+x (base e) 的自然对数
+    # math.log1p(x)  返回 1+x (base e) 的自然对数，math.log1p(x)=math.log(x+1,math.e)
     >> math.log1p(10)
     2.3978952727983707
     
