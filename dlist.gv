@@ -1,0 +1,26 @@
+digraph dlist
+{
+  None [shape=none]
+
+  node [shape=record]
+
+  x0 [label="<p> prev | x0 | <n> next"]
+  x1 [label="<p> prev | x1 | <n> next"]
+  x2 [label="<p> prev | x2 | <n> next"]
+  x3 [label="<p> prev | x3 | <n> next"]
+
+  x0:n -> x1
+  x1:n -> x2
+  x2:n -> x3
+  x3:n -> None
+
+  x0:p -> None
+  x1:p -> x0
+  x2:p -> x1
+  x3:p -> x2
+
+  node [shape=ellipse]
+
+  xs -> x0
+  ys -> x2
+}
