@@ -10,7 +10,9 @@ def map1(f,xs):
         l.append(f(x))
     return l
 
-# 1.2 用 while 表达 map 函数，返回list（类似python2 map）
+# 1.2 用 while 表达 map 函数，返回list（类似python2 map）  
+
+# 1.2.1 适用于list，tuple
 def map2(f,xs):
     i=0
     l=[]
@@ -19,7 +21,21 @@ def map2(f,xs):
         i +=1
     return l
 
-               
+# 1.2.2 适用于set，dict
+def map3(f,xs):
+    i=0
+    l=[]
+    a=len(xs)
+    while i < a:
+        if type(xs) != dict:
+            l.insert(0,f(xs.pop()))
+        else:
+            l.insert(0,f(xs.popitem()))
+        i +=1
+    return l
+
+# eg.  list(map3(abs,{-1,-2,3})),  list(map3(lambda x:x,{'a':-1,'b':-2,'c':-3})) 
+
 * Filter
 
 # 2.1 用 for loops 表达 filter 函数，返回list（类似python2 filter）
@@ -31,6 +47,8 @@ def filter1(f,xs):
     return l
 
 # 2.2 用 while 表达 filter 函数，返回list（类似python2 filter）
+
+# 2.2.1 适用于list，tuple
 def filter2(f,xs):
     i=0
     l=[]
@@ -40,6 +58,20 @@ def filter2(f,xs):
         i +=1
     return l
 
+# 2.2.2 适用于set，dict
+def filter3(f,xs):
+    i=0
+    l=[]
+    a=len(xs)
+    while i < a:        
+        if type(xs) != dict:
+            a=xs.pop()
+        else:
+            a=xs.popitem()
+        if f(a):
+            l.insert(0,a)        
+        i +=1
+    return l
                
 * Reduce
 
