@@ -21,7 +21,7 @@ def map2(f,xs):
         i +=1
     return l
 
-# 1.2.2 适用于set，dict
+# 1.2.2 适用于set，dict   缺点：会破坏原有的序列
 def map3(f,xs):
     i=0
     l=[]
@@ -31,6 +31,16 @@ def map3(f,xs):
             l.insert(0,f(xs.pop()))
         else:
             l.insert(0,f(xs.popitem()))
+        i +=1
+    return l
+
+# 1.2.3 适用于 set,dict   next({'a':1,'b':2})之后，默认返回key{'a','b'}
+def map4(f,xs):
+    i=0
+    l=[]
+    a=iter(xs)
+    while i < len(xs):
+        l.append(f(next(a)))
         i +=1
     return l
 
