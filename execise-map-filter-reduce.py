@@ -46,6 +46,7 @@ def map4(f,xs):
 
 # eg.  list(map3(abs,{-1,-2,3})),  list(map3(lambda x:x,{'a':-1,'b':-2,'c':-3})) 
 
+
 * Filter
 
 # 2.1 用 for loops 表达 filter 函数，返回list（类似python2 filter）
@@ -68,7 +69,7 @@ def filter2(f,xs):
         i +=1
     return l
 
-# 2.2.2 适用于set，dict
+# 2.2.2 适用于set，dict,by pop
 def filter3(f,xs):
     i=0
     l=[]
@@ -82,7 +83,20 @@ def filter3(f,xs):
             l.insert(0,a)        
         i +=1
     return l
-               
+
+# 2.2.3 适用于set，dict ,by iter(),next()
+def filter4(f,xs):
+    i=0
+    l=[]
+    a=iter(xs)
+    while i < len(xs):
+        x = next(a)
+        if f(x):
+            l.append(x)
+        i += 1
+    return l
+   
+    
 * Reduce
 
 # 3.1 用 for loops 表达 reduce 函数，返回list
@@ -92,11 +106,22 @@ def reduce1(f,xs,init=0):
     return init
 
 # 3.2 用 while 表达 reduce 函数，返回list
+
+# 3.2.1 适用于list, tuple
 def reduce2(f,xs,init=0):
     i=0
     while i < len(xs):
         init = f(init,xs[i])
         i +=1
+    return init
+
+# 3.2.2 适用于set,dict  by iter(),next()
+def reduce3(f,xs,init=0):
+    i =0
+    a = iter(xs)
+    while i < len(xs):
+        init = f(init,next(a))
+        i += 1
     return init
                
 
