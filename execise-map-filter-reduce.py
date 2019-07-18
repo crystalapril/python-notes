@@ -1,6 +1,5 @@
 * Map Filter Reduce
 
-
 * Map
 
 # 1.1 用 for loops 表达 map 函数，返回list（类似python2 map）
@@ -45,16 +44,14 @@ def map4(f,xs):
     return l
 
 # 1.2.4 适用于 set,dict  by enumerate
-def filter4(f,xs):
-    i=0
-    l=[]
-    a=iter(xs)
-    while i < len(xs):
-        x = next(a)
-        if f(x):
-            l.append(x)
+def map5(f,xs):
+    i  =0
+    l1 =list(enumerate(xs))
+    l2 =[]
+    while i < len(l1):
+        l2.append(l1[i][1])
         i += 1
-    return l
+    return l2
 # eg.  list(map3(abs,{-1,-2,3})),  list(map3(lambda x:x,{'a':-1,'b':-2,'c':-3})) 
 
 
@@ -116,6 +113,7 @@ def filter5(f,xs):
         if f(l1[i][1]):
             l2.append(l1[i][1])
         return l2
+    
     
 * Reduce
 
