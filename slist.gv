@@ -1,0 +1,40 @@
+// As = ('A', None) #       A
+// xs = ('a', None) #       a
+// Bs = ('B', xs)   #     B a
+// xs = ('b', xs)   #     b a
+// xs = ('c', xs)   #   c b a
+// Ds = ('D', xs)   # D c b a
+// xs = ('d', xs)   # d c b a
+
+digraph slist
+{
+  None [shape=none]
+
+  node [shape=record]
+
+  a [label="'a' | <n>"]
+  b [label="'b' | <n>"]
+  c [label="'c' | <n>"]
+  d [label="'d' | <n>"]
+
+  A [label="'A' | <n>"]
+  B [label="'B' | <n>"]
+  D [label="'D' | <n>"]
+
+
+  a:n -> None
+  b:n -> a
+  c:n -> b
+  d:n -> c
+
+  A:n -> None
+  B:n -> a
+  D:n -> c
+
+  node [shape=ellipse]
+
+  xs -> d
+  As -> A
+  Bs -> B
+  Ds -> D
+}
