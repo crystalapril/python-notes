@@ -44,6 +44,17 @@ def map4(f,xs):
         i +=1
     return l
 
+# 1.2.4 适用于 set,dict  by enumerate
+def filter4(f,xs):
+    i=0
+    l=[]
+    a=iter(xs)
+    while i < len(xs):
+        x = next(a)
+        if f(x):
+            l.append(x)
+        i += 1
+    return l
 # eg.  list(map3(abs,{-1,-2,3})),  list(map3(lambda x:x,{'a':-1,'b':-2,'c':-3})) 
 
 
@@ -95,7 +106,16 @@ def filter4(f,xs):
             l.append(x)
         i += 1
     return l
-   
+
+# 2.2.4 适用于set，dict ,by enumerate
+def filter5(f,xs):
+    i = 0 
+    l1 = list(enumerate(xs))
+    l2 =[]
+    while i < len(l1):
+        if f(l1[i][1]):
+            l2.append(l1[i][1])
+        return l2
     
 * Reduce
 
@@ -116,12 +136,22 @@ def reduce2(f,xs,init=0):
     return init
 
 # 3.2.2 适用于set,dict  by iter(),next()
-def reduce3(f,xs,init=0):
+def reduce4(f,xs,init=0):
     i =0
     a = iter(xs)
     while i < len(xs):
         init = f(init,next(a))
         i += 1
     return init
+
+# 3.2.3 适用于set,dict  by enumerate
+def reduce5(f,xs,init=0):
+    i = 0
+    l = list(enumerate(xs))
+    while i < len(xs):
+        init = f(init,l[i][1])
+        i +=1
+    return init
+
                
 
