@@ -99,9 +99,7 @@
     }
     
     
-    图例：
-    
-    
+![image](https://github.com/crystalapril/python-notes-april/blob/master/image/single.png)
     
     
     Doubly Linked Lists：
@@ -111,7 +109,8 @@
     
     
     
-    图例：
+    
+![image](https://github.com/crystalapril/python-notes-april/blob/master/image/double.png)
     
     
     
