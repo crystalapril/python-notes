@@ -64,8 +64,16 @@
             l.append(slist[0])
             slist = slist[1]
         return l  
+        
+    1.2 构造 to_slist([1,2,3])== (1, (2, (3, None)))
+    def to_slist(xs):    
+        t = None
+        for x in xs[::-1]:
+            t = (x,t)
+        return t
     
-    1.2 构造 reduce
+    
+    1.3 构造 reduce
     def reduce_s(f,slist,init=0):
         while slist != None:
             init = f(init,slist[0])
@@ -74,7 +82,10 @@
         
     # reduce_s(lambda x,y:x+y,(3, (2, (1, None))),init=0)    
     
-    1.3 构造 map
+    1.4 构造 map 
+    1.4.1 slist to slist
+    
+    1.4.2 list to slist
     def map_s(f,slist):
         l=[]
         while slist !=None:
@@ -84,8 +95,12 @@
         
     # map_s(lambda x:x*2,(3, (2, (1, None))))     
     
-    1.4 构造 filter
-    def filter_s(f,slist):
+    1.5 构造 filter    
+    1.5.1 slist to slist
+    
+    
+    1.5.2 list to slist
+    def filter_l(f,slist):
         l = []
         while slist != None:
             if f(slist[0]):
@@ -93,7 +108,7 @@
             slist = slist[1]
         return l  
 
-    # filter_s(lambda x: x % 2 ==1,(3, (2, (1, None))))
+    # filter_l(lambda x: x % 2 ==1,(3, (2, (1, None))))
 
 
 ### Linked Lists图形
