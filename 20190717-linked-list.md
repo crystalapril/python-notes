@@ -85,6 +85,16 @@
     1.4 构造 map 
     1.4.1 slist to slist
     
+    def map_s(f,slist):    
+        t = []
+        while slist != None:
+            t.append([f(slist[0])])
+            slist = slist[1]
+        return t
+    
+    map_s(lambda x:x*2,[2,[3,[4,None]]])
+    
+    
     1.4.2 list to slist
     def map_s(f,slist):
         l=[]
@@ -109,6 +119,9 @@
         return l  
 
     # filter_l(lambda x: x % 2 ==1,(3, (2, (1, None))))
+    
+    
+    # 构造 reverse  (x0, (x1, (x2, None)))  ---> (x2, (x1, (x0, None)))
 
 
 ### Linked Lists图形
