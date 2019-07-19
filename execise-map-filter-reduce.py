@@ -60,7 +60,7 @@ def map6(f,xs):
     xss = list(xs.items())
     i = 0
     while i < len(xs):
-        l.append(xss[i])
+        l.append(f(xss[i]))
         i +=1
     return l
 
