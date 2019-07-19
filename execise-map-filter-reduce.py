@@ -54,6 +54,27 @@ def map5(f,xs):
     return l2
 # eg.  list(map3(abs,{-1,-2,3})),  list(map3(lambda x:x,{'a':-1,'b':-2,'c':-3})) 
 
+# 1.2.5 适用于 dict  
+def map6(f,xs):
+    l=[]
+    xss = list(xs.items())
+    i = 0
+    while i < len(xs):
+        l.append(xss[i])
+        i +=1
+    return l
+
+# 1.2.6 适用于 dict  
+def map7(f,xs):
+    d= {}
+    i = 0
+    k = list(xs.keys())
+    while i <len(xs):
+        d[k[i]]=f(xs[k[i]])
+        i +=1
+    return d
+
+# map7(lambda x:x*2,dict1)
 
 * Filter
 
