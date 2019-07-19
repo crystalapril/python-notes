@@ -1,5 +1,12 @@
 # Linked List
 
+ - 计算机语言的list 与 python list 的区别
+ - Singly Linked List(单链表）
+ - Doubly Linked Lists（双链表）
+ - Singly Linked List to Array by Python
+ - Linked Lists图形
+
+
 ### 计算机语言的list 与 python list 的区别
 
     计算机语言里有广义的 list（列表），类似 python 里面的 sequence(序列)
@@ -46,7 +53,47 @@
     ...  <-> |p i-1|a i-1|n i-1| <-> |p i||a i|n i| <-> |p i+1||a i+1|n i+1| <-> ...
     
     每个node有3个格子，一个用来指向前面的node，一个用来指向后面的node
+    
 
+### Singly Linked List to Array by Python
+
+    1.1 构造 to_list(('c', ('b', ('a', None)))) == ['c', 'b', 'a']
+    def to_list(slist):
+        l=[]
+        while slist!=None:
+            l.append(slist[0])
+            slist = slist[1]
+        return l  
+    
+    1.2 构造 reduce
+    def reduce_s(f,slist,init=0):
+        while slist != None:
+            init = f(init,slist[0])
+            slist = slist[1]
+        return init
+        
+    # reduce_s(lambda x,y:x+y,(3, (2, (1, None))),init=0)    
+    
+    1.3 构造 map
+    def map_s(f,slist):
+        l=[]
+        while slist !=None:
+            l.append(f(slist[0]))
+            slist = slist[1]
+        return l      
+        
+    # map_s(lambda x:x*2,(3, (2, (1, None))))     
+    
+    1.4 构造 filter
+    def filter_s(f,slist):
+        l = []
+        while slist != None:
+            if f(slist[0]):
+                l.append(slist[0])
+            slist = slist[1]
+        return l  
+
+    # filter_s(lambda x: x % 2 ==1,(3, (2, (1, None))))
 
 
 ### Linked Lists图形
