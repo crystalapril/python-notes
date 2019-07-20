@@ -122,6 +122,12 @@
     
     
     # 构造 reverse  (x0, (x1, (x2, None)))  ---> (x2, (x1, (x0, None)))
+    def reverse_s1(slist):    
+        t=None
+        while slist != None:
+            t = (slist[0],t)
+            slist = slist[1]
+        return t    
 
 
 ### Linked Lists图形
