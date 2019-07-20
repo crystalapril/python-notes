@@ -82,18 +82,21 @@
         
     # reduce_s(lambda x,y:x+y,(3, (2, (1, None))),init=0)    
     
+    
     1.4 构造 map 
     1.4.1 slist to slist
-    
-    def map_s(f,slist):    
-        t = []
-        while slist != None:
-            t.append([f(slist[0])])
+    def map_s(f,slist):  # 分两步，先to list，再 to slist
+        l=[]
+        while  slist !=None:
+            l.append(slist[0])
             slist = slist[1]
-        return t
-    
-    map_s(lambda x:x*2,[2,[3,[4,None]]])
-    
+        t=None
+        for x in l[::-1]:
+            t= (f(x),t)
+        return t    
+   
+    # map_s(lambda x:x*2,[2,[3,[4,None]]])
+    # map_s(lambda x :x*2,(1,(2,(3,None))))    
     
     1.4.2 list to slist
     def map_s(f,slist):
@@ -105,9 +108,21 @@
         
     # map_s(lambda x:x*2,(3, (2, (1, None))))     
     
+    
     1.5 构造 filter    
     1.5.1 slist to slist
-    
+    def filter_s(f,slist):  # 分两步，先to list，再 to slist
+        l=[]
+        while  slist !=None:
+            l.append(slist[0])
+            slist = slist[1]
+        t=None
+        for x in l[::-1]:
+            if f(x):
+                t= (x,t)
+        return t   
+        
+    # filter_s(lambda x :x % 2==1,(1,(2,(3,None))))
     
     1.5.2 list to slist
     def filter_l(f,slist):
