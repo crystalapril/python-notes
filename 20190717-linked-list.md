@@ -84,8 +84,8 @@
     
     
     1.4 构造 map 
-    1.4.1 slist to slist
-    def map_s(f,slist):  # 分两步，先to list，再 to slist
+    1.4.1 slist to slist  # 分两步，先to list，再 to slist
+    def map_s(f,slist):  
         l=[]
         while  slist !=None:
             l.append(slist[0])
@@ -98,17 +98,17 @@
     # map_s(lambda x:x*2,[2,[3,[4,None]]])
     # map_s(lambda x :x*2,(1,(2,(3,None))))    
     
-    1.4.2 slist to slist  without interim list
-    def map_s(f,slist):  # 分两步，先反转，同时f(x)，再反转回来
-    t=None
-    p=None
-    while  slist !=None:
-        t= (f(slist[0]),t)
-        slist = slist[1]
-    while t !=None:
-        p=(t[0],p)
-        t=t[1] 
-    return p
+    1.4.2 slist to slist  without interim list  # 分两步，先反转，同时f(x)，再反转回来
+    def map_s(f,slist):  
+        t=None
+        p=None
+        while  slist !=None:
+            t= (f(slist[0]),t)
+            slist = slist[1]
+        while t !=None:
+            p=(t[0],p)
+            t=t[1] 
+        return p
     
     1.4.3 list to slist
     def map_s(f,slist):
