@@ -50,14 +50,9 @@
     注意：    
     - windows在查看的时候，需要关闭防火墙，否则可能报错  
     - 为什么此处输入127.0.0.1，因为127.0.0.1是本机地址
-    - 当前目录,例如：如果在C盘文件夹下启动，则显示C盘文件里的目录
+    - 当前目录,例如：如果在C盘文件夹下启动，则显示C盘文件里的目录，如果是D盘文件夹里启动，则显示D盘文件里的目录
 ![image](https://github.com/crystalapril/python-notes-april/blob/master/image/c.8000.png)
 ![image](https://github.com/crystalapril/python-notes-april/blob/master/image/c.8000-1.png)
-
-    - 如果是D盘文件夹里启动，则显示D盘文件里的目录
-![image](https://github.com/crystalapril/python-notes-april/blob/master/image/d.8000-3.png)
-![image](https://github.com/crystalapril/python-notes-april/blob/master/image/d.8000-2.png)
-
 
     4.1.3 http.server的端口(port)的用处    
     >>> python -m http.server 8000
@@ -84,7 +79,7 @@
     WLAN下面的 IPv4 地址：192.168.0.110
     >>> python -m http.server
     让手机跟电脑连上同一个wifi,然后用手机里的浏览器去访问，http://192.168.0.110:8000
-![image](https://github.com/crystalapril/python-notes-april/blob/master/image/iphone.d.jpg) 
+    显示出了D盘文件夹下的目录
 
     对于手机和电脑来说，192.168.0.110都是电脑的地址，这个地址不是固定的，一般用ipconfig先查询一下
     继续在电脑端执行
@@ -150,7 +145,6 @@
 ![image](https://github.com/crystalapril/python-notes-april/blob/master/image/venv-AB.png)       
 
         这时观察D盘，发现生成了A文件夹和B文件夹
-![image](https://github.com/crystalapril/python-notes-april/blob/master/image/venv-AB2.png)    
 
     我们发现：
     - venv 这个程序，把传递给它的参数，当作目录名字来用了
