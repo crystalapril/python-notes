@@ -47,6 +47,9 @@
     (当前目录,例如：如果在C盘文件夹下启动，则显示C盘文件里的目录，如果是D盘文件夹里启动，则显示D盘文件里的目录)
 
     如果当前目录下有index.html文件，默认显示该文件的内容；如果没有，默认显示当前目录下的文件列表。
+    这时，可以在浏览器中输入 http://127.0.0.1:8000 查看
+    注意：windows在查看的时候，需要关闭防火墙，否则可能报错  
+         为什么此处输入127.0.0.1，因为127.0.0.1是本机地址
         
 ![image](https://github.com/crystalapril/python-notes-april/blob/master/image/c.8000.png)
 ![image](https://github.com/crystalapril/python-notes-april/blob/master/image/c.8000-1.png)
@@ -55,9 +58,8 @@
 
     4.1.3 http.server的端口(port)的用处
     >>> python -m http.server 8000
-    这时，可以在浏览器中输入 http://127.0.0.1:8000 查看
-    （注意：windows在查看的时候，需要关闭防火墙，否则可能报错）
-    这里的 8000 就是端口，也即port，port默认为8000（不输入的情况下），也可以自己定义如8080，9000
+    Serving HTTP on 0.0.0.0 port 8000(http://0.0.0.0:8000/)...
+    这里的 8000 就是端口，也即port，port默认为8000（不输入的情况下），也可以自己定义如8080，9000，如
     >>> python -m http.server 8080
     Serving HTTP on 0.0.0.0 port 8080(http://0.0.0.0:8080/)...
     >>> python -m http.server 9000
