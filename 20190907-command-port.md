@@ -67,10 +67,10 @@
     >>> python -m http.server 9000
     Serving HTTP on 0.0.0.0 port 9000(http://0.0.0.0:9000/)...
     前往http://127.0.0.1:9000 查看:
-![image](https://github.com/crystalapril/python-notes-april/blob/master/image/c.9000-1.png)  
+    得到跟上面8080端口显示同样的文件目录
 
-    但无论port是8000，8080，9000，在同一个目录下启动的，显示的文件目录也是一致的
-    注意：这里浏览器隐藏了 http  
+    因此，无论port是8000，8080，9000，在同一个目录下启动的，显示的文件目录也是一致的
+    注意：这里浏览器地址隐藏了 http  
 
     那么端口的作用是什么呢？   
     我们在电脑的 cmd 里运行 ipconfig
