@@ -27,6 +27,7 @@
         因为：
         对于__name__来说，python -m foo 和 python foo.bar 是一类，import foo 是另一类
         对于__name__来说，python -m foo 和 python foo.py 都是作为程序（主模块）运行，import foo 是作为模块导入
+![image](https://github.com/crystalapril/python-notes-april/blob/master/image/name_a.png)
 
 
 ### 3 Command Line Argument
