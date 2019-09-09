@@ -29,6 +29,32 @@
         对于__name__来说，python -m foo 和 python foo.py 都是作为程序（主模块）运行，import foo 是作为模块导入
 ![image](https://github.com/crystalapril/python-notes-april/blob/master/image/name_a.png)
 
+    注意：
+    >>> python name_a.py 
+    __main__    
+    这里name_a.py作为主程序运行，__name == __main__    
+    >>> python name_b.py
+    name_a
+    __main__
+    在 name_b.py中，import name_a，这时的name_a是以模块被导入的
+    name_a 中的 print(__name__)在 name_b.py 中被显示为name_a的文件名'name_a'（不含.py）
+    name_b 是作为主程序被调用的，因此 name_b 中的 __name__ == __main__ 
+    
+    >>> python -m name_a
+    __main__
+    这里的 -m name_a 同样是作为主程序运行，__name == __main__     
+    >>> python -m name_b
+    name_a
+    __main__
+    这里的 name_b 同样是作为主程序被调用的，__name__ == __main__
+    name_b 中import name_a，原因同上，此时的name_a 中的__name__ 在被name_b 导入时，显示为 name_a
+    
+    >>> python
+    进入交互模式后
+    >>> import name_b
+    name_a
+    name_b
+    此时name_a，name_b 都是通过模块导入的方式被调用的，各自的__name__ 都显示各自的模块名     
 
 ### 3 Command Line Argument
   - sys.argv
@@ -40,8 +66,23 @@
         
         argv 是 argument variable 参数变量的简写形式
         一般在命令行调用的时候由系统传递给程序
-        argv 一般是list，argv[0] 一般是被调用的脚本文件名，argv[1]及以后的就是传入的参数
-        
+        argv 一般是list，argv[0] 一般是被调用的脚本文件名或全路径名，argv[1]及以后的就是传入的参数
+![image](https://github.com/crystalapril/python-notes-april/blob/master/image/sys_argv_a.png)
+
+    注意：
+    >>> python sys_argv_a.py 1 2 3
+    ['sys_argv_a.py','1','2','3']
+    这里 argv[0] 是被调用的文件名，argv[1]是传入的参数'1',argv[2]='2' ,argv[3]='3'
+    
+    >>> python -m sys_argv_a 1 2 3    
+    ['C:\\Users\\lenovo\\Desktop\\ideal\\sys_argv_a.py', '1', '2', '3']
+    这里 argv[0] 是被调用文件的全路径，argv[1：]是传入的参数'1','2','3'
+    
+    >>> python
+    进入交互模式后
+    >>> import sys_argv_a 1 2 3
+    ['']
+    因为命令行调用python的时候，后面没有跟任何的文件，以及参数          
         
 
 ### 4 Default Argument
@@ -233,12 +274,7 @@
     - venv 这个程序，把传递给它的参数，当作目录名字来用了
     - http.server和venv对命令行的理解是不一样的
     - http.server 的参数是控制它的端口号，但这是因为这个命令行参数是被http.server来使用和理解的
-    - 其他程序并不一定也是理解为端口号，参数在命令行中的意义，是每个程序自己定义的
-   
-
-
-
-        
+    - 其他程序并不一定也是理解为端口号，参数在命令行中的意义，是每个程序自己定义的       
         
         
         
