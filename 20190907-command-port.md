@@ -4,6 +4,17 @@
   - python foo.py
   - python -m foo
   
+        python foo.py 和 python -m foo 
+        
+        是加载py文件的两种方式：
+        python foo.py  叫做直接运行
+        python -m foo  相当于import,叫做当做模块来启动
+               -m mod : run library module as a script (terminates option list)
+        
+        不同的加载py文件的方式，主要是影响sys.path这个属性：
+        python foo.py 直接运行是把run.py文件，所在的目录放到了sys.path属性中
+        python -m foo 模块启动是把你输入命令的目录（也就是当前路径），放到了sys.path属性中
+  
   
 ### 2 Run Program vs Import Module
   - import foo
