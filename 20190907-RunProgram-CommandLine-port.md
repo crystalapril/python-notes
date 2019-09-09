@@ -18,7 +18,7 @@
   
 ### 2 Run Program vs Import Module
   - import foo
-  - '__name__'
+  - __name__
   
         __name__是python的一个内置类属性:
         如果当前模块是主模块（也就是调用其他模块的模块），那么此模块名字就是__main__
@@ -34,6 +34,15 @@
   - sys.argv
   - python foo.py ...
   - python -m foo ...
+  
+        sys模块
+        sys是Python的一个标准库，也就是官方出的模块，是System的简写，封装了一些系统的信息和接口
+        
+        argv 是 argument variable 参数变量的简写形式
+        一般在命令行调用的时候由系统传递给程序
+        argv 一般是list，argv[0] 一般是被调用的脚本文件名，argv[1]及以后的就是传入的参数
+        
+        
 
 ### 4 Default Argument
   - python -m http.server PORT
