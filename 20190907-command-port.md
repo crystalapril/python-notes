@@ -1,20 +1,20 @@
 # Run Program & Command Line & Default Argument
 
-### 1.Run Program
+### 1 Run Program
   - python foo.py
   - python -m foo
   
   
-### 2.Run Program vs Import Module
+### 2 Run Program vs Import Module
   - import foo
   - __name__
 
-### 3.Command Line Argument
+### 3 Command Line Argument
   - sys.argv
   - python foo.py ...
   - python -m foo ...
 
-### 4.Default Argument
+### 4 Default Argument
   - python -m http.server PORT
   - python -m http.server # 8000
   
@@ -112,17 +112,70 @@
     区分不同的“服务”需要另一个东西,这个就是端口号    
     
     mysql也可以像刚刚http.server那样执行多个
-    就需要端口号来区分， 是想访问哪一个服务？
-    是某个http.server? 还是某个mysql？ 还是某个别的?
+    就需要端口号来区分， 是想访问哪一个服务:某个http.server，还是某个mysql，或其他
     
 ### 4.4 端口的规则
 
-    用管理员模式启动cmd
-        
+    一般来说0-1023以下的端口号为管理员使用，1024以上的“随意”分配
+    
+    用管理员模式启动cmd，进入到了C:\WINDOWS\system32 这个目录下
+    切换到D盘的根目录下，然后
+    >>> python -m http.server 80
+    Serving HTTP on 0.0.0.0 port 80 (http://0.0.0.0:80/)...
+    
+    在电脑访问：  http://127.0.0.1:80
+    在手机里访问：http://192.168.0.110:80
+    执行出现了D盘的目录，并且地址栏隐藏了 80
+    
+    再在电脑里访问 ： http://127.0.0.1
+    在手机里访问：  http://192.168.0.110   （不带80）
+    出现了同样的，D盘的文件目录
+    
+    也即，对于python -m http.server如果没有写端口号，http.server默认就用 8000
+    
+    对于http这种协议（protocol）来说，它的默认端口是80
+    http://127.0.0.1:80 = http://127.0.0.1  ，http://192.168.0.110 = http://192.168.0.110
+    
+    现在出现了两个默认端口号，一个是http协议的80，一个是http.server的8000
+    也有其他类似 http.server的程序，就不一定是用8000作为默认端口了，一般也不会用80
+    
+    为什么一般程序不会用80这个端口号呢？
+    
+    在类unix的系统（几乎除了windows以外的所有系统）中，比如linux，0-1023之间的端口必须要有管理员权限才能使用
+    
+    因此，为了兼顾系统规定，大部分程序不会使用1023以下的号码作为端口号    
+    比如在linux中，python -m http.server 80 就会报错（permission denied）
+    另外有一些比较“聪明”的程序，会根据使用者是不是管理员来分配端口号：
+    是管理员给分配1024以下的端口号，不是管理员也没有提供端口号就选择1024以上的
+    
+    以ubuntu为例：
+    安装ubuntu：
+    1、在开始菜单的右边输入栏搜索power
+    2、选择windows powershell
+    3、输入 Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux
+    4、重启，在放大镜的输入栏里搜索 store
+    5、找到 ubuntu 18.04，点击获取
+    6、安装成功了，自定义username，password
+    
+    检测端口规则：
+    >>> python3 -m http.server
+    打开浏览器 127.0.0.1 ，可以访问
+    
+    >>> sudo python3 -m http.server 80
+    打开浏览器 127.0.0.1 ，也可以访问
+    （sudo就是将这条命令以管理员权限执行）
+    
+    以busybox这个程序（是一个不给端口号就可以使用80的程序）为例来测试：
+    >>> busybox httpd -f
+    permission denied
+    （没有用sudo，因此不是以管理员权限来执行，被拒绝访问）
+    >>> sudo busybox httpd -f
+    没有报错
+    （浏览器访问127.0.0.1，出现404，因为busybox只有下载的功能，没有列出目录的功能。但是因为加了sudo没有被拒绝访问）
     
     
 
-### 5.Different Meaning
+### 5 Different Meaning
   - python -m http.server PORT
   - python -m venv ENV_DIR
   
