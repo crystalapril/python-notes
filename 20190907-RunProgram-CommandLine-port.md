@@ -18,7 +18,16 @@
   
 ### 2 Run Program vs Import Module
   - import foo
-  - __name__
+  - '__name__'
+  
+        __name__是python的一个内置类属性:
+        如果当前模块是主模块（也就是调用其他模块的模块），那么此模块名字就是__main__
+        如果此模块是被import的，则此模块名字为文件名字（不加后面的.py）
+       
+        因为：
+        对于__name__来说，python -m foo 和 python foo.bar 是一类，import foo 是另一类
+        对于__name__来说，python -m foo 和 python foo.py 都是作为程序（主模块）运行，import foo 是作为模块导入
+
 
 ### 3 Command Line Argument
   - sys.argv
