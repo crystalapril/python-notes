@@ -18,28 +18,27 @@
   - python -m http.server PORT
   - python -m http.server # 8000
   
-        4.1 python -m http.server
-        
-        4.1.1 http.server程序
-        python -m http.server看起来不像是在运行一个python程序，但事实上，http.server是一个python程序
-        我们进入python交互模式：
-        >>> import http.server
-        >>> http.server
-        
-        可以看到出现了一个路径(path)，把前后的单引号也一起复制然后
-        >>> print('C:\\Users\\april\\AppData\\Local\\Programs\\Python\\Python37\\lib\\http\\server.py')
-        'C:\Users\april\AppData\Local\Programs\Python\Python37\lib\http\server.py'
-        （\\ 变成1个\了）
-         
-        >>> python C:\Users\april\AppData\Local\Programs\Python\Python37\lib\http\server.py
-        得到的执行结果和
-        >>> python -m http.server
-        执行的效果是一样的，因此，python -m http.server也是在运行一个python程序
+### 4.1 http.server程序        
+
+    python -m http.server看起来不像是在运行一个python程序，但事实上，http.server是一个python程序
+    我们进入python交互模式：
+    >>> import http.server
+    >>> http.server
+
+    可以看到出现了一个路径(path)，把前后的单引号也一起复制然后
+    >>> print('C:\\Users\\april\\AppData\\Local\\Programs\\Python\\Python37\\lib\\http\\server.py')
+    'C:\Users\april\AppData\Local\Programs\Python\Python37\lib\http\server.py'
+    （\\ 变成1个\了）
+
+    >>> python C:\Users\april\AppData\Local\Programs\Python\Python37\lib\http\server.py
+    得到的执行结果和
+    >>> python -m http.server
+    执行的效果是一样的，因此，python -m http.server也是在运行一个python程序
         
 ![image](https://github.com/crystalapril/python-notes-april/blob/master/image/http.server.png)
 
-
-    4.1.2 启动 http.server
+### 4.2 启动 http.server
+    
     >>> python -m http.server
     Serving HTTP on 0.0.0.0 port 8000(http://0.0.0.0:8000/)...
 
@@ -54,7 +53,8 @@
 ![image](https://github.com/crystalapril/python-notes-april/blob/master/image/c.8000.png)
 ![image](https://github.com/crystalapril/python-notes-april/blob/master/image/c.8000-1.png)
 
-    4.1.3 http.server的端口(port)的用处    
+### 4.3 http.server的端口(port)的用处    
+
     >>> python -m http.server 8000
     Serving HTTP on 0.0.0.0 port 8000(http://0.0.0.0:8000/)...
     这里的 8000 就是端口，也即port，port默认为8000（不输入的情况下），也可以自己定义如8080，9000，如
@@ -62,12 +62,12 @@
     >>> python -m http.server 8080
     Serving HTTP on 0.0.0.0 port 8080(http://0.0.0.0:8080/)...
     前往http://127.0.0.1:8080 查看:
-![image](https://github.com/crystalapril/python-notes-april/blob/master/image/c.8080-2.png)
-    
+    得到跟上面8000端口显示同样的文件目录
+   
     >>> python -m http.server 9000
     Serving HTTP on 0.0.0.0 port 9000(http://0.0.0.0:9000/)...
     前往http://127.0.0.1:9000 查看:
-    得到跟上面8080端口显示同样的文件目录
+    得到跟上面8000端口显示同样的文件目录
 
     因此，无论port是8000，8080，9000，在同一个目录下启动的，显示的文件目录也是一致的
     注意：这里浏览器地址隐藏了 http  
@@ -115,7 +115,8 @@
     就需要端口号来区分， 是想访问哪一个服务？
     是某个http.server? 还是某个mysql？ 还是某个别的?
     
-    4.1.4 端口的规则
+### 4.4 端口的规则
+
     用管理员模式启动cmd
         
     
@@ -142,7 +143,6 @@
         
         >>> python -m venv A
         >>> python -m venv B   
-![image](https://github.com/crystalapril/python-notes-april/blob/master/image/venv-AB.png)       
 
         这时观察D盘，发现生成了A文件夹和B文件夹
 
