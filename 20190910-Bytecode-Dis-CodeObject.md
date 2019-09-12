@@ -1,4 +1,4 @@
-# Stack-Bytecode-DisModulde-Compiler-CodeObject
+# Stack-Bytecode-DisModulde-Compiler-Interpret-CodeObject
 
 ### Stack
 
@@ -154,6 +154,14 @@
     汇编也是一种编程语言，有自己的规则
     编译器也是一种程序，输入输出是别的程序
     
+### Interpret
+ 
+    当我们编写Python代码时，我们得到的是一个包含Python代码的以.py为扩展名的文本文    
+    要运行代码，就需要Python解释器去执行.py文件
+    
+    
+    
+    compiler 和 interpret 的区别：
     
 
 ### CodeObject
