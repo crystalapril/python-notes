@@ -127,7 +127,38 @@
     要读懂代码是干什么更费劲，上面还没有if, while这些东西，也没有try, except
  
  
-### Compiler 编译器
+### Compiler and Interpret
+    
+    Python是一种高级语言，旨在较为方便地让人类进行读写，让计算机进行读取与处理。
+    其他高级语言包括：Java、C++、 PHP、Ruby、Basic、Perl以及JavaScript等。
+    
+    CPU里的硬件并不能理解任何一种高级语言。 
+    CPU能理解的语言称之为机器语言。机器语言非常简单，全部由0和1组成： 
+    01010001110100100101010000001111 
+    11100110000011101010010101101101 ... 
+    
+    虽然机器语言表面看起来很简单，只有0和1，但它的语法比Python复杂得多
+    所以，很少有程序员用机器语言编程。
+    相反， 借助各种翻译器，程序员可以编写像Python或JavaScript这样的高级语言，这些翻译器会将程序转换成机器语言，再交由 CPU执行。 
+    
+    编程语言的翻译器大体可分为两类：(1)解释器 与 (2) 编译器
+    
+    解释器：
+    解释器读取程序员所写程序的源代码，解析源代码并实时解释指令，也即解释器运行程序，产生一个运算结果
+    
+    编译器：
+    编译器需要将整个程序放在一个文件中，将高层次的源代码翻译成低层次的机器语言（或者其他语言）
+    然后编译器将生成的机器语言（或其他语言）放到一个文件中以便后续执行。    
+    
+    compiler 和 interpret 的区别：
+    result = interpret(program, input)
+    target_program = compile(source_program)
+    
+    编译器是产生另一个程序， 这个程序执行后， 和原来的程序效果一样
+    解释器是写个程序， 输入是python的bytecode， 输出是bytecode执行的结果
+    
+    
+Compiler 编译器：对于python来说
     
     python是一个语言， 它有变量， 有if， 有while, for, 有function, （有class, ） 
     python的bytecode也是一个语言， 有local, 有operand stack， 有binary_add/sub/mul/div 有method_call, return_value
@@ -154,15 +185,41 @@
     汇编也是一种编程语言，有自己的规则
     编译器也是一种程序，输入输出是别的程序
     
-### Interpret
- 
-    当我们编写Python代码时，我们得到的是一个包含Python代码的以.py为扩展名的文本文    
-    要运行代码，就需要Python解释器去执行.py文件
+    举例子：
+    >>> def add(a,b):
+    ...     return a+b        
+    >>> dis.dis(add)
+     3        0 LOAD_FAST                0 (a)
+              2 LOAD_FAST                1 (b)
+              4 BINARY_ADD
+              6 RETURN_VALUE
+              
+    这段python语言到bytecode的转换，就是编译器的工作，没有实际的输入输出和结果
+    （区别于解释器，解释器直接就计算结果了）
+    编译器是产生另一个程序， 这个程序执行后， 和原来的程序效果一样
     
     
+Interpret 解释器      
+        
+    python本身可以被视为一个解释器        
+    当我们编写Python代码时，我们得到的是一个包含Python代码的以.py为扩展名的文本文件   
+    要运行代码，就需要Python解释器去执行.py文件   
     
-    compiler 和 interpret 的区别：
+    假设有一段bytecode代码：
+    {'local': [4, 5],
+     'stack': []
+     'instruction':[
+      ('load', 0),
+      ('load', 1),
+      ('add'),
+      ('return'),
+      ]
+    }
+    写一个python程序把这段bytecode的结果计算出来，这个程序就是解释器
     
+    真正的python会把程序先转换成和上面差不多的样子
+    我们用add.__code__来看一下 
+       
 
 ### CodeObject
     
@@ -193,10 +250,39 @@
 | co_stacksize      | 	virtual machine stack space required                                     |
 | co_varnames       |   tuple of names of arguments and local variables                          |
 
+    这里用add.__code__来看解释器的功能
+    >>> add.__code__
+    <code object add at 0x00000000039EDC00, file "<input>", line 2>
+    >>> add.__code__.co_argcount    # 参数数量  2 个  
+    2
+    >>> add.__code__.co_varnames    # 参数名字 ('a', 'b')
+    ('a', 'b') 
+    >>> add.__code__.co_code        # 代码
+    b'|\x00|\x01\x17\x00S\x00'
+    >>> type(add.__code__.co_code)  # py3 这里是 bytes 类型，py 这里是 str 类型
+    <class 'bytes'>
+    >>> list(map(int,add.__code__.co_code)) # py2 这里是 [124, 0, 0, 124, 1, 0, 23, 83]，ord可以把字符转换成对应的数字
+    [124, 0, 124, 1, 23, 0, 83, 0]
     
-    add.__code__.co_argcount
-    add.__code__.co_varnames
+    以py2 的结果来解说：
     add.__code__.co_code
+    这个add的指令， 大概就是这几个数字
+    124, 0, 0,
+    124, 1, 0,
+    0, 23,
+    83,
+    
+    >>> dis.opname[124]          >>> dis.opname[23]          >>> dis.opname[83]
+    'LOAD_FAST'                  'BINARY_ADD'                'RETURN_VALUE'
+    
+    
+    
+    
+    
+    
+    
+    
+
 
 
   
