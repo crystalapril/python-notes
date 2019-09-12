@@ -1,4 +1,4 @@
-# Stack-Bytecode-DisModulde-CodeObject
+# Stack-Bytecode-DisModulde-Compiler-CodeObject
 
 ### Stack
 
@@ -127,7 +127,7 @@
     要读懂代码是干什么更费劲，上面还没有if, while这些东西，也没有try, except
  
  
-### compiler 编译器
+### Compiler 编译器
     
     python是一个语言， 它有变量， 有if， 有while, for, 有function, （有class, ） 
     python的bytecode也是一个语言， 有local, 有operand stack， 有binary_add/sub/mul/div 有method_call, return_value
@@ -157,6 +157,38 @@
     
 
 ### CodeObject
+    
+    add.__code__
+    python3.7中，code object 是一段可执行的 Python 代码在 CPython 中的内部表示
+    code object 包含一系列直接操作虚拟机内部状态的指令
+    这跟用 C 语言编程时是类似的，你写出人类可读的文本，然后用编译器转换成二进制形式
+    二进制代码（C 的机器码或者是 Python 的字节码）被 CPU（对于 C 语言来说）或者 CPython 虚拟机虚拟的 CPU 直接执行
+    
+    code object 除了包含 指令，还提供了虚拟机运行代码所需要的一些 额外信息
+    可以通过 func.__code__.attr 来查询，一共有 15 个 attr (属性)
+    
+|     attribute     |                            description                                     |
+|-------------------|----------------------------------------------------------------------------|
+| co_argcount       | 	number of arguments (not including keyword only arguments, * or ** args) |
+| co_code           |	string of raw compiled bytecode                                          |
+| co_cellvars       | 	tuple of names of cell variables (referenced by containing scopes)       |
+| co_consts         |	tuple of constants used in the bytecode                                  |
+| co_filename       |	name of file in which this code object was created                       |
+| co_firstlineno    |	number of first line in Python source code                               |
+| co_flags          |   bitmap of CO_* flags, read more here                                     |
+| co_lnotab 	    |   encoded mapping of line numbers to bytecode indices                      |
+| co_freevars 	    |   tuple of names of free variables (referenced via a function’s closure)   |
+| co_kwonlyargcount |	number of keyword only arguments (not including ** arg)                  |
+| co_name 	        |   name with which this code object was defined                             |
+| co_names 	        |   tuple of names of local variables                                        |
+| co_nlocals        |	number of local variables                                                |
+| co_stacksize      | 	virtual machine stack space required                                     |
+| co_varnames       |   tuple of names of arguments and local variables                          |
+
+    
+    add.__code__.co_argcount
+    add.__code__.co_varnames
+    add.__code__.co_code
 
 
   
