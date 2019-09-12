@@ -25,24 +25,22 @@
     >>> def add(a,b):
     ...     return a+b        
     >>> dis.dis(add)
-     3           0 LOAD_FAST                0 (a)
+     3        0 LOAD_FAST                0 (a)
               2 LOAD_FAST                1 (b)
               4 BINARY_ADD
               6 RETURN_VALUE
     
     进入add函数之后
-    add有2个局部变量（参数和局部变量统一算在一起）
-    operand stack最开始是空
-    2           0 LOAD_FAST                0 (a)
-    把序号为0的局部变量 —— 也就是a， 加载(load)到operand stack里
-    加载后operand stack的内容是 [a]
+    add有2个局部变量（参数和局部变量统一算在一起）, operand stack最开始是空
+    2             0 LOAD_FAST                0 (a)
+    把序号为0的局部变量,也就是a， 加载(load)到operand stack里, 加载后operand stack的内容是 [a]
                   3 LOAD_FAST                1 (b)
-    把序号为1的局部变量b加载到operand stack里， 加载后就是 [a, b]
+    把序号为1的局部变量 b 加载到 operand stack 里， 加载后就是 [a, b]
                   6 BINARY_ADD          
-    add操作从operand stack里取出最上面两个， 把它们的和放到operand stack的最顶层
+    add 操作从 operand stack 里取出最上面两个， 把它们的和放到operand stack的最顶层
     也就是 [a + b的结果]
                   7 RETURN_VALUE     
-    取出并返回operand stack的最顶层也就是 a+b的结果
+    取出并返回operand stack的最顶层也就是 a+b 的结果
     local : [a, b]
     stack : []
     load_fast 0 之后
@@ -61,7 +59,7 @@
     >>> def heron(a, b, c):
     ...     s = (a + b + c) / 2
     ...     return sqrt(s * (s - a) * (s - b) * (s - c))
-     3           0 LOAD_FAST                0 (a)
+     3        0 LOAD_FAST                0 (a)
               2 LOAD_FAST                1 (b)
               4 BINARY_ADD
               6 LOAD_FAST                2 (c)
@@ -119,9 +117,9 @@
     从里面取出一些东西， 进行一些操作， 然后把结果放回去
     因为是stack， 所以取和放都是最顶层
     
-    对应的叫做register virtual machine，寄存器虚拟机
-    应该叫random access virtual machine，随机访问虚拟机，比较妥当，取和放回都不局限于顶层了
-    lua, erlang, 安卓和llvm都是这种
+    对应的叫做register virtual machine，寄存器虚拟机，lua, erlang, 安卓和llvm都是这种
+    (应该叫random access virtual machine，随机访问虚拟机，比较妥当，取和放回都不局限于顶层了)
+    
     然后真正的硬件的cpu， 里面又有一种东西叫做register，真正的cpu就操作register和memory
     
     python bytecode 类似汇编语言，真正的cpu的汇编指令会更多，更不规律
@@ -136,18 +134,18 @@
     把python转换成python bytecode的程序， 就是编译器
     要维持原有的含义，不是瞎转换
     
-    一个程序 C， 它可以接受任意合法的python程序S， 输出python的bytecode组成的程序T。
-    对任意合法的输入I, S会产生对应的输出O。
-    对同样的输入I， T也要产生同样的输出O。
-    这样的程序C， 就叫做编译器compiler
-    如果不满足后面那个条件， 就是对合法的输入I， T产生了不一样的输出O， 就是这个编译器C有bug啦
+    一个程序 C， 它可以接受任意合法的python程序S， 输出python的 bytecode组成的程序T
+    对任意合法的输入 I, S 会产生对应的输出 O
+    对同样的输入 I， T 也要产生同样的输出 O
+    这样的程序 C， 就叫做编译器 compiler
+    如果不满足后面那个条件， 就是对合法的输入 I， T 产生了不一样的输出 O， 就是这个编译器 C 有 bug啦
     
-    把上面的python程序和python bytecode程序替换掉， 就是一般的广义的编译器的定义：    
-    一个程序C
-    * 它接受由LS语言构成的合法的程序S
-    * 输出由LT语言构成的程序T
-    * 对任意合法的输入I， S 会产生输出O
-    * 对同样的输入I， T要产生同样的输出O
+    把上面的python程序和 python bytecode 程序替换掉， 就是一般的广义的编译器的定义：    
+    一个程序 C
+    * 它接受由 LS 语言构成的合法的程序 S
+    * 输出由 LT 语言构成的程序 T
+    * 对任意合法的输入 I， S 会产生输出 O
+    * 对同样的输入 I， T 要产生同样的输出 O
     C就是编译器，语言之间的转换工具
     
     S (source) 和 T (target) ， target并不一定需要是汇编
@@ -159,6 +157,8 @@
     
 
 ### CodeObject
+
+
   
   
 
