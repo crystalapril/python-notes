@@ -1,0 +1,712 @@
+import dis
+import math
+
+def add(a, b):
+  return a + b
+
+# line number in source
+# offset in .co_code
+# operator
+# operand
+# human readable operand
+>>> dis.dis(add)
+  2           0 LOAD_FAST                0 (a)
+              3 LOAD_FAST                1 (b)
+              6 BINARY_ADD          
+              7 RETURN_VALUE        
+
+>>> add.__code__.co_argcount
+2
+>>> add.__code__.co_nlocals
+2
+>>> add.__code__.co_varnames
+('a', 'b')
+
+>>> map(ord, add.__code__.co_code[0:3])
+[124, 0, 0]
+>>> map(ord, add.__code__.co_code[3:6])
+[124, 1, 0]
+>>> map(ord, add.__code__.co_code[6:7])
+[23]
+>>> map(ord, add.__code__.co_code[7:])
+[83]
+
+>>> dis.opname[124]
+'LOAD_FAST'
+>>> dis.opname[23]
+'BINARY_ADD'
+>>> dis.opname[83]
+'RETURN_VALUE'
+
+
+
+# x + 2: operand == variable name
+>>> mul_program = '''
+def mul(a, b):
+%s
+  return  a257 * b
+''' % ''.join('  a%03d = a\n' % (x + 2) for x in range(256))
+
+# strip: operand == line number
+>>> mul_program = mul_program.strip()
+
+>>> print(mul_program)
+def mul(a, b):
+  a002 = a
+  a003 = a
+...
+  a253 = a
+  a254 = a
+  a255 = a
+  a256 = a
+  a257 = a
+
+  return  a257 * b
+
+# string -> definition
+>>> eval(compile(mul_program, '', 'exec'))
+>>> mul(6, 3)
+18
+
+>>> dis.dis(mul)
+  2           0 LOAD_FAST                0 (a)
+              3 STORE_FAST               2 (a002)
+
+  3           6 LOAD_FAST                0 (a)
+              9 STORE_FAST               3 (a003)
+...
+253        1506 LOAD_FAST                0 (a)
+           1509 STORE_FAST             253 (a253)
+
+254        1512 LOAD_FAST                0 (a)
+           1515 STORE_FAST             254 (a254)
+
+255        1518 LOAD_FAST                0 (a)
+           1521 STORE_FAST             255 (a255)
+
+256        1524 LOAD_FAST                0 (a)
+           1527 STORE_FAST             256 (a256)
+
+257        1530 LOAD_FAST                0 (a)
+           1533 STORE_FAST             257 (a257)
+
+259        1536 LOAD_FAST              257 (a257)
+           1539 LOAD_FAST                1 (b)
+           1542 BINARY_MULTIPLY     
+           1543 RETURN_VALUE        
+
+>>> dis.opname[125]
+'STORE_FAST'
+>>> dis.opname[20]
+'BINARY_MULTIPLY'
+
+>>> map(ord, mul.__code__.co_code[:6 * 2])
+[124, 0, 0,
+ 125, 2, 0,
+ 124, 0, 0,
+ 125, 3, 0,
+]
+
+>>> map(ord, mul.__code__.co_code[-(6 * 5 + 8):])
+[124,   0, 0,
+ 125, 253, 0,
+
+ 124,   0, 0,
+ 125, 254, 0,
+
+ 124,   0, 0,
+ 125, 255, 0,
+
+ 124,   0, 0,
+ 125,   0, 1,  # carry
+
+ 124,   0, 0,
+ 125,   1, 1, 
+
+ 124,   1, 1,
+ 124,   1, 0,
+ 20,
+ 83,
+]
+
+
+
+>>> sub_program = '''
+def sub(a, b):
+%s
+  return  a513 - b
+''' % ''.join('  a%03d = a\n' % (x + 2) for x in range(512))
+>>> sub_program = sub_program.strip()
+>>> print(sub_program)
+def sub(a, b):
+  a002 = a
+  a003 = a
+...
+  a510 = a
+  a511 = a
+  a512 = a
+  a513 = a
+
+  return  a513 - b
+>>> eval(compile(sub_program, '', 'exec'))
+>>> sub(6, 3)
+3
+
+>>> dis.dis(sub)
+  2           0 LOAD_FAST                0 (a)
+              3 STORE_FAST               2 (a002)
+
+  3           6 LOAD_FAST                0 (a)
+              9 STORE_FAST               3 (a003)
+...
+510        3048 LOAD_FAST                0 (a)
+           3051 STORE_FAST             510 (a510)
+
+511        3054 LOAD_FAST                0 (a)
+           3057 STORE_FAST             511 (a511)
+
+512        3060 LOAD_FAST                0 (a)
+           3063 STORE_FAST             512 (a512)
+
+513        3066 LOAD_FAST                0 (a)
+           3069 STORE_FAST             513 (a513)
+
+515        3072 LOAD_FAST              513 (a513)
+           3075 LOAD_FAST                1 (b)
+           3078 BINARY_SUBTRACT     
+           3079 RETURN_VALUE        
+
+>>> dis.opname[24]
+'BINARY_SUBTRACT'
+
+>>> map(ord, sub.__code__.co_code[:6 * 2])
+[124, 0, 0,
+ 125, 2, 0,
+
+ 124, 0, 0,
+ 125, 3, 0,
+]
+
+>>> map(ord, sub.__code__.co_code[-(6 * 4 + 8):])
+[124,   0, 0,
+ 125, 254, 1,
+
+ 124,   0, 0,
+ 125, 255, 1,
+
+ 124,   0, 0,
+ 125,   0, 2,  # carry
+
+ 124,   0, 0,
+ 125,   1, 2,
+
+ 124,   1, 2,
+ 124,   1, 0,
+ 24,
+ 83,
+]
+
+
+
+>>> div_program = '''
+def div(a, b):
+%s
+  return  a65537 / b
+''' % ''.join('  a%05d = a\n' % (x + 2) for x in range(256 ** 2))
+>>> div_program = div_program.strip()
+>>> print(div_program)
+def div(a, b):
+  a00002 = a
+  a00003 = a
+...
+  a65534 = a
+  a65535 = a
+  a65536 = a
+  a65537 = a
+
+  return  a65537 / b
+>>> eval(compile(div_program, '', 'exec'))
+>>> div(6, 3)
+2
+
+# EXTENDED_ARG
+>>> dis.dis(div)
+  2           0 LOAD_FAST                0 (a)
+              3 STORE_FAST               2 (a00002)
+
+  3           6 LOAD_FAST                0 (a)
+              9 STORE_FAST               3 (a00003)
+...
+65534        393192 LOAD_FAST                0 (a)
+           393195 STORE_FAST           65534 (a65534)
+
+65535        393198 LOAD_FAST                0 (a)
+           393201 STORE_FAST           65535 (a65535)
+
+65536        393204 LOAD_FAST                0 (a)
+           393207 EXTENDED_ARG             1
+           393210 STORE_FAST           65536L (a65536)
+
+65537        393213 LOAD_FAST                0 (a)
+           393216 EXTENDED_ARG             1
+           393219 STORE_FAST           65537L (a65537)
+
+65539        393222 EXTENDED_ARG             1
+           393225 LOAD_FAST            65537L (a65537)
+           393228 LOAD_FAST                1 (b)
+           393231 BINARY_DIVIDE       
+           393232 RETURN_VALUE        
+
+>>> dis.opname[21]
+'BINARY_DIVIDE'
+>>> dis.opname[145]
+'EXTENDED_ARG'
+
+>>> map(ord, div.__code__.co_code[:12])
+[124, 0, 0,
+ 125, 2, 0,
+
+ 124, 0, 0,
+ 125, 3, 0,
+]
+
+>>> map(ord, div.__code__.co_code[-(6 + 6 + 9 + 9 + 11):])
+[124, 0, 0,
+ 125, 254, 255,
+
+ 124, 0, 0,
+ 125, 255, 255,
+
+ 124, 0, 0,
+ 145, 1, 0,  # carry
+ 125, 0, 0,
+
+ 124, 0, 0,
+ 145, 1, 0,
+ 125, 1, 0,
+
+ 145, 1, 0,
+ 124, 1, 0,
+ 124, 1, 0,
+ 21,
+ 83,
+]
+
+
+
+# leading and trailing blank line
+heron_program = '''
+def heron(a, b, c):
+
+  s = a + b + c
+
+
+  s = div(s, 2)
+  return math.sqrt(s * (s - a) * (s - b) * (s - c))
+'''
+>>> print('\n'.join(map(lambda p: '%d: %s' % p, enumerate(heron_program.split('\n'), 1))))
+1: 
+2: def heron(a, b, c):
+3: 
+4:   s = a + b + c
+5: 
+6: 
+7:   s = div(s, 2)
+8:   return math.sqrt(s * (s - a) * (s - b) * (s - c))
+9: 
+>>> eval(compile(heron_program, '', 'exec'))
+>>> heron(3, 4, 5)
+6.0
+
+>>> heron.__code__.co_name
+'heron'
+>>> heron.__code__.co_argcount
+3
+>>> heron.__code__.co_nlocals
+4
+>>> heron.__code__.co_varnames
+('a', 'b', 'c', 's')
+>>> heron.__code__.co_names
+('div', 'math', 'sqrt')
+>>> heron.__code__.co_consts
+(None, 2)
+>>> heron.__code__.co_firstlineno
+2
+>>> map(ord, heron.__code__.co_lnotab)
+[0, 2, 14, 3, 15, 1]
+
+>>> dis.dis(heron)
+  4           0 LOAD_FAST                0 (a)
+              3 LOAD_FAST                1 (b)
+              6 BINARY_ADD          
+              7 LOAD_FAST                2 (c)
+             10 BINARY_ADD          
+             11 STORE_FAST               3 (s)
+
+  7          14 LOAD_GLOBAL              0 (div)
+             17 LOAD_FAST                3 (s)
+             20 LOAD_CONST               1 (2)
+             23 CALL_FUNCTION            2
+             26 STORE_FAST               3 (s)
+
+  8          29 LOAD_GLOBAL              1 (math)
+             32 LOAD_ATTR                2 (sqrt)
+             35 LOAD_FAST                3 (s)
+             38 LOAD_FAST                3 (s)
+             41 LOAD_FAST                0 (a)
+             44 BINARY_SUBTRACT     
+             45 BINARY_MULTIPLY     
+             46 LOAD_FAST                3 (s)
+             49 LOAD_FAST                1 (b)
+             52 BINARY_SUBTRACT     
+             53 BINARY_MULTIPLY     
+             54 LOAD_FAST                3 (s)
+             57 LOAD_FAST                2 (c)
+             60 BINARY_SUBTRACT     
+             61 BINARY_MULTIPLY     
+             62 CALL_FUNCTION            1
+             65 RETURN_VALUE        
+
+def at(x, i, j = None):
+  xs = map(ord, x.__code__.co_code[i:j])
+  return '%-15s' % dis.opname[xs[0]], xs
+
+>>> at(heron,  0,  3) == ('LOAD_FAST      ', [124, 0, 0])
+>>> at(heron,  3,  6) == ('LOAD_FAST      ', [124, 1, 0])
+>>> at(heron,  6,  7) == ('BINARY_ADD     ', [23])
+>>> at(heron,  7, 10) == ('LOAD_FAST      ', [124, 2, 0])
+>>> at(heron, 10, 11) == ('BINARY_ADD     ', [23])
+>>> at(heron, 11, 14) == ('STORE_FAST     ', [125, 3, 0])
+
+>>> at(heron, 14, 17) == ('LOAD_GLOBAL    ', [116, 0, 0])
+>>> at(heron, 17, 20) == ('LOAD_FAST      ', [124, 3, 0])
+>>> at(heron, 20, 23) == ('LOAD_CONST     ', [100, 1, 0])
+>>> at(heron, 23, 26) == ('CALL_FUNCTION  ', [131, 2, 0])
+>>> at(heron, 26, 29) == ('STORE_FAST     ', [125, 3, 0])
+
+>>> at(heron, 29, 32) == ('LOAD_GLOBAL    ', [116, 1, 0])
+>>> at(heron, 32, 35) == ('LOAD_ATTR      ', [106, 2, 0])
+>>> at(heron, 35, 38) == ('LOAD_FAST      ', [124, 3, 0])
+>>> at(heron, 38, 41) == ('LOAD_FAST      ', [124, 3, 0])
+>>> at(heron, 41, 44) == ('LOAD_FAST      ', [124, 0, 0])
+>>> at(heron, 44, 45) == ('BINARY_SUBTRACT', [24])
+>>> at(heron, 45, 46) == ('BINARY_MULTIPLY', [20])
+>>> at(heron, 46, 49) == ('LOAD_FAST      ', [124, 3, 0])
+>>> at(heron, 49, 52) == ('LOAD_FAST      ', [124, 1, 0])
+>>> at(heron, 52, 53) == ('BINARY_SUBTRACT', [24])
+>>> at(heron, 53, 54) == ('BINARY_MULTIPLY', [20])
+>>> at(heron, 54, 57) == ('LOAD_FAST      ', [124, 3, 0])
+>>> at(heron, 57, 60) == ('LOAD_FAST      ', [124, 2, 0])
+>>> at(heron, 60, 61) == ('BINARY_SUBTRACT', [24])
+>>> at(heron, 61, 62) == ('BINARY_MULTIPLY', [20])
+>>> at(heron, 62, 65) == ('CALL_FUNCTION  ', [131, 1, 0])
+>>> at(heron, 65)     == ('RETURN_VALUE   ', [83])
+
+# https://docs.python.org/3/library/itertools.html#itertools.accumulate
+def accumulate(z, xs):
+  return reduce(lambda z, x: z + [z[-1] + x], xs, [z])
+
+# https://svn.python.org/projects/python/branches/pep-0384/Objects/lnotab_notes.txt
+>>> map(ord, heron.__code__.co_lnotab) # line number table
+[0, 2, 14, 3, 15, 1]
+
+# offset in .co_code
+>>> map              (ord, heron.__code__.co_lnotab[0::2])
+[0, 14, 15]
+>>> accumulate(0, map(ord, heron.__code__.co_lnotab[0::2]))
+[0, 0, 14, 29]
+
+# line number in source
+>>> map                                          (ord, heron.__code__.co_lnotab[1::2])
+[2, 3, 1]
+>>> accumulate(0                            , map(ord, heron.__code__.co_lnotab[1::2]))
+[0, 2, 5, 6]
+>>> heron.__code__.co_firstlineno
+2
+>>> accumulate(heron.__code__.co_firstlineno, map(ord, heron.__code__.co_lnotab[1::2]))
+[2, 4, 7, 8]
+
+
+
+>>> dis.dis(at)
+  2           0 LOAD_GLOBAL              0 (map)
+              3 LOAD_GLOBAL              1 (ord)
+              6 LOAD_FAST                0 (x)
+              9 LOAD_ATTR                2 (__code__)
+             12 LOAD_ATTR                3 (co_code)
+             15 LOAD_FAST                1 (i)
+             18 LOAD_FAST                2 (j)
+             21 SLICE+3             
+             22 CALL_FUNCTION            2
+             25 STORE_FAST               3 (xs)
+
+  3          28 LOAD_CONST               1 ('%-15s')
+             31 LOAD_GLOBAL              4 (dis)
+             34 LOAD_ATTR                5 (opname)
+             37 LOAD_FAST                3 (xs)
+             40 LOAD_CONST               2 (0)
+             43 BINARY_SUBSCR       
+             44 BINARY_SUBSCR       
+             45 BINARY_MODULO       
+             46 LOAD_FAST                3 (xs)
+             49 BUILD_TUPLE              2
+             52 RETURN_VALUE        
+
+import pprint
+>>> pprint.pprint(list(enumerate(dis.opname)))
+[(0, 'STOP_CODE'),
+ (1, 'POP_TOP'),
+ (2, 'ROT_TWO'),
+ (3, 'ROT_THREE'),
+ (4, 'DUP_TOP'),
+ (5, 'ROT_FOUR'),
+ (6, '<6>'),
+ (7, '<7>'),
+ (8, '<8>'),
+ (9, 'NOP'),
+ (10, 'UNARY_POSITIVE'),
+ (11, 'UNARY_NEGATIVE'),
+ (12, 'UNARY_NOT'),
+ (13, 'UNARY_CONVERT'),
+ (14, '<14>'),
+ (15, 'UNARY_INVERT'),
+ (16, '<16>'),
+ (17, '<17>'),
+ (18, '<18>'),
+ (19, 'BINARY_POWER'),
+ (20, 'BINARY_MULTIPLY'),
+ (21, 'BINARY_DIVIDE'),
+ (22, 'BINARY_MODULO'),
+ (23, 'BINARY_ADD'),
+ (24, 'BINARY_SUBTRACT'),
+ (25, 'BINARY_SUBSCR'),
+ (26, 'BINARY_FLOOR_DIVIDE'),
+ (27, 'BINARY_TRUE_DIVIDE'),
+ (28, 'INPLACE_FLOOR_DIVIDE'),
+ (29, 'INPLACE_TRUE_DIVIDE'),
+ (30, 'SLICE+0'),
+ (31, 'SLICE+1'),
+ (32, 'SLICE+2'),
+ (33, 'SLICE+3'),
+ (34, '<34>'),
+ (35, '<35>'),
+ (36, '<36>'),
+ (37, '<37>'),
+ (38, '<38>'),
+ (39, '<39>'),
+ (40, 'STORE_SLICE+0'),
+ (41, 'STORE_SLICE+1'),
+ (42, 'STORE_SLICE+2'),
+ (43, 'STORE_SLICE+3'),
+ (44, '<44>'),
+ (45, '<45>'),
+ (46, '<46>'),
+ (47, '<47>'),
+ (48, '<48>'),
+ (49, '<49>'),
+ (50, 'DELETE_SLICE+0'),
+ (51, 'DELETE_SLICE+1'),
+ (52, 'DELETE_SLICE+2'),
+ (53, 'DELETE_SLICE+3'),
+ (54, 'STORE_MAP'),
+ (55, 'INPLACE_ADD'),
+ (56, 'INPLACE_SUBTRACT'),
+ (57, 'INPLACE_MULTIPLY'),
+ (58, 'INPLACE_DIVIDE'),
+ (59, 'INPLACE_MODULO'),
+ (60, 'STORE_SUBSCR'),
+ (61, 'DELETE_SUBSCR'),
+ (62, 'BINARY_LSHIFT'),
+ (63, 'BINARY_RSHIFT'),
+ (64, 'BINARY_AND'),
+ (65, 'BINARY_XOR'),
+ (66, 'BINARY_OR'),
+ (67, 'INPLACE_POWER'),
+ (68, 'GET_ITER'),
+ (69, '<69>'),
+ (70, 'PRINT_EXPR'),
+ (71, 'PRINT_ITEM'),
+ (72, 'PRINT_NEWLINE'),
+ (73, 'PRINT_ITEM_TO'),
+ (74, 'PRINT_NEWLINE_TO'),
+ (75, 'INPLACE_LSHIFT'),
+ (76, 'INPLACE_RSHIFT'),
+ (77, 'INPLACE_AND'),
+ (78, 'INPLACE_XOR'),
+ (79, 'INPLACE_OR'),
+ (80, 'BREAK_LOOP'),
+ (81, 'WITH_CLEANUP'),
+ (82, 'LOAD_LOCALS'),
+ (83, 'RETURN_VALUE'),
+ (84, 'IMPORT_STAR'),
+ (85, 'EXEC_STMT'),
+ (86, 'YIELD_VALUE'),
+ (87, 'POP_BLOCK'),
+ (88, 'END_FINALLY'),
+ (89, 'BUILD_CLASS'),
+ (90, 'STORE_NAME'),
+ (91, 'DELETE_NAME'),
+ (92, 'UNPACK_SEQUENCE'),
+ (93, 'FOR_ITER'),
+ (94, 'LIST_APPEND'),
+ (95, 'STORE_ATTR'),
+ (96, 'DELETE_ATTR'),
+ (97, 'STORE_GLOBAL'),
+ (98, 'DELETE_GLOBAL'),
+ (99, 'DUP_TOPX'),
+ (100, 'LOAD_CONST'),
+ (101, 'LOAD_NAME'),
+ (102, 'BUILD_TUPLE'),
+ (103, 'BUILD_LIST'),
+ (104, 'BUILD_SET'),
+ (105, 'BUILD_MAP'),
+ (106, 'LOAD_ATTR'),
+ (107, 'COMPARE_OP'),
+ (108, 'IMPORT_NAME'),
+ (109, 'IMPORT_FROM'),
+ (110, 'JUMP_FORWARD'),
+ (111, 'JUMP_IF_FALSE_OR_POP'),
+ (112, 'JUMP_IF_TRUE_OR_POP'),
+ (113, 'JUMP_ABSOLUTE'),
+ (114, 'POP_JUMP_IF_FALSE'),
+ (115, 'POP_JUMP_IF_TRUE'),
+ (116, 'LOAD_GLOBAL'),
+ (117, '<117>'),
+ (118, '<118>'),
+ (119, 'CONTINUE_LOOP'),
+ (120, 'SETUP_LOOP'),
+ (121, 'SETUP_EXCEPT'),
+ (122, 'SETUP_FINALLY'),
+ (123, '<123>'),
+ (124, 'LOAD_FAST'),
+ (125, 'STORE_FAST'),
+ (126, 'DELETE_FAST'),
+ (127, '<127>'),
+ (128, '<128>'),
+ (129, '<129>'),
+ (130, 'RAISE_VARARGS'),
+ (131, 'CALL_FUNCTION'),
+ (132, 'MAKE_FUNCTION'),
+ (133, 'BUILD_SLICE'),
+ (134, 'MAKE_CLOSURE'),
+ (135, 'LOAD_CLOSURE'),
+ (136, 'LOAD_DEREF'),
+ (137, 'STORE_DEREF'),
+ (138, '<138>'),
+ (139, '<139>'),
+ (140, 'CALL_FUNCTION_VAR'),
+ (141, 'CALL_FUNCTION_KW'),
+ (142, 'CALL_FUNCTION_VAR_KW'),
+ (143, 'SETUP_WITH'),
+ (144, '<144>'),
+ (145, 'EXTENDED_ARG'),
+ (146, 'SET_ADD'),
+ (147, 'MAP_ADD'),
+ (148, '<148>'),
+ (149, '<149>'),
+ (150, '<150>'),
+ (151, '<151>'),
+ (152, '<152>'),
+ (153, '<153>'),
+ (154, '<154>'),
+ (155, '<155>'),
+ (156, '<156>'),
+ (157, '<157>'),
+ (158, '<158>'),
+ (159, '<159>'),
+ (160, '<160>'),
+ (161, '<161>'),
+ (162, '<162>'),
+ (163, '<163>'),
+ (164, '<164>'),
+ (165, '<165>'),
+ (166, '<166>'),
+ (167, '<167>'),
+ (168, '<168>'),
+ (169, '<169>'),
+ (170, '<170>'),
+ (171, '<171>'),
+ (172, '<172>'),
+ (173, '<173>'),
+ (174, '<174>'),
+ (175, '<175>'),
+ (176, '<176>'),
+ (177, '<177>'),
+ (178, '<178>'),
+ (179, '<179>'),
+ (180, '<180>'),
+ (181, '<181>'),
+ (182, '<182>'),
+ (183, '<183>'),
+ (184, '<184>'),
+ (185, '<185>'),
+ (186, '<186>'),
+ (187, '<187>'),
+ (188, '<188>'),
+ (189, '<189>'),
+ (190, '<190>'),
+ (191, '<191>'),
+ (192, '<192>'),
+ (193, '<193>'),
+ (194, '<194>'),
+ (195, '<195>'),
+ (196, '<196>'),
+ (197, '<197>'),
+ (198, '<198>'),
+ (199, '<199>'),
+ (200, '<200>'),
+ (201, '<201>'),
+ (202, '<202>'),
+ (203, '<203>'),
+ (204, '<204>'),
+ (205, '<205>'),
+ (206, '<206>'),
+ (207, '<207>'),
+ (208, '<208>'),
+ (209, '<209>'),
+ (210, '<210>'),
+ (211, '<211>'),
+ (212, '<212>'),
+ (213, '<213>'),
+ (214, '<214>'),
+ (215, '<215>'),
+ (216, '<216>'),
+ (217, '<217>'),
+ (218, '<218>'),
+ (219, '<219>'),
+ (220, '<220>'),
+ (221, '<221>'),
+ (222, '<222>'),
+ (223, '<223>'),
+ (224, '<224>'),
+ (225, '<225>'),
+ (226, '<226>'),
+ (227, '<227>'),
+ (228, '<228>'),
+ (229, '<229>'),
+ (230, '<230>'),
+ (231, '<231>'),
+ (232, '<232>'),
+ (233, '<233>'),
+ (234, '<234>'),
+ (235, '<235>'),
+ (236, '<236>'),
+ (237, '<237>'),
+ (238, '<238>'),
+ (239, '<239>'),
+ (240, '<240>'),
+ (241, '<241>'),
+ (242, '<242>'),
+ (243, '<243>'),
+ (244, '<244>'),
+ (245, '<245>'),
+ (246, '<246>'),
+ (247, '<247>'),
+ (248, '<248>'),
+ (249, '<249>'),
+ (250, '<250>'),
+ (251, '<251>'),
+ (252, '<252>'),
+ (253, '<253>'),
+ (254, '<254>'),
+ (255, '<255>')]
