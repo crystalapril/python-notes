@@ -3,7 +3,8 @@
  - Types 文档类型
  - open & close 文档的打开及关闭
  - read & write 文档的读写
- - with function
+ - with statement
+ - 后记
  
 ```
 之前所学到的python的各种对数据和文本的处理，都是在程序中定义，或者用input函数实时输入的
@@ -80,18 +81,76 @@
        'apr'
      
      - readlines([hint])
-       >>> f.readlines() # 不加参数时，读取所有行，跟read（）一样，但是返回的是列表
+       >>> f.readlines() # 不加参数时，读取所有行，跟read()一样取了所有内容，但是返回的是列表，并把每行作为一个列表元素
        ['hello\n', 'april\n', 'enjoy python']
        >>> f.readlines(2) # 加参数时，读取前hint行
+       ！！！
+       这里测试的有些失败，期待出现的结果是['hello\n','april\n']，但是run出来却是['hello\n'] 
+       原因找了半天也没找到，这里先mark一下吧，以后找到原因了再来更新，5555555     
+                  
        
-       
+     总结一下read的三种方法：
+     - read() & readlines() 都是一次性读取全部，区别是一个返回str，另一返回list，并自动按行拆分成一个个元素
+       因为是一次性读取，也很占内存，一旦内容过多，程序可能就崩溃了
+     - readline() 是逐行提取，每次提取时释放出内存，所以内容大的时候用readline（）比较安全       
+             
      
      write 写入文件
+     以 f = open('textfile.txt','w') 为例
      写入文件主要有2个方法：
-     write([size])
-     writelines()
+     - write(s)
+     >>> f.write('hello,april\nworld\nenjoy python')  # write方法是向file写入一个字符串         
+     
+     - writelines(squence)
+     >>> f.writelines(['hello\r\n','april\r\n','enjoy python'])
+     # writelines 方法是写入一个序列，可以是list，也可以是tuple，或任何可以迭代的文本
+     
+     注意了，写文件并没有writeline方法，因为write就能满足写一行的需要
+     
+     
+     
+     for循环：
+     
+       f 和 f.readlines()等都是可迭代的
+       
+       readlines 方法经常跟for循环放在一起使用：
+       >>> for line in f.readlines():  # 一次提取，分行处理
+           ... print(line)
+       就可以逐行的处理文本
+       当然 read() 也可以跟for循环一起用，但是迭代的就是每个字符，而不是每行，所以基本上很少用
+       
+       此外呢，file也可以直接用for循环来处理：
+       >>> for line in f:
+           ... print(line)
+       与上面的区别是，这里是逐行提取，所以这种办法更省内存
+       
+     既然f 和 f.readlines()等都是可迭代的，能用for循环，自然也就可以用while循环：
      
 
-### with function
+### with expression
+
+    前面提到了 每次处理完文件之后，都建议用close（），把文件关闭
+    但是如果觉得这样很麻烦，没关系，python的 with 语句可以帮助解决这个问题
+    
+    >>> with open('testfile.txt') as f:
+        ... print(f.read())
+        # somefunction(f)：
+        
+    运行结束之后，f被自动关闭了，无需自己再写close（）
+    
+    
+### 后记
+
+    file处理工具还有很多，这里只是罗列几种最常用的，其他的以后用的多的时候再补上
+    
+    本次笔记遗留了2个问题待处理：
+    1.二进制文档
+    2.readlines一次读取多行出bug的问题
+    等找到答案了再来更新
+    
+    这里面没有涉及到file 不同处理方法之间效率差异的原理问题，也有待了解后更新
+    
+    
+    
 
 
