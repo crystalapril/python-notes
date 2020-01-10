@@ -59,14 +59,32 @@
 
 ### read & write 文档的读写
 
-     文件打开后，我们可以正式的进入读写的步骤
-     
+     文件打开后，我们可以正式的进入读写的步骤    
+         
      read 读取文件
+     以 f = open('somefile.txt') 为例
      读取文件主要有3个方法：
-     read([size])
      
-     readline([size])
-     readlines()
+     - read([size])  
+       >>> f.read()  # read() 不加参数时，读取全部文本
+       'hello\napril\nenjoy python'
+       >>> f.read(3) # 加参数时，读取前size长度，此处是3个
+       'hel'
+       >>> f.read(2) # 连续使用read，会在上次读取内容的后面，接着读取size长度
+       'lo'
+     
+     - readline([size])
+       >>> f.readline() # 按行提取，如果不加参数，一次提取文本中的一行
+       'hello\n'
+       >>> f.readline(3) # 加参数时，读取前size长度，同样，如果是连续使用，将会在上次读取内容的后面开始读
+       'apr'
+     
+     - readlines([hint])
+       >>> f.readlines() # 不加参数时，读取所有行，跟read（）一样，但是返回的是列表
+       ['hello\n', 'april\n', 'enjoy python']
+       >>> f.readlines(2) # 加参数时，读取前hint行
+       
+       
      
      write 写入文件
      写入文件主要有2个方法：
