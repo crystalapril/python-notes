@@ -4,6 +4,7 @@
  - open & close 文档的打开及关闭
  - read & write 文档的读写
  - with statement
+ - other method: seek,flush  
  - 后记
  
 ```
@@ -129,8 +130,16 @@
 
 ### with expression
 
-    前面提到了 每次处理完文件之后，都建议用close（），把文件关闭
-    但是如果觉得这样很麻烦，没关系，python的 with 语句可以帮助解决这个问题
+    前面提到了 每次处理完文件之后，都建议用close()，把文件关闭
+    为了避免在运行出现error导致无法关闭的情况，有时候写作：
+    try:
+        dosomething(file)
+    finally:
+        file.close()
+        
+    事实上，python有专门的 with 语句涵盖了上面的功能(try...except...finally:close)
+    
+    。。。待补充。。。
     
     >>> with open('testfile.txt') as f:
         ... print(f.read())
@@ -138,17 +147,28 @@
         
     运行结束之后，f被自动关闭了，无需自己再写close（）
     
+### other method: seek, flush
+
+    seek
+    
+    
+    flush
+    
     
 ### 后记
 
     file处理工具还有很多，这里只是罗列几种最常用的，其他的以后用的多的时候再补上
     
-    本次笔记遗留了2个问题待处理：
+    本次笔记遗留了3个问题待处理：
     1.二进制文档
     2.readlines一次读取多行出bug的问题
+    3.这里面没有涉及到file 不同处理方法之间效率差异的原理
     等找到答案了再来更新
+        
     
-    这里面没有涉及到file 不同处理方法之间效率差异的原理问题，也有待了解后更新
+    上面是比较浅显的认知，存在着不足，待不断修正更新
+    
+   
     
     
     
