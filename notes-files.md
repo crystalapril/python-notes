@@ -4,7 +4,8 @@
  - open & close 文档的打开及关闭
  - read & write 文档的读写
  - with statement
- - other method: seek,flush  
+ - other method: seek,flush 
+ - file-like object:stdin,stdout,stderr
  - 后记
  
 ```
@@ -245,7 +246,26 @@
     这样我们就无需关闭文档来检查更新了
     
     
-   
+### File-like object:stdin,stdout,stderr
+
+    stdin,stdout,stderr 是sys 模块中定义的三种流
+    表示的是源于标准 UNIX 概念中的标准输入流，标准输出流，标准错误流
+    
+    因为没有接触过 UNIX，我们这里先顾名思义吧（5555555）
+    重点看 标准，以及 输入，输出，错误，这几个词
+    大致能猜到这个是跟 输入和输出相关的
+    事实上，确实如此
+    
+    以 stdout 为例：
+    print('hello,april') 大致等同于 sys.stdout.write(('hello,april')+'\n')
+    但是 stdout 比 print 更好用，比如我们不想换行时可以只写 stdout.write('hello,april')
+    
+    眼尖的朋友，可能已经发现了 stdout 居然也可以用 write 方法
+    没错，stdin ,stdout,stderr 事实上返回的是类文件对象（file-like object）    
+    类对象可以用的方法，例如read ，readline， write这些，file-like object都可以用
+    需要注意的是，sys.stdin.readline()会获取标准输入的全部内容，包括'\n'，这点有别与 input
+    
+    这三个流先有个大致印象，以后遇到了再琢磨   
     
     
 ### 后记
