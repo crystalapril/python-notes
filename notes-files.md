@@ -137,15 +137,53 @@
     finally:
         file.close()
         
-    事实上，python有专门的 with 语句涵盖了上面的功能(try...except...finally:close)
-    
-    。。。待补充。。。
-    
-    >>> with open('testfile.txt') as f:
-        ... print(f.read())
-        # somefunction(f)：
+    事实上，python有专门的 with 语句涵盖了上面的功能(try...except...finally:close)   
         
-    运行结束之后，f被自动关闭了，无需自己再写close（）
+    >>> with open('testfile.txt') as f:
+        ... dosomething(f)        
+            
+    运行结束之后，f被自动关闭，无需自己再写close（）
+    
+    看到这里，有的小伙伴有些疑惑，一眼看过去，没看出来with里面包含了close的功能啊
+    而且，如果do something 这个过程，出现error怎么办，文档还能正常关闭吗
+    或者with这步就出现错误了呢
+    
+    事实上，with语句可以启动一个叫做文本管理器（context manager）的对象，context manager包含了两个方法：__enter__,__exit__
+    object.__enter__(self)
+    顾名思义，帮助进入到文档中，而 open('testfile.txt') 的返回值将会被 as 语句赋值给后面的 f
+    object.__exit__(self, exc_type, exc_value, traceback)
+    而exit方法，包含了close的功能，以及处理和记录exception的功能（exit后面的三个参数就是exception的信息）
+    - 如果没有出现错误，正常退出，后面3个参数的值是（None,None,None） 
+    - 如果出现了异常，并且exit的返回值是False，那么异常会被重新抛出(reraise)
+    - 如果出现了异常，并且exit的返回值是True，那么异常会被压制（suppress），程序继续往下执行
+    - 如果这组语句因为（除了异常以外的）其他任何原因退出，exit的返回值都会被忽略，程序继续往下执行   
+    
+    目前来说，我们暂时不需要掌握的这么详细，大致知道with里面包含了对异常的处理，以及不管遇到啥情况，都能close文档就行了 
+    
+    我们来test一下：
+    e.g. 1.1:    
+    >>> with open('a.txt') as f:
+        ... print(f.read())
+    >>> print('a')    
+    Traceback (most recent call last):
+      File "<input>", line 1, in <module>
+    FileNotFoundError: [Errno 2] No such file or directory: 'a.txt'
+    a
+    
+    e.g. 1.2:
+    >>> with open('testfile.txt') as g:
+        ... print(1/0)
+    >>> print('b')
+    >>> print(g.closed)
+    Traceback (most recent call last):
+      File "<input>", line 2, in <module>
+    ZeroDivisionError: division by zero    
+    b    
+    True
+    
+    第一个例子是with语句出现错误，并没有'a.txt'这么个文件，但是其后的 print('a')还是运行成功了，也即尽管with语句运行错误，其内部还是对该异常进行了处理，以使程序能够继续进行下一步的运行。
+    第二个例子是下面的表达式（suite）中出现了错误，该错误同样被处理，同时'testfile.txt'还成功的被关闭（g.closed=True）   
+      
     
 ### other method: seek, flush
 
