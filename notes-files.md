@@ -195,10 +195,42 @@
     
 ### other method: seek, flush
 
-    seek
+    seek    
+    fileObject.seek(offset[, whence]) 改变文件指针的位置       
+    - whence，当 whence 没有指定时，默认为文件的开头
+      0 ：文件开头  1： 文件当前位置  2：文件末尾
+    - offset，是相对于whence的偏移量   
+    
+    e.g. 2.1:
+    >>> sm = open('testfile.txt','r+')
+    >>> sm.read()
+    'hello\napril\nenjoy python\neveryday'
+    >>> sm.seek(5)   # 指针从文件的开头，向右偏移 5 个位置
+    5
+    >>> sm.write('test')
+    4
+    >>> sm.flush()   # 刷新缓存
+    >>> sm.seek(0,0)  # 指针回到文件的开头
+    0
+    >>> sm.read()
+    'hellotestril\nenjoy python\neveryday'
+    >>> sm.close()
     
     
     flush
+    fileObject.flush() 用来刷新缓存（也即修改的内容）
+    
+    很多情况下，当我们在文档操作中进行某些修改时，修改的内容被放到了缓存区
+    直到文档关闭的时候，这些内容才被写进了文档
+    
+    如果我们想查看修改的内容，我们可以close（）文档，然后再open，read
+    但是这样太麻烦。。。
+    
+    flush（）方法可以立刻刷新缓存，把缓存save进文档，同时清空缓存区
+    这样我们就无需关闭文档来检查更新了
+    
+    
+   
     
     
 ### 后记
