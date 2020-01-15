@@ -170,6 +170,9 @@
     FileNotFoundError: [Errno 2] No such file or directory: 'a.txt'
     a
     
+    第一个例子是with语句出现错误，并没有'a.txt'这么个文件，但是其后的 print('a')还是运行成功了
+    也即尽管with语句运行错误，其内部还是对该异常进行了处理，以使程序能够继续进行下一步的运行。
+    
     e.g. 1.2:
     >>> with open('testfile.txt') as g:
         ... print(1/0)
@@ -179,10 +182,15 @@
       File "<input>", line 2, in <module>
     ZeroDivisionError: division by zero    
     b    
-    True
+    True 
+       
+    第二个例子是下面的表达式（suite）中出现了错误，该错误同样被处理
+    同时'testfile.txt'还成功的被关闭（g.closed=True）   
     
-    第一个例子是with语句出现错误，并没有'a.txt'这么个文件，但是其后的 print('a')还是运行成功了，也即尽管with语句运行错误，其内部还是对该异常进行了处理，以使程序能够继续进行下一步的运行。
-    第二个例子是下面的表达式（suite）中出现了错误，该错误同样被处理，同时'testfile.txt'还成功的被关闭（g.closed=True）   
+    
+    具体详情可见：
+    https://docs.python.org/3/reference/compound_stmts.html
+    8.5 with statement
       
     
 ### other method: seek, flush
