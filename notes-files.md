@@ -40,6 +40,21 @@
       如果不在本文件夹，建议把文件的路径写清楚 open(r'd:\april\somefile.txt')      
     - mode 是打开的模式，常用的有：只读模式 r ，覆盖写模式 w， 追加写模式 a ，二进制模式 b，复合模式 +
 
+    注意：
+    file文档打开后，得到的是一个file对象（file object）
+    file object 包含一些属性，例如：closed ，mode， name 等，同时还具备一些方法（read,write等，将在下一节描述）
+    
+    e.g. 
+    >>> sm = open('testfile.txt','r+')
+    >>> sm.name
+    'testfile.txt'
+    >>> sm.mode
+    'r+'
+    >>> sm.closed
+    False
+    
+    
+
 |  mode   |     功能                            |
 |---------|----------------------------------------------------------|
 |    r    | 只读模式，也是默认模式，也就是说，open('somefile.txt','r') 和 open('somefile.txt') 的效果是一样的，如果文档不存在，则报错FileNotFoundError |
