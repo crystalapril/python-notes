@@ -1,10 +1,12 @@
 # Object
 
 - 对象概述 outline
-- 类和实例 class & instance
-- 类的属性和方法 property & method 
-- 类的继承
+- 类和实例 object & instance
+- 类的属性和方法 attribute & method 
 - 自定义类
+- 类的封装 encapsulation
+- 类的继承 inheritance
+- 类的多肽 polymorphism
 - 类的魔方方法
 
 ### 对象概述 outline
@@ -19,12 +21,16 @@
     
     
 
-### 类和实例 class & instance
+### 类和实例 object & instance
 
-### 类的属性和方法 property & method 
+### 类的属性和方法 attribute & method 
 
 ### 自定义类
 
-### 类的继承
+### 类的封装 encapsulation
+
+### 类的继承 inheritance
+
+### 类的多肽 polymorphism
 
 ### 类的魔方方法
