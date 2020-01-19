@@ -164,7 +164,7 @@
     而且，如果do something 这个过程，出现error怎么办，文档还能正常关闭吗
     或者with这步就出现错误了呢
     
-    事实上，with语句可以启动一个叫做文本管理器（context manager）的对象，context manager包含了两个方法：__enter__,__exit__
+    事实上，with语句可以启动一个叫做上下文管理器（context manager）的对象，context manager包含了两个方法：__enter__,__exit__
     object.__enter__(self)
     顾名思义，帮助进入到文档中，而 open('testfile.txt') 的返回值将会被 as 语句赋值给后面的 f
     object.__exit__(self, exc_type, exc_value, traceback)
