@@ -6,7 +6,7 @@
 - 自定义类
 - 类的封装及私有化 encapsulation
 - 类的继承 inheritance
-- 类的多肽 polymorphism
+- 类的多态 polymorphism
 - 类的魔方方法
 
 ### 对象概述 outline of object
@@ -72,10 +72,23 @@
 
 ### 自定义类
 
+    上面我们以字符串'123 '为例，简单的介绍了object的要素
+    
+    有同学可能不满足于此，如果我们想自己定义一个类，或者改进python原有的类怎么办
+    
+    这节我们尝试自定义一个简单的类
+    
+    class Person: #类名需要大写
+            
+        
+    
+    
+    
+
 ### 类的封装及私有化 encapsulation
 
 ### 类的继承 inheritance
 
-### 类的多肽 polymorphism
+### 类的多态 polymorphism
 
 ### 类的魔方方法
