@@ -4,7 +4,7 @@
 - 类，对象和实例 class, object & instance
 - 类的属性和方法 attribute & method 
 - 自定义类
-- 类的封装 encapsulation
+- 类的封装及私有化 encapsulation
 - 类的继承 inheritance
 - 类的多肽 polymorphism
 - 类的魔方方法
@@ -46,7 +46,7 @@
 
 ### 自定义类
 
-### 类的封装 encapsulation
+### 类的封装及私有化 encapsulation
 
 ### 类的继承 inheritance
 
