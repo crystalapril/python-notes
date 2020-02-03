@@ -79,7 +79,17 @@
     这节我们尝试自定义一个简单的类
     
     class Person: #类名需要大写
+        def __init__(self,age,name):  # 定义了年龄和姓名属性
+            self.age = age
+            self.name = name
+
+        def eat(self,times):  # 定义了 eat 方法
+            print(f'I have {times} meals a day.')
+
+        def sleep(self,hour):  # 定义了 sleep 方法
+            print(f'I sleep for {hour} hours a day.')
             
+
         
     
     
