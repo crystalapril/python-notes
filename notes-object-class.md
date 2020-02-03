@@ -89,10 +89,17 @@
         def sleep(self,hour):  # 定义了 sleep 方法
             print(f'I sleep for {hour} hours a day.')
             
-
-        
-    
-    
+     我们以 Person 为例来建立一个实例：
+     
+     >>> april = Person(25,'april')   # 建立了一个april的实例instance
+     >>> april.age
+     25
+     >>> april.name
+     'april'
+     >>> april.eat(3)
+     I have 3 meals a day.
+     >>> april.sleep(8)
+     I sleep for 8 hours a day.           
     
 
 ### 类的封装及私有化 encapsulation
