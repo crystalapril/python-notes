@@ -162,7 +162,7 @@
     the weight is ...
     I won't tell you.
     
-    直接访问__weight 被拒绝，这时候__weight是私有的，程序显示没有这个属性
+    直接访问__myweight 被拒绝，这时候__myweight是私有的，程序显示没有这个属性
     通过weight方法进行内部访问，才可以访问到私有的内容
     
     但是事实上，python并不是绝对禁止访问私有的属性
