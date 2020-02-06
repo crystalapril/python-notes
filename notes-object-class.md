@@ -116,6 +116,65 @@
 
 ### 类的封装及私有化 encapsulation and privacy
 
+    类的一个特点就是封装 encapsulation ，跟函数的封装类似
+    
+    我们在调用函数的时候，例如 
+    >>> pow(2,4)
+    16
+    我们不需要知道pow函数里面是怎么写的，只需要知道pow可以用来进行幂运算，直接拿过来用就可以了
+    
+    同样，类也是如此，我们在调用方法时，也不需要知道方法是怎么写的
+    >>> '123 '.strip()
+    '123'
+    >>> april.eat(3)     # 还可以用 Person.eat(april,3)
+    I have 3 meals a day.   
+    知道怎么用，能实现什么功能就好，这样让程序更简单
+    
+    
+    Privacy
+    
+    但是有的同学说，这样还不够
+    有些方法不希望别人使用，只有自己能用
+    python为这种情况，提供了一个选项就是 私有化 privacy
+    通过把想要隐藏的方法设为私有的（方法前加2个下划线 __method），让外面无法访问（其实是看起来无法访问）：
+    
+    我们通过下面的例子来说明：
+    
+    >>> class Person:
+    ...:     def __init__(self,age,name):
+    ...:         self.age = age
+    ...:         self.name = name
+    ...: 
+    ...:     def __myweight(self):
+    ...:         print("I won't tell you.")
+    ...: 
+    ...:     def weight(self):
+    ...:         print("the weight is ...")
+    ...:         self.__myweight()
+    ...: 
+    >>> april = Person(25,'april')
+    >>> april.__myweight()
+    Traceback (most recent call last):
+      File "<ipython-input-17-b6512bc696d6>", line 1, in <module>
+        april.__myweight()
+    AttributeError: 'Person' object has no attribute '__myweight'
+    >>> april.weight()
+    the weight is ...
+    I won't tell you.
+    
+    直接访问__weight 被拒绝，这时候__weight是私有的，程序显示没有这个属性
+    通过weight方法进行内部访问，才可以访问到私有的内容
+    
+    但是事实上，python并不是绝对禁止访问私有的属性
+    有一个办法可以让我们从外部访问私有属性：
+    >>> april._Person__myweight()
+    I won't tell you.
+    
+    在类名前加单下划线，后面跟着双下划线+私有方法名，就可以进入
+    _Classname__privatemehtod
+    
+    尽管我们可以通过这个办法访问私有属性，但是还是尽量不要去这样做
+    私有属性就类似一个提示，告诉大家没事不要去那里搞事情    
     
 
 ### 类的多态 polymorphism
