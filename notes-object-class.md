@@ -80,7 +80,7 @@
     
     class Person: #类名需要大写
         def __init__(self,age,name):  # 定义了年龄和姓名属性，__init__后面再说
-            self.age = age
+            self.age = age            
             self.name = name
 
         def eat(self,times):  # 定义了 eat 方法
@@ -92,9 +92,10 @@
      从上面可以看到，自定义类：
        - 要用class语句，后面跟类名，这里是Person，类名需首字母大写
        - 类名后面可以加(object),或其他类的(类名),括号里的类名为我们自定义类的父类（父类的概念后面再说）
-       - 如果父类是object，也可以省略，如 Person(object)也可以，Person
+       - 如果父类是object，也可以省略，如 Person(object) 等同于 Person
        - class 里面可以自定义方法和属性
-       - 所有的方法传入的第一个参数是 self，self意味着 object 本身
+       - 定义方法与定义函数类似，都是通过 def 语句，区别在于定义方法的第一个参数默认是self，
+         self意味着 object 本身，方法也可以被看做成是绑定到 self 上的函数
             
      我们以 Person 为例来建立一个实例：
      
@@ -103,18 +104,19 @@
      25
      >>> april.name
      'april'
-     >>> april.eat(3)
-     I have 3 meals a day.
+     >>> april.eat(3)     # 还可以用 Person.eat(april,3)
+     I have 3 meals a day.     
      >>> april.sleep(8)
      I sleep for 8 hours a day. 
      
      这里，april 是 Person 的实例
      april.age 跟 self.age 是不是很相似
-     没错，这里的 april 就作为第一个参数 self 自动被传入进去了
-     
-    
+     没错，这里的 april 就作为第一个参数 self 自动被传入进去了  
+        
 
-### 类的封装及私有化 encapsulation
+### 类的封装及私有化 encapsulation and privacy
+
+    
 
 ### 类的多态 polymorphism
 
