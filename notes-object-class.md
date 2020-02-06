@@ -5,8 +5,8 @@
 - 类的属性和方法 attribute & method 
 - 自定义类
 - 类的封装及私有化 encapsulation
-- 类的继承 inheritance
 - 类的多态 polymorphism
+- 类的继承 inheritance
 - 类的魔方方法
 
 ### 对象概述 outline of object
@@ -79,7 +79,7 @@
     这节我们尝试自定义一个简单的类
     
     class Person: #类名需要大写
-        def __init__(self,age,name):  # 定义了年龄和姓名属性
+        def __init__(self,age,name):  # 定义了年龄和姓名属性，__init__后面再说
             self.age = age
             self.name = name
 
@@ -88,6 +88,13 @@
 
         def sleep(self,hour):  # 定义了 sleep 方法
             print(f'I sleep for {hour} hours a day.')
+            
+     从上面可以看到，自定义类：
+       - 要用class语句，后面跟类名，这里是Person，类名需首字母大写
+       - 类名后面可以加(object),或其他类的(类名),括号里的类名为我们自定义类的父类（父类的概念后面再说）
+       - 如果父类是object，也可以省略，如 Person(object)也可以，Person
+       - class 里面可以自定义方法和属性
+       - 所有的方法传入的第一个参数是 self，self意味着 object 本身
             
      我们以 Person 为例来建立一个实例：
      
@@ -99,13 +106,18 @@
      >>> april.eat(3)
      I have 3 meals a day.
      >>> april.sleep(8)
-     I sleep for 8 hours a day.           
+     I sleep for 8 hours a day. 
+     
+     这里，april 是 Person 的实例
+     april.age 跟 self.age 是不是很相似
+     没错，这里的 april 就作为第一个参数 self 自动被传入进去了
+     
     
 
 ### 类的封装及私有化 encapsulation
 
-### 类的继承 inheritance
-
 ### 类的多态 polymorphism
+
+### 类的继承 inheritance
 
 ### 类的魔方方法
