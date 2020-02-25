@@ -234,7 +234,8 @@
     class Athlete(Person):
         def run(self,meters):
             print(f'I run {meters}m in a minutes.')
-            
+    
+    
     
 
 ### 类的魔方方法
