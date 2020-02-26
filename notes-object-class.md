@@ -277,6 +277,20 @@
     
     除此以外，python 还支持多重继承  mutiple superclasses
     就是一个类可以有多个爸爸，我们来举例：
+    class Student(Person):
+        def learn(self,hours):
+            print(f'I study for {hours} hours a day')
+
+    class AthleteStudent(Athlete,Student):
+        pass
+        
+    >>> AthleteStudent.__bases__
+    (__main__.Athlete, __main__.Student)
+    >>> rabbit = AthleteStudent(24,'rabbit')
+    >>> rabbit.age
+    24
+    >>> rabbit.learn(6)
+    I study for 6 hours a day
     
     
     
