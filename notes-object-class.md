@@ -234,6 +234,49 @@
     class Athlete(Person):
         def run(self,meters):
             print(f'I run {meters}m in a minutes.')
+        def sleep(self):
+            print(f'I always sleep at the daytime')
+            
+    子类创建好了，我们来验证一下：
+    >>> issubclass(Athlete,Person)   # issubclass用于检验是否为子类： Athlete 是否为 Person 的子类
+    True
+    >>> issubclass(Person,Athlete)
+    False
+    
+    >>> Person.__bases__   # __bases__用于查询类的父类是什么 ：Athlete的父类是 Person
+    (object,)
+    >>> Athlete.__bases__
+    (__main__.Person,)
+    
+    我们来给 Athlete 创建一个实例，并分别验证属性和方法：
+    >>> roc = Athlete(22,'roc')
+    >>> roc.__class__
+    __main__.Athlete
+    >>> isinstance(roc,Person)
+    True
+    >>> isinstance(roc,Athlete)
+    True
+    >>> isinstance(roc,str)
+    False    
+    
+    >>> roc.age      # 调用父类 Person 的属性
+    22
+    >>> roc.eat(2)       # 调用父类 Person 的方法
+    I have 2 meals a day.
+    >>> roc.run(50)       # 调用子类 Athlete 的方法
+    I run 50m in a minutes.
+    
+    我们注意到了，Athlete 和 Person 都有一个sleep 方法，并且写的不同
+    当这种情况的时候，调用子类的方法还会继承父类的sleep吗：
+    >>> roc.sleep()
+    I always sleep at the daytime
+    此时，roc 调用的是子类的 sleep方法，父类的同名方法没有被调用
+    这叫做 override 推翻
+    当有子类有同名的方法出现时，子类的实例调用的是子类自己的方法
+    
+    
+    
+
     
     
     
