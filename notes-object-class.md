@@ -271,12 +271,12 @@
     >>> roc.sleep()
     I always sleep at the daytime
     此时，roc 调用的是子类的 sleep方法，父类的同名方法没有被调用
-    这叫做 override 推翻
+    这叫做 override 重写
     当有子类有同名的方法出现时，子类的实例调用的是子类自己的方法
     
     
-    
-
+    除此以外，python 还支持多重继承  mutiple superclasses
+    就是一个类可以有多个爸爸，我们来举例：
     
     
     
