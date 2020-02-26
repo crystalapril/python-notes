@@ -6,7 +6,7 @@
 - 自定义类
 - 类的封装及私有化 encapsulation
 - 类的多态 polymorphism
-- 类的继承 inheritance
+- 类的继承和超类 inheritance
 - 类的魔方方法
 
 ### 对象概述 outline of object
@@ -212,12 +212,12 @@
     'abc'   
     
 
-### 类的继承 inheritance
+### 类的继承和超类 inheritance
 
     继承是类里面特别重要的一个特性
     
     其实，看名字我们也能大概猜到，类的属性和方法等是可以被继承的
-    被继承的类叫做父类或基类，承接的类叫做子类，这个名字也蛮形象的
+    被继承的类叫做超类、父类或基类，承接的类叫做子类，这个名字也蛮形象的
     
     这个有什么意义呢
     当我们已经创建好了一个类，并且已经在使用中
@@ -291,7 +291,20 @@
     24
     >>> rabbit.learn(6)                       # 调用父类 Student 的属性
     I study for 6 hours a day
+
+    我们还有其他方法来验证类的属性和方法
+    >>> hasattr(rabbit,'age')  # hasattr 用于检验实例 rabbit 有无 age 属性
+    True
+    >>> hasattr(roc,'learn')
+    False
+    >>> callable(getattr(rabbit,'age'))  # getattr 用于获取实例 rabbit 有无 age 属性
+    False
+    >>> callable(getattr(rabbit,'learn'))  # callable用于检验参数是否可以被调用（类似函数一样）
+    True
+    >>> setattr(rabbit,'gender','male')  # setattr 用于设置属性
+    >>> rabbit.gender
+    'male'
     
-        
+            
 
 ### 类的魔方方法
