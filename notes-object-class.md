@@ -285,14 +285,13 @@
         pass
         
     >>> AthleteStudent.__bases__
-    (__main__.Athlete, __main__.Student)
-    >>> rabbit = AthleteStudent(24,'rabbit')
-    >>> rabbit.age
+    (__main__.Athlete, __main__.Student)     # AthleteStudent 有两个父类，Athlete 和 Student
+    >>> rabbit = AthleteStudent(24,'rabbit')  # 创建实例
+    >>> rabbit.age                            # 调用爷爷类 Person 的属性 （继承可以一直延续、追溯）
     24
-    >>> rabbit.learn(6)
+    >>> rabbit.learn(6)                       # 调用父类 Student 的属性
     I study for 6 hours a day
     
-    
-    
+        
 
 ### 类的魔方方法
