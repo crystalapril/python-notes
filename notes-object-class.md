@@ -331,7 +331,8 @@
     发现了吗，__init__ 和 init 实现的是同一种功能
     但是 __init__ 比 init 少一个步骤，无需单独调用
     
-    因为__init__ 是创建实例的时候，自动被调用的，像施魔法一样实现了这个功能，又叫魔方方法
+    因为 __init__ 是创建实例的时候，自动对类进行了初始化，__init__又叫构造器 constructor
+    __init__ 像施魔法一样实现了这个功能，又叫魔方方法
     魔方方法不仅仅是 __init__ ，还有很多，后面会提到
     
     这个例子里的参数是可选的，那么如果我们对这个参数进行指定呢？    
@@ -346,6 +347,37 @@
     >>> f = Student()
     >>> f.grade
     5
+    
+    前面我们提到过，当子类和父类有同样的方法时，会存在一个override的问题
+    那么 __init__ 是否也会有这个问题：
+    >>> class Person:
+    ...:    def __init__(self,age,name):
+    ...:        self.age = age
+    ...:        self.name = name
+    ...:    def eat(self,times):
+    ...:        print(f'{self.name} have {times} meals a day.')
+
+    >>> class Student(Person):
+    ...:    def __init__(self):
+    ...:        self.grade = 5
+
+    >>> f = Student()
+    >>> f.grade
+    5
+    >>> f.eat(3)
+    Traceback (most recent call last):
+      File "<ipython-input-104-ce0860987d66>", line 1, in <module>
+        f.eat(3)
+      File "<ipython-input-101-4c51b8c00442>", line 8, in eat
+        print(f'{self.name} have {times} meals a day.')
+    AttributeError: 'Student' object has no attribute 'name'
+    
+    从这个报错可以看到
+    Student 没用 eat 这个方法，f.eat(3) 调用的是父类 Person 的eat方法，这步没有问题
+    但是接下来，Person 的eat 在引用 self.name 的时候报错了
+    显示 Student 没有 name 这个属性
+    也就是说，子类 Student 的 __init__ 覆盖override了父类的__init__ 方法，不再有父类的name属性了
+
     
     
     
