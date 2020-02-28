@@ -305,6 +305,48 @@
     >>> rabbit.gender
     'male'
     
-            
+           
+### 类的魔方方法 Magic methods
 
-### 类的魔方方法
+    类里面有一些特殊的方法，眼尖的同学可能已经留意到了
+    前面我们的例子中，出现了一些带双下划线的方法，如__init__
+    
+    下面是一个类和普通的方法：
+    >>> class Student:
+    ...:     def init(self,grade):
+    ...:         self.grade = grade
+    >>> e = Student()
+    >>> e.init(5)
+    >>> e.grade
+    5
+    
+    下面是一个类和特殊方法：
+    >>> class Student(Person):
+    ...:     def __init__(self,grade=5):
+    ...:         self.grade = grade
+    >>> f = Student()
+    >>> f.grade
+    5
+    
+    发现了吗，__init__ 和 init 实现的是同一种功能
+    但是 __init__ 比 init 少一个步骤，无需单独调用
+    
+    因为__init__ 是创建实例的时候，自动被调用的，像施魔法一样实现了这个功能，又叫魔方方法
+    魔方方法不仅仅是 __init__ ，还有很多，后面会提到
+    
+    这个例子里的参数是可选的，那么如果我们对这个参数进行指定呢？    
+    >>> duobao = Student('I am college student.')
+    >>> duobao.grade
+    'I am college student.'
+
+    当然，也可以连可选参数都不设置：
+    >>> class Student(Person):
+    ...:     def __init__(self):
+    ...:         self.grade = 5
+    >>> f = Student()
+    >>> f.grade
+    5
+    
+    
+    
+    
