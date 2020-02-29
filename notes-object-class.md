@@ -377,6 +377,41 @@
     但是接下来，Person 的eat 在引用 self.name 的时候报错了
     显示 Student 没有 name 这个属性
     也就是说，子类 Student 的 __init__ 覆盖override了父类的__init__ 方法，不再有父类的name属性了
+    
+    那么如何解决这个问题？
+    有两种方法：
+    1.调用未关联的超类构造函数 unbound superclass constructor
+    2.使用super函数
+    
+    我们来看第一个：
+    >>> class Student(Person):
+    ...:     def __init__(self,age,name):
+    ...:         Person.__init__(self,age,name)   
+    >>> f = Student(22,'roc')
+    >>> f.age
+    22    
+    通过 Person.__init__(self) 的方式，成功调用了父类Person 的 age 属性
+    这里，通过调用Person.__init__，没用实例与其相关联，因此叫做未关联的 （其实这个概念还不是很明白。。。）
+    
+    第二个方法：
+    >>> class Student(Person):
+    ...:     def __init__(self,age,name):
+    ...:         super().__init__(age,name)
+    ...:         self.grade = 5
+    >>> f = Student(22,'roc')
+    >>> f.age
+    22
+    通过super()函数，也成功调用了父类的属性
+    注意，super()函数里，不包含self，可以没有参数
+    
+    super()现在应用的更多，也更适用于python3，尽量用super()来解决这个问题
+    
+    
+    
+    
+    
+    
+    
 
     
     
