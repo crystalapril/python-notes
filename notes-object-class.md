@@ -407,6 +407,13 @@
     super()现在应用的更多，也更适用于python3，尽量用super()来解决这个问题
     
     
+    除了__init__ ，还有几个常用的魔方方法：
+    __getattr__
+    
+    __setattr__
+    
+    __delattr__
+    
     
     
     
