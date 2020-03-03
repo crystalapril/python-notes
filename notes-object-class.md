@@ -407,17 +407,49 @@
     super()现在应用的更多，也更适用于python3，尽量用super()来解决这个问题
     
     
-    除了__init__ ，还有几个常用的魔方方法：
-    __getattr__
+    除了__init__ ，还有几个常用的魔方方法：    
     
+    __getattr__     
+    类里面有很多__get 打头的方法，用途并不相同
+    但本质都是为了获取相应的值
+    这里 __getattr__ ,是用于获取对应的属性，没有这个属性的时候就会报错
+    >>> class Rectangle:
+    ...:     def __init__(self):
+    ...:         self.width = 0
+    ...:         self.height =0
+    >>> r = Rectangle()
+    >>> r.width
+    0
+    >>> r.area
+    Traceback (most recent call last):
+      File "<ipython-input-34-2caf84a1d34a>", line 1, in <module>
+        r.area
+    AttributeError: 'Rectangle' object has no attribute 'area'   
+       
     __setattr__
+    类里面同样有很多__set 打头的方法，主要是为了设置某个值
+    这里 __setattr__ 是设置某个属性的值
+    当这个属性存在的时候，修改对应的值；属性不存在的时候，添加该属性及相应的值    
+    >>> r.area = 10
+    >>> r.area
+    10
     
     __delattr__
+    __del 打头的大部分都是删除，这里 __delattr__ 是删除某个属性
+    >>> del r.area
+    >>> r.area
+    Traceback (most recent call last):
+      File "<ipython-input-38-2caf84a1d34a>", line 1, in <module>
+        r.area
+    AttributeError: 'Rectangle' object has no attribute 'area'
     
+    上面的三个魔方方法，跟处理类的属性有关
+    还有其他方法，例如__getitem__，__setitem__， __delitem__ 与处理元素的映射有关，类似字典
+    以及 __getattribute__ 等，不逐一列举   
     
+   
     
-    
-    
+ 
     
 
     
