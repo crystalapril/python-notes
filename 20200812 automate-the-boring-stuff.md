@@ -15,6 +15,12 @@
     the current topic is always at the top of the stack
 
     3.3 local and global scope
+    3.3.1 global scope : global variable
+    3.3.2 global statement : global variable
+    3.3.3 function and assignment statement: local variable 
+    3.3.4 function and without assignment statement : global variable  
+    
+    3.4  sys.exit()
 
 
 ### 4.list
