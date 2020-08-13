@@ -2,8 +2,31 @@
 
 ### 1.basic
 
+    1.1 operator
+    1.1.1 // , %
+    1.1.2 * ，只能用于2数字，或str和一个整数， 错误： 'Alice' * 5.0
+    
+    1.2 assignment statement
+    把变量想象成一个贴了标签的盒子，value的reference放在了盒子里
+    
+    1.3 variable name : 
+    no hyphens (连字符)，不能以数字开头，不能有特殊符号如￥
+    
+    1.4 int function:     
+    正确： int(99.99)
+    正确： int('99')
+    错误： int('99.99')
+    
+    1.5 数字前可以加0 ，正确： 42.0 == 0042.000
+   
 
 ### 2.flow control
+
+    2.1 can't assign to keyword ，布尔值不可以被赋值， 错误： True = 2 + 2
+    
+    2.2 and, or, not  
+    
+    2.3 break, continue
 
 
 ### 3.function
