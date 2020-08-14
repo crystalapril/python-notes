@@ -1,6 +1,6 @@
 # Note of Automate the Boring Stuff
 
-### 1.basic
+### 1.Basic
 
     1.1 operator
     1.1.1 // , %
@@ -20,7 +20,7 @@
     1.5 数字前可以加0 ，正确： 42.0 == 0042.000
    
 
-### 2.flow control
+### 2.Flow Control
 
     2.1 can't assign to keyword ，布尔值不可以被赋值， 错误： True = 2 + 2
     
@@ -29,7 +29,7 @@
     2.3 break, continue
 
 
-### 3.function
+### 3.Function
 
     3.1 print() returns None
 
@@ -46,7 +46,7 @@
     3.4  sys.exit()
 
 
-### 4.list
+### 4.List
     
     4.1 index 必须整数，错误：alist[1.0]
 
@@ -75,4 +75,11 @@
         >>> eggs.append(4)  >>> eggs.append(5)  >>> eggs.append(6)
         原因在于，我们赋值的时候，假设 variable是个盒子，这个盒子里，装的不是list本身，而是存放list的地址这个链接reference
         第一个例子，eggs 被装进了新的 reference，跟新的list关联上了，原有的list没有被修改，只是跟eggs取关
+        
+    4.8 id()
+    
+    4.9 copy.copy(), copy.deepcopy()
+    
+    
+### Dictionaries and Structuring Data
 
