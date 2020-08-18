@@ -79,7 +79,14 @@
     4.8 id()
     
     4.9 copy.copy(), copy.deepcopy()
+
+    4.10 in
+         错误： 1 or 2 in [4,5,6]
+         正确： 1 in [4,5,6] or 2 in [4,5,6]
+         
+         留意：有些语言中 0 < x < 100 是不行的，必须 0 < x and x < 100 ，不过python没有这个问题
+         
     
     
-### Dictionaries and Structuring Data
+### 5.Dictionaries and Structuring Data
 
