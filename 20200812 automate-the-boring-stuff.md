@@ -101,6 +101,10 @@
     5.3 d.keys(),d.values(),d.items() 返回dict_keys, dict_values, and dict_items （不是 list）
     可以用for loop，list()
     
+    5.4 dict.get(key,defualt), dict.setdefualt(key,defualt)
+    
+    5.5 pprint.pprint()
+    
     
     
     
