@@ -98,10 +98,13 @@
     >>> a == s                       >>> t == h
     Fasle                            True
     
-    5.2 python3.7之后，从dict里取出的key的list，保留 dict 原来的 'key' 的顺序
+    5.2 python3.7之后，从dict里取出的key的list，保留原来的 'key' 的顺序
     >>> eggs = {'name': 'Zophie', 'species': 'cat', 'age': '8'}
     >>> list(eggs)
     ['name', 'species', 'age']
+    
+    5.3 d.keys(),d.values(),d.items() 返回的不是list，是dict_keys, dict_values, and dict_items
+    可以用for loop，list()
     
     
     
