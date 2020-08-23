@@ -90,20 +90,15 @@
     
 ### 5.Dictionaries and Structuring Data
 
-    5.1 unodered
-    区别于list，字典是无序的，例如：
-    list:                            dictionary:
-    >>> s = [1,2,4]                  >>> t = {1:2,3:4,5:6}
-    >>> a = [4,2,1]                  >>> h = {3:4,5:6,1:2}
-    >>> a == s                       >>> t == h
-    Fasle                            True
+    5.1 unodered，字典是无序的
+    相同的key-value pair, 不同的order, 字典的值相等
     
     5.2 python3.7之后，从dict里取出的key的list，保留原来的 'key' 的顺序
     >>> eggs = {'name': 'Zophie', 'species': 'cat', 'age': '8'}
     >>> list(eggs)
     ['name', 'species', 'age']
     
-    5.3 d.keys(),d.values(),d.items() 返回的不是list，是dict_keys, dict_values, and dict_items
+    5.3 d.keys(),d.values(),d.items() 返回dict_keys, dict_values, and dict_items （不是 list）
     可以用for loop，list()
     
     
