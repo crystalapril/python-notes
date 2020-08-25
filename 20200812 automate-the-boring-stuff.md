@@ -109,6 +109,11 @@
  ### 6.Manipulating Strings
 
     6.1 escape character, raw string
+    
+    6.2 >>> '' in 'april'
+        True
+        
+    6.3
        
     
     
