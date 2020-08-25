@@ -104,8 +104,12 @@
     5.4 dict.get(key,defualt), dict.setdefualt(key,defualt)
     
     5.5 pprint.pprint()
-    
-    
+ 
+ 
+ ### 6.Manipulating Strings
+
+    6.1 escape character, raw string
+       
     
     
     
