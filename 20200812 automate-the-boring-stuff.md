@@ -125,6 +125,17 @@
         6.4.3 startwith(),endwith()        
         6.4.4 join(), split(), partition()
         6.4.5 rjust(), ljust(), center()
+        6.4.6 rstrip(),lstrip(),strip()  
+              除了删除两端的 space，也可以删除 character，例如：
+              >>> spam = 'SpamSpamBaconSpamEggsSpamSpam'
+              >>> spam.strip('ampS')       # strip('ampS') strip('mapS') strip('Spam') 的效果是一样的
+              'BaconSpamEggs'
+     
+    6.5
+              
+        
+        
+        
         
           
           
