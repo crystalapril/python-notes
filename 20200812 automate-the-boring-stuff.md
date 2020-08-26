@@ -115,21 +115,16 @@
         
     6.3 f-string, % , format
 
-    6.4 str.method()    
-        6.4.1 str.lower()   , str.upper()   不修改原str，返回新的
+    6.4 str.method   
+        6.4.1 str.lower()    , str.upper()    不修改原str，返回新的
               str.isupper()  , str.islower()  至少有一个字母，所有的字母大写（小写），return True
-              eg.   >>> '12345'.islower()     >>> '12abc'.islower()           >>> '12345'.isupper()
-                    False                     True                            False
-
-        6.4.2 isdecimal(), isalpha(), isalnum(),isspace(),istitle()        
+              eg.   >>> '12345'.islower()     >>> '12345'.isupper()          >>> '12abc'.islower() 
+                    False                     False                             True 
+                    
+        6.4.2 isdecimal(), isalpha(), isalnum()  |  isspace(),istitle()        
         6.4.3 startwith(),endwith()        
-        6.4.4 join(), split(), partition()
-        6.4.5 rjust(), ljust(), center()
-        6.4.6 rstrip(),lstrip(),strip()  
-              除了删除两端的 space，也可以删除 character，例如：
-              >>> spam = 'SpamSpamBaconSpamEggsSpamSpam'
-              >>> spam.strip('ampS')       # strip('ampS') strip('mapS') strip('Spam') 的效果是一样的
-              'BaconSpamEggs'
+        6.4.4 split(), partition()
+        6.4.5 rjust(), ljust(), center() | rstrip(),lstrip(),strip()  除了删除两端的 space，也可以删除 character
      
     6.5
               
