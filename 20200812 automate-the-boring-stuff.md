@@ -115,7 +115,16 @@
         
     6.3 f-string, % , format
 
-    6.4 
+    6.4 str.method()
+    
+    6.4.1 str.lower()   , str.upper()   不修改原str，返回新的
+          str.isupper()  , str.islower()  至少有一个字母，所有的字母大写（小写），return True
+          eg.   >>> '12345'.islower()     >>> '12abc'.islower()           >>> '12345'.isupper()
+                False                     True                            False
+    
+    6.4.2
+          
+          
        
     
     
