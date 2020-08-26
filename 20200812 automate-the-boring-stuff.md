@@ -113,7 +113,9 @@
     6.2 >>> '' in 'april'
         True
         
-    6.3
+    6.3 f-string, % , format
+
+    6.4 
        
     
     
