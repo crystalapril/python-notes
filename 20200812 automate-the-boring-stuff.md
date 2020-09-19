@@ -44,6 +44,14 @@
     3.3.4 function and without assignment statement : global variable  
     
     3.4  sys.exit()
+    
+    3.5 variable-length number of arguments with *args and **kwargs
+    f(*args) , 其实是 <expr>(*<expr-arg>)
+    args 是表达式，可以是变量表达式，如 *xs，也可以是其他的expression，如 *xs[i]下标表达式等
+    
+    *args 会作为 tuple 被传入f中， * 的作用是将后面的 args 一一展平
+    如 f(*(x1,x2,x3))== f(x1,x2,x3)
+       f(*([x0] + [x1] + [x2]))  == f(x1,x2,x3)
 
 
 ### 4.List
