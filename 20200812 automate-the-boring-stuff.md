@@ -138,8 +138,22 @@
 ### 7.Pattern Matching with Regular Expressions
 
     7.1 re模块    
-    re.compile()， 返回 Regex Objects   
-    re.group(), re.groups()
+    7.1.1 re.compile()， 返回 Regex Objects 
+    7.1.2 search()
+    7.1.3 re.group(), re.groups()
+    eg.:
+    phoneNumRegex = re.compile(r'(\(\d\d\d\)) (\d\d\d-\d\d\d\d)')
+    mo = phoneNumRegex.search('My phone number is (415) 555-4242.')
+    mo.groups()
+    >>> ('415', '555-4242')        
+    
+    7.2 escape characters
+    
+    7.3 | pipe
+    
+    
+    
+    
     
     
     
