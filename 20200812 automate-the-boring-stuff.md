@@ -133,6 +133,14 @@
         6.4.3 rjust(), ljust(), center() | rstrip(),lstrip(),strip()  除了删除两端的 space，也可以删除 character
      
     6.5 ord(), chr()
+ 
+ 
+### 7.Pattern Matching with Regular Expressions
+
+    7.1 re模块    
+    re.compile()， 返回 Regex Objects   
+    re.group(), re.groups()
+    
     
     
     
