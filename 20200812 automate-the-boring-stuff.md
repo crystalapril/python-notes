@@ -151,6 +151,23 @@
     
     7.3 | pipe
     
+    7.4 匹配符号
+    
+        ？ ： 或有匹配  Optional Matching with the Question Mark
+        >>> batRegex = re.compile(r'Bat(wo)?man')
+        >>> mo1 = batRegex.search('The Adventures of Batman')
+        >>> mo1.group()
+        'Batman'
+        
+        * ：匹配 0 或 多次
+        + ：匹配 1 或 多次
+        >>> batRegex = re.compile(r'Bat(wo)+man')
+        >>> mo1 = batRegex.search('The Adventures of Batwowowowoman')
+        >>> mo1.group()
+        'Batwowowowoman'
+        
+        
+        
     
     
     
