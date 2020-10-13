@@ -140,12 +140,7 @@
     7.1 re模块    
     7.1.1 re.compile()， 返回 Regex Objects 
     7.1.2 search()
-    7.1.3 re.group(), re.groups()
-    eg.:
-    phoneNumRegex = re.compile(r'(\(\d\d\d\)) (\d\d\d-\d\d\d\d)')
-    mo = phoneNumRegex.search('My phone number is (415) 555-4242.')
-    mo.groups()
-    >>> ('415', '555-4242')        
+    7.1.3 re.group(), re.groups() 
     
     7.2 escape characters
     
@@ -154,17 +149,24 @@
     7.4 匹配符号
     
         ？ ： 或有匹配  Optional Matching with the Question Mark
-        >>> batRegex = re.compile(r'Bat(wo)?man')
-        >>> mo1 = batRegex.search('The Adventures of Batman')
-        >>> mo1.group()
-        'Batman'
+        'Bat(wo)?man'  跟  'Batman' 或 'Batwoman' 都匹配
         
-        * ：匹配 0 或 多次
-        + ：匹配 1 或 多次
-        >>> batRegex = re.compile(r'Bat(wo)+man')
-        >>> mo1 = batRegex.search('The Adventures of Batwowowowoman')
-        >>> mo1.group()
-        'Batwowowowoman'
+        * ：匹配 0 或 多次  
+        + ：匹配 1 或 多次  r'Bat(wo)+man' 跟 'Batwowowowoman' 匹配
+        {n，m} : 匹配n ~ m 次
+        
+    7.5 greedy & non-greedy
+        greedy: 默认的，最大匹配  ，             r'(Ha){3,5}' 匹配 'HaHaHaHaHa'中的 'HaHaHaHaHa'
+        non-greedy（后面加？）： 最小程度匹配 ，  r'(Ha){3,5}?' 匹配 'HaHaHaHaHa'中的 'HaHaHa'        
+        
+    7.6
+
+        
+        
+        
+        
+        
+        
         
         
         
