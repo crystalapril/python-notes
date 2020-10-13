@@ -143,19 +143,24 @@
     7.1.3 re.group(), re.groups() 
     7.1.4 re.findall()， 返回 list of strings of every match
           string 没有 group的时候，返回 [s1,s2]；有group的时候，返回[(s1,s2),(s3,s4)]    
+    7.1.5 re.DOTALL ，让 . (dot character)可以匹配一切字符，包括换行符
     
-    7.2 escape characters
+    7.2 escape characters \
     
     7.3 | pipe
     
-    7.4 匹配符号
-    
-        ？ ： 或有匹配  Optional Matching with the Question Mark
-        'Bat(wo)?man'  跟  'Batman' 或 'Batwoman' 都匹配
-        
-        * ：匹配 0 或 多次  
-        + ：匹配 1 或 多次  r'Bat(wo)+man' 跟 'Batwowowowoman' 匹配
-        {n，m} : 匹配n ~ m 次
+    7.4 匹配符号    
+
+        ?      matches 0 or 1 
+        *      matches 0 or more 
+        +      matches 1 or more 
+        {n}    matches exactly n ; {n,} matches n or more ; {,m} matches 0 to m ; {n,m}  matches n ~ m
+        {n,m}? or *? or +? performs a non-greedy match of the preceding group.
+        ^      means the string must begin with spam. （脱字符 caret character）
+        $      means the string must end with spam. 
+        .      matches any character, except newline characters.
+        [abc]  matches any character between the brackets (such as a, b, or c).
+        [^abc] matches any character that isn’t between the brackets.
         
     7.5 greedy & non-greedy
         greedy: 默认的，最大匹配  ，             r'(Ha){3,5}' 匹配 'HaHaHaHaHa'中的 'HaHaHaHaHa'
@@ -167,14 +172,9 @@
         \w  [a-zA-Z0-9_]
         \W  [^a-zA-Z0-9_]
         \s  [\n\t\space] 
-        \S  [^\n\t\space]
-        
-    7.7 ^ & $
-        ^ 脱字符 caret character，当用于[]的时候，表示非。。
-                                 当用于string的开头，表示，以string为开头
-        $ 美元符号，用于结尾处,表示以string 为结尾
-    
-    7.8
+        \S  [^\n\t\space]        
+   
+    7.7
         
        
 
