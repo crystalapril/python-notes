@@ -161,7 +161,13 @@
         greedy: 默认的，最大匹配  ，             r'(Ha){3,5}' 匹配 'HaHaHaHaHa'中的 'HaHaHaHaHa'
         non-greedy（后面加？）： 最小程度匹配 ，  r'(Ha){3,5}?' 匹配 'HaHaHaHaHa'中的 'HaHaHa'        
         
-    7.6
+    7.6 Character Classes
+        \d  [0-9]
+        \D  [^0-9]
+        \w  [a-zA-Z0-9_]
+        \W  [^a-zA-Z0-9_]
+        \s  [\n\t]
+        \S  [^\n\t]
 
         
         
