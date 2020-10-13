@@ -166,8 +166,17 @@
         \D  [^0-9]
         \w  [a-zA-Z0-9_]
         \W  [^a-zA-Z0-9_]
-        \s  [\n\t]
-        \S  [^\n\t]
+        \s  [\n\t\space] 
+        \S  [^\n\t\space]
+        
+    7.7 ^ & $
+        ^ 脱字符 caret character，当用于[]的时候，表示非。。
+                                 当用于string的开头，表示，以string为开头
+        $ 美元符号，用于结尾处,表示以string 为结尾
+    
+    7.8
+        
+       
 
         
         
