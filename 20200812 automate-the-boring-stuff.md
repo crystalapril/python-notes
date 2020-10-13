@@ -139,8 +139,10 @@
 
     7.1 re模块    
     7.1.1 re.compile()， 返回 Regex Objects 
-    7.1.2 search()
+    7.1.2 re.search() ，返回 Match object of the first matched text 
     7.1.3 re.group(), re.groups() 
+    7.1.4 re.findall()， 返回 list of strings of every match
+          string 没有 group的时候，返回 [s1,s2]；有group的时候，返回[(s1,s2),(s3,s4)]    
     
     7.2 escape characters
     
