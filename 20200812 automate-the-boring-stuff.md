@@ -142,10 +142,12 @@
     7.1.2 re.search() ，返回 Match object of the first matched text 
     7.1.3 re.group(), re.groups() 
     7.1.4 re.findall()， 返回 list of strings of every match
-          string 没有 group的时候，返回 [s1,s2]；有group的时候，返回[(s1,s2),(s3,s4)]    
-    7.1.5 re.DOTALL ，让 . (dot character)可以匹配一切字符，包括换行符
-    7.1.6 re.IGNORECASE , re.I ，case-insensitive
-    7.1.7 re.sub(str1,str2) ，替换，str1 替换 str2 里面与 regex 匹配的内容
+          string 没有 group的时候，返回 [s1,s2]；有group的时候，返回[(s1,s2),(s3,s4)]   
+    7.1.5 re.sub(str1,str2) ，替换，str1 替换 str2 里面与 regex 匹配的内容
+    7.1.6 re.DOTALL ，让 . (dot character)可以匹配一切字符，包括换行符
+    7.1.7 re.IGNORECASE , re.I ，case-insensitive
+    7.1.8 re.VERBOSE, 可用于多行，并且忽略注释&空格
+          someRegexValue = re.compile('foo', re.IGNORECASE | re.DOTALL | re.VERBOSE)  # 联合使用    
     
     7.2 escape characters \
     
