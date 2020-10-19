@@ -22,13 +22,12 @@
     
 ### test file example
     
-    eg. 
+    1.given 
+    eg1.：
     >>> import math
     >>> from hypothesis import given
     >>> from hypothesis.strategies import integers
-
-    1.given 
-    eg1.：
+   
     >>> @given(integers(min_value = 1, max_value =10000), integers(min_value = 1, max_value =10000))
     >>> def test_commutative(x, y):
             assert math.gcd(x,y) == gcd(x,y)
@@ -38,11 +37,11 @@
     注： hypothesis 的报错，一般会尽量找会出错的值里面，最小的那几个
          hypothesis 在发现错误之后，会尝试把数据不断缩小，直到把接近临界点的错误值找出来 
     
+    
     2. setting（deadline， max_examples）
     eg2.：
     >>> def log(n):
-            return math.log10(n) / 10
-    
+            return math.log10(n) / 10    
     >>> def sleep(n):
             time.sleep(log(n))
     
@@ -62,22 +61,41 @@
     >>> def test_100(x):
             sleep(x)
     
+    eg4.:
     >>> @settings(max_examples = 20)     # 限制取样的个数，如只能取 20个
     >>> @given(integers(min_value = 1, max_value = 200))
     >>> def test_200(x):
             sleep(x)
     
+    
     3. parametrize
     
-    eg4.：    
-    def test_unrolling():
-        assert log(    10) == 0.1
-        assert log(   100) == 0.2
-        assert log(  1000) == 3.0
-        assert log( 10000) == 0.4
-        assert log(100000) == 5.0
+    eg5.：    
+    >>> def test_unrolling():
+            assert log(    10) == 0.1
+            assert log(   100) == 0.2
+            assert log(  1000) == 3.0
+            assert log( 10000) == 0.4
+            assert log(100000) == 5.0
     
-    # 不管 def f（）: 下的 assert 有多少个，test 只被认为是一个    
+    # 不管 def f（）: 下的 assert 有多少个，有没有循环，pytest 把它们算作同一个测试  
+    
+    eg6.:
+    >>> example = [
+            (     10, 0.1),
+            (    100, 0.2),
+            (   1000, 3.0),
+            (  10000, 0.4),
+            ( 100000, 5.0),
+            (1000000, 0.6),
+          ]
+
+     >>> @pytest.mark.parametrize('x, y', example)
+     >>> def test_parametrize(x, y):
+              assert log(x) == y
+     # 而对于 parametrize， 参数化测试，有多少个参数，pytest 就认为进行了多少个测试         
+             
+    
     
     
     
