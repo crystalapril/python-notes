@@ -1,6 +1,6 @@
 # pytest & hypothesis
 
-### pytest & hypothesis
+### brief introduction
 
     pytest 是 python 下的一个第三方测试工具，是一种 test runner
     类似于 unittest，但是比 unittest 好用的多
@@ -11,13 +11,17 @@
     注： pytest 可以单独使用
         hypothesis 必须与 pytest 或其他的 test runner 一起使用
     
-    cmd 运行测试方法：
+### running method
+
+    cmd 运行命令行（pycharm 的 terminal 也行）：
+    
     pytest py_test.py
     pytest py_test.py::test_commutative   # 测试 py_test.py 中的 test_commutative 函数
     pytest -v py_test.py::test_commutative  # -v， --verbose ，显示测试的细节
     
     
-    测试文件举例：
+### test file example
+    
     eg. 
     import math
     from hypothesis import given
