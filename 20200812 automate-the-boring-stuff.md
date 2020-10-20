@@ -168,7 +168,11 @@
         
     7.5 greedy & non-greedy
         greedy: 默认的，最大匹配  ，             r'(Ha){3,5}' 匹配 'HaHaHaHaHa'中的 'HaHaHaHaHa'
-        non-greedy（后面加？）： 最小程度匹配 ，  r'(Ha){3,5}?' 匹配 'HaHaHaHaHa'中的 'HaHaHa'        
+        non-greedy（后面加？）： 最小程度匹配 ，  r'(Ha){3,5}?' 匹配 'HaHaHaHaHa'中的 'HaHaHa'  
+        
+        *?, +?, ??, or {m,n}? 这几个后面的？ 就是非贪婪，反之就是贪婪
+        如果,想表达\d{2,3}的或有，就加括号， (\d{2,3})? 或有， \d{2,3}? 非贪婪
+        
         
     7.6 Character Classes
         \d  [0-9]
