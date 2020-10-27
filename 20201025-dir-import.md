@@ -43,22 +43,28 @@
     这里，我们引入 __import__() 函数
     
     eg.3
+    >>> import sys
+    >>> module = __import__(sys.argv[1])   # 就顺利的 import 需要的 module 了
     
+    如果要进一步调用函数，可以用 getattr
+    >>> getattr(module, sys.argv[2])()
+       
+    或者如下面示范的那样，用 dir() 来提取出需要的函数： 
     
     eg.4
     
-    import sys
+    >>> import sys
 
-    module = __import__(sys.argv[1])
+    >>> module = __import__(sys.argv[1])
 
-    def candidate(name):
-        return not name.startswith('__')
+    >>> def candidate(name):
+            return not name.startswith('__')
 
-    for name in filter(candidate,dir(module)):
-        try:
-            getattr(module,name)()
-        except:
-            pass
+    >>> for name in filter(candidate,dir(module)):
+            try:
+                getattr(module,name)()
+            except:
+                pass
     
     
 
