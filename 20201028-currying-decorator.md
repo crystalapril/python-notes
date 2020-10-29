@@ -3,7 +3,8 @@
 ### currying
 
     currying（科里化）
-    是将多参数的函数，转化为只接受单参数函数的过程
+    是将多参数的函数，转化为只接受一系列单个参数的函数的过程
+    新的函数就是原有函数的 curried form
     
     eg.1                        
     def de_power(x,n):   # 多参数函数    
@@ -34,7 +35,7 @@
     
     eg.3
     def f1(x,y):
-    return x // y
+        return x // y
 
     def f1c(x):
         def g1(y):
@@ -44,3 +45,5 @@
 
 
 ### decorator
+
+    
