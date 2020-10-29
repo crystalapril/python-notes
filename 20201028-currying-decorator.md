@@ -19,9 +19,28 @@
                 p *= x
             return p
         return f
+
+    de_power(2,3) == powc(2)(3)
         
-    eg.2
+    eg.2    
+    def de_divmod(x,y):
+        return x//y, x % y
+
+    def divmodc(x):
+        def f(y):
+            return x//y, x % y
+        return f
+    de_divmod(15,7) == divmodc(15)(7)
     
+    eg.3
+    def f1(x,y):
+    return x // y
+
+    def f1c(x):
+        def g1(y):
+            return x // y
+        return g1
+    f1(5,2) == f1c(5)(2)       
 
 
 ### decorator
