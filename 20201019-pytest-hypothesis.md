@@ -22,6 +22,9 @@
     
 ### test file example
     
+    pytest 只测试 test_ 为开头的函数，如下面的 test_commutative 
+    如果开头为 commutative 就不会被测试 ， pytest 会认为这些函数是辅助性的，不是要被测试的对象
+    
     1.given 
     eg1.：
     >>> import math
