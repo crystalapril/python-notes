@@ -1,4 +1,4 @@
-# dir & import
+# dir & import & exception
 
 ### dir
     
@@ -79,8 +79,17 @@
     finally:
         ...
    
+    这里 except 可以接具体的某项错误：
+    except ValueError:
+    except KeyError:
+  
+    后面不接具体的错误时，就是任何一个错误，都可以捕捉，如上面 except:
+    也可以用 raise 自己出发错误
     
     但是如果我们想要知道，抛出的是哪个错误怎么办
+    这时候 except 就没有这个功能了，我们得求助于 sys
+    
+    
     
     
 
