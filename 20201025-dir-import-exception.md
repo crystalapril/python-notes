@@ -80,14 +80,36 @@
         ...
    
     这里 except 可以接具体的某项错误：
-    except ValueError:
-    except KeyError:
+    >>> except ValueError:
+    >>> except KeyError:
   
     后面不接具体的错误时，就是任何一个错误，都可以捕捉，如上面 except:
     也可以用 raise 自己出发错误
     
     但是如果我们想要知道，抛出的是哪个错误怎么办
-    这时候 except 就没有这个功能了，我们得求助于 sys
+    这时候 except 就没有这个功能了，我们得求助于 sys.exc_info()
+
+    eg.5 (接上面 eg.4的修改)
+    
+    >>> import sys
+
+    >>> module = __import__(sys.argv[1])
+
+    >>> def candidate(name):
+            return name.startswith('run_')
+
+    >>> def run(thunk, name):
+            print  ('============  RUN   %s' % name)
+            try:
+                thunk()
+                print('============  PASS')
+            except:
+                type, value, traceback = sys.exc_info()
+                message = ': ' + value.args[0] if value.args else ''
+                print('============  FAIL  %s%s' % (type.__name__, message))
+
+    >>> for name in filter(candidate, dir(module)):
+            run(getattr(module, name), name)
     
     
     
