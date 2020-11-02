@@ -65,6 +65,22 @@
                 getattr(module,name)()
             except:
                 pass
+                
+### exception
+
+    上面我们引入了 try... except...语句，来解决抛出错误
+    注： 完整版是
+    try:
+        ...
+    except:
+        ...
+    else:
+        ...
+    finally:
+        ...
+   
+    
+    但是如果我们想要知道，抛出的是哪个错误怎么办
     
     
 
