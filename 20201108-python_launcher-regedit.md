@@ -75,13 +75,20 @@
     除了上面，通过拖拉的方式来运行 py 文件计算 sha 以外，还有一种更加迅速的方式
     我们可以通过 windows 的 regedit 来运行上面的 sha.py
     
-    regedit 是 windows 里的一个程序，可以用来修改注册表（一种数据库） 
+    regedit 是 windows 里的一个程序，是 registry editor 的缩写，可以用来修改注册表（一种数据库） 
     除了 regedit.exe 以外，windows 里还自带了 reg.exe （是一个命令行程序）也可以用来修改注册表
     （有点类似于 word 文档，microsoft office 和 wps office 都可以修改 word文档）    
     
     用 regegit 来运行 py程序的步骤：
     1. win + R 打开运行命令，输入 regedit 调出 注册表编辑器
-    2. 
+    2. 找到 HKEY_CURRENT_USER\Software\Classes
+    3. 点开 classes 下面的 * ，发现没有 shell， 点击右键添加 (item)项 shell
+    4. 右键点击 shell ，新建 项，名为 pydemo
+    5. 点击 pydemo, 双击右侧的 默认，填写数据，假设 notepad
+    6. 回到文件夹，右键点击文件，弹出上下文菜单，里面出现了 pydemo，点击，弹出了记事本
+    7. 回到 regedit，修改 pydemo的默认值为 py C:\idea\argv_pause.py, 回到文件夹，右键点击文件，弹出上下文菜单，点击pydemo，发现运行了 argv_pause.py
+    
+    
     
     
     
