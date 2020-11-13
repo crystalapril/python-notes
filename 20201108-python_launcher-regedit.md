@@ -1,6 +1,6 @@
 # python_launcher-regedit
 
-### python_launcher
+### python launcher
 
     python launcher 就是在 windows上可以直接运行python的程序
     python launcher 可帮助我们定位和执行不同版本的 Python 解释器
@@ -14,7 +14,9 @@
     
     控制台程序被命名为 py.exe，其实 py.exe 运行之后，会启动 python.exe ，就实际上还是 python.exe 来干活
     而windows程序则命名为 pyw.exe ，并且 pyw.exe 将定位并执行 pythonw.exe    
-    
+ 
+ 
+### methods of run python program
     
     之前我们在cmd里面输入命令行
     python file.py
@@ -38,14 +40,31 @@
     我们回顾之前写的 md5_sha1.py ，当我们想要运行该程序，计算 md5 ,sha1 是否正确时，需要输入的变量太多了
     python long_address1/md5_sha1.py e:/pycharm-community-2020.2.3.exe AAABF0920C868E3D99F74361C277624CB15148F7  # sha1
     这么一长串输入，其实是有些不方便的
-    如果我们能通过改进程序，让需要被计算的文件，直接拖到 py 上，并且 同时能传入参数 md5,sha1 运行时就会方便很多了
+    如果我们能通过改进程序，让需要被计算的文件，直接拖到 py 上，并且 同时能传入参数 md5,sha1 运行时就会方便很多了    
     
+    于是，我们 在 md5_sha1.py 的基础上，新建 sha.py 对程序进行3个方面的改动：
+    1. 通过 pyperclip 来获取要被校验的 md5 / sha1 码
+    2. 在 sha1.py 对 file的 md5 / sha1 进行计算，并与 pypeyclip 获得的进行比对，print 比对的结果
+    3. open() 在处理大文件的时候，可能会有问题，解决掉 open() 与大文件兼容的问题
     
-    于是，我们 在 md5_sha1.py 的基础上，新建sha_draw.py 对程序进行3个方面的改动：
-    1. 让
-
+    我们首先对前两个问题进行了处理
+    sha.py 如下：
+    import sys,pyperclip,hashlib
+    # get sha code from outside
+    whole = pyperclip.paste()
+    whole_split = whole.split(' ')
+    sha_paste = whole_split[1].strip().lower()
+    # calculate sha code of file
+    addr = sys.argv[1]
+    file = open(addr + '.txt', 'rb')
+    data = file.read()
+    sha = hashlib.sha1(data)
+    sha_calcu = sha.hexdigest().lower()
+    # compare
+    addr_split = addr.split('\\')
+    print(addr_split[-1]+' sha1'+ ':'+ sha_calcu)
+    print(sha_calcu)
+    print(True) if sha_paste == sha_calcu else print(False)  
     
-
-
 
 ### regedit
