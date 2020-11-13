@@ -103,7 +103,7 @@
     12. 修改 pydemo 的默认值为 D:\python\stuff_venv\scripts\python.exe C:\idea\clip_test.py %1 ，让虚拟环境里的 python 来作为执行程序
     13. 回到文件夹，右键点击文件 empty.txt，成功运行，虚拟环境里安装的 pyperclip 也 import 成功
     
-    我们接着尝试用 pydemo，来打开 white space.txt，出现闪退
+    14. 我们接着尝试用 pydemo，来打开 white space.txt，出现闪退
     在上一轮修改中，sha.py 已经有了try...except 和 sys.exc_info()，依旧没有抓住错误，猜测在except 语句下，可能再次发生错误
     由于 empty.txt 没有报错，我们猜测报错可能跟 white space.txt 的名字有空格有关系
     通过 控制变量法 ，发现 file = open(addr + '.txt', 'rb') 报错
@@ -117,6 +117,10 @@
     如果在这个命令里需要使用最开始的文件 A ，就用 %1 来表示 A （batch的时候也遇到过）
     "%A" 来防止 A中的空格在传递中不被分割
     
+    15. 修改完之后，右键点击 white space.txt，运行成功
+    
+    小结：我们在编程的时候，要尽量避免文件名中有空格，防止中间环节出现问题
+          但是在自己编程的时候，同时要考虑到用户可能会使用 有空格的文件名，要提前把这样的问题处理好
     
     
     
