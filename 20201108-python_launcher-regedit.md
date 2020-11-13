@@ -67,12 +67,24 @@
     print(True) if sha_paste == sha_calcu else print(False)  
     input('press enter to continue')
     
-    通过 copy 已有的 sha1 码，然后拖动要计算的如 empty.txt 文件，到 sha.py文件，得到了我们想要的结果   
+    通过 copy 已有的 sha1 码，然后拖动要计算的如 empty.txt 文件，到 sha.py文件，结果发现闪退了
+    由于正常运行的文件没有出现闪退的情况，于是我们写一个小的程序验证一下，用 try...except... ,用 sys.exc_info() 捕获错误
+    通过简单的 0/0 这样的错误进行试验，发现确实报错会导致闪退。
     
+    于是我们对sha.py 进行测试，通过 控制变量法 找出报错的代码，用 sys.exc_info() 捕获错误
+    发现错误是因为没有 pyperclip 模块造成的
+    于是观察了运行窗口，发现运行的程序是 c:\windows\python.exe，这个原生的 python 没有安装 pyperclip 包的
+    那么，如果有安装 pyperclip 的话是不是就能解决这个问题呢
+    我们进入了有安装 pyperclip 的 stuff_venv 试试看
+    通过把要运行的.py 文件 copy到 stuff_venv 目录下，拖动要运行的文件 sha.py, 发现成功解决了该问题，没有报错
+    那么自然，在原生的 python 里，直接安装 pyperclip 应该也能解决这个问题，我们不再做尝试
+    
+    上述方法虽然能解决问题，但是不方便，需要把要运行的文件，copy 到 虚拟环境的目录下才行
+    因此，我们尝试第三个方法，修改 regedit
+      
 
 ### regedit
 
-    除了上面，通过拖拉的方式来运行 py 文件计算 sha 以外，还有一种更加迅速的方式
     我们可以通过 windows 的 regedit 来运行上面的 sha.py
     
     regedit 是 windows 里的一个程序，是 registry editor 的缩写，可以用来修改注册表（一种数据库） 
