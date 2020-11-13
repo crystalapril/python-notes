@@ -4,14 +4,16 @@
 
     python launcher 就是在 windows上可以直接运行python的程序
     python launcher 可帮助我们定位和执行不同版本的 Python 解释器
-    python launcher 最开始主要是为了解决 py2.7 和 py3 不兼容的问题，因为现在主要都是用python3 以上了，所以不对这个问题有过多的解释了
+    python launcher 最开始主要是为了解决手动指定到底是运行 py2.7 还是 py3 的问题
+    简单来说就是，手动的方式是 py2 a.py  或者 py3 a.py
+    而在 a.py 里面加上 #！python2 或者 #！python3 ，然后直接用 py a.py，就可以用指定的 python 版本来运行，这就是 python launcher 的主要工作
     
     python launcher 有 2 个版本
     一个是 python.exe ，又叫 控制台程序
     一个是 pythonw.exe ，这个主要是为 windows 准备，主要是 gui 方面的应用
     
-    控制台程序被命名为 py.exe
-    而windows程序则命名为 pyw.exe ，并且 pyw.exe 将定位并执行 pythonw.exe
+    控制台程序被命名为 py.exe，其实 py.exe 运行之后，会启动 python.exe ，就实际上还是 python.exe 来干活
+    而windows程序则命名为 pyw.exe ，并且 pyw.exe 将定位并执行 pythonw.exe    
     
     
     之前我们在cmd里面输入命令行
