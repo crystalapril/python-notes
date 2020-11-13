@@ -93,14 +93,15 @@
     2. 找到 HKEY_CURRENT_USER\Software\Classes
     3. 点开 classes 下面的 * ，发现没有 shell， 点击右键添加 (item)项 shell
     4. 右键点击 shell ，新建 项，名为 pydemo
-    5. 点击 pydemo, 双击右侧的 默认，填写数据，假设 notepad
-    6. 回到文件夹，右键点击文件，弹出上下文菜单，里面出现了 pydemo，点击，弹出了记事本
-    7. 回到 regedit，修改 pydemo的默认值为 py C:\idea\argv_pause.py
-    8. 回到文件夹，右键点击文件例如 empty.txt，弹出上下文菜单，点击pydemo，发现运行了 argv_pause.py
-    9. 修改 pydemo 的默认值为 py C:\idea\argv_pause.py %1
-    10. 回到文件夹，右键点击文件 empty.txt，发现 argv 里捕获到了 被点击文件的地址 ['C:\idea\argv_pause.py','C:\idea\empty.txt']
-    11. 修改 pydemo 的默认值为 D:\python\stuff_venv\scripts\python.exe C:\idea\clip_test.py %1 ，让虚拟环境里的 python 来作为执行程序
-    12. 回到文件夹，右键点击文件 empty.txt，成功运行，虚拟环境里安装的 pyperclip 也 import 成功
+    5. 点击 pydemo, 新建项 command
+    6. 点击 command，双击右侧的 默认，填写数据，假设 notepad
+    7. 回到文件夹，右键点击文件，弹出上下文菜单，里面出现了 pydemo，点击，弹出了记事本
+    8. 回到 regedit，修改 pydemo的command 默认值为 py C:\idea\argv_pause.py
+    9. 回到文件夹，右键点击文件例如 empty.txt，弹出上下文菜单，点击pydemo，发现运行了 argv_pause.py
+    10. 修改 pydemo 的默认值为 py C:\idea\argv_pause.py %1
+    11. 回到文件夹，右键点击文件 empty.txt，发现 argv 里捕获到了 被点击文件的地址 ['C:\idea\argv_pause.py','C:\idea\empty.txt']
+    12. 修改 pydemo 的默认值为 D:\python\stuff_venv\scripts\python.exe C:\idea\clip_test.py %1 ，让虚拟环境里的 python 来作为执行程序
+    13. 回到文件夹，右键点击文件 empty.txt，成功运行，虚拟环境里安装的 pyperclip 也 import 成功
     
     我们接着尝试用 pydemo，来打开 white space.txt，出现闪退
     在上一轮修改中，sha.py 已经有了try...except 和 sys.exc_info()，依旧没有抓住错误，猜测在except 语句下，可能再次发生错误
@@ -110,7 +111,13 @@
     py argv.py a b，得到的 sys.argv 是 ['argv.py','a','b']
     py argv.py "a b" ，得到的 sys.argv 是 ['argv.py','a b']  # 注意这里命令行的输入必须是 双引号
     
-    为了解决这个问题，我们修改 regedit 的 pydemo 的默认值为 D:\python\stuff_venv\scripts\python.exe C:\idea\clip_test.py "%1" 
+    为了解决这个问题，我们修改 regedit 的 pydemo 的默认值为 D:\python\stuff_venv\scripts\python.exe C:\idea\clip_test.py "%1"        
+    点击文件，假设叫 A， 弹出上下文菜单，新增的名字就是 注册表里 \shell 下面的那个比如 pydemo
+    然后点击 pydemo 执行的命令就是 command 里的默认值
+    如果在这个命令里需要使用最开始的文件 A ，就用 %1 来表示 A （batch的时候也遇到过）
+    "%A" 来防止 A中的空格在传递中不被分割
+    
+    
     
     
     
