@@ -18,7 +18,7 @@
  
 ### methods of run python program
     
-    之前我们在cmd里面输入命令行
+    之前我们在cmd里面输入命令行 （或者把 file.py 拖到命令行中）
     python file.py
     py file.py
     都是运行python程序的一种方式
@@ -67,12 +67,22 @@
     print(True) if sha_paste == sha_calcu else print(False)  
     input('press enter to continue')
     
-    通过 copy 已有的 sha1 码，然后拖动要计算的如 empty.txt 文件，到 sha.py文件，得到了我们想要的结果
-    然而，在我们拖动要计算的如 white space.txt 文件的时候，遭遇了闪退
+    通过 copy 已有的 sha1 码，然后拖动要计算的如 empty.txt 文件，到 sha.py文件，得到了我们想要的结果   
     
 
 ### regedit
 
-    我们通过 windows 的 regedit 来运行上面的 sha.py
+    除了上面，通过拖拉的方式来运行 py 文件计算 sha 以外，还有一种更加迅速的方式
+    我们可以通过 windows 的 regedit 来运行上面的 sha.py
+    
+    regedit 是 windows 里的一个程序，可以用来修改注册表（一种数据库） 
+    除了 regedit.exe 以外，windows 里还自带了 reg.exe （是一个命令行程序）也可以用来修改注册表
+    （有点类似于 word 文档，microsoft office 和 wps office 都可以修改 word文档）    
+    
+    用 regegit 来运行 py程序的步骤：
+    1. win + R 打开运行命令，输入 regedit 调出 注册表编辑器
+    2. 
+    
+    
     
     
