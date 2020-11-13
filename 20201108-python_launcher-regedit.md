@@ -65,6 +65,14 @@
     print(addr_split[-1]+' sha1'+ ':'+ sha_calcu)
     print(sha_calcu)
     print(True) if sha_paste == sha_calcu else print(False)  
+    input('press enter to continue')
+    
+    通过 copy 已有的 sha1 码，然后拖动要计算的如 empty.txt 文件，到 sha.py文件，得到了我们想要的结果
+    然而，在我们拖动要计算的如 white space.txt 文件的时候，遭遇了闪退
     
 
 ### regedit
+
+    我们通过 windows 的 regedit 来运行上面的 sha.py
+    
+    
