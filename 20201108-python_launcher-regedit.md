@@ -86,7 +86,9 @@
     4. 右键点击 shell ，新建 项，名为 pydemo
     5. 点击 pydemo, 双击右侧的 默认，填写数据，假设 notepad
     6. 回到文件夹，右键点击文件，弹出上下文菜单，里面出现了 pydemo，点击，弹出了记事本
-    7. 回到 regedit，修改 pydemo的默认值为 py C:\idea\argv_pause.py, 回到文件夹，右键点击文件，弹出上下文菜单，点击pydemo，发现运行了 argv_pause.py
+    7. 回到 regedit，修改 pydemo的默认值为 py C:\idea\argv_pause.py， 回到文件夹，右键点击文件例如 empty.txt，弹出上下文菜单，点击pydemo，发现运行了 argv_pause.py
+    8. 修改 pydemo 的默认值为 py C:\idea\argv_pause.py %1，回到文件夹，右键点击文件 empty.txt，发现 argv 里捕获到了 被点击文件的地址 ['C:\idea\argv_pause.py','C:\idea\empty.txt']
+    9. 修改 pydemo 的默认值为 d:\python\stuff_venv\scripts\python.exe C:\idea\argv_pause.py %1 ,让装有第三方包的虚拟环境里的 python 来作为执行程序
     
     
     
