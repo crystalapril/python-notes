@@ -37,10 +37,8 @@
     所以暂时用了笨办法，input进行阻塞，让我们看到程序运行的情况 
  
     那么这个运行方式，有什么实际意义吗
-    我们回顾之前写的 md5_sha1.py ，当我们想要运行该程序，计算 md5 ,sha1 是否正确时，需要输入的变量太多了
+    我们回顾之前写的 md5_sha1.py ，当我们想要运行该程序，计算 md5 ,sha1 是否正确时，需要输入的变量太多了，很不方便
     python long_address1/md5_sha1.py e:/pycharm-community-2020.2.3.exe AAABF0920C868E3D99F74361C277624CB15148F7  # sha1
-    这么一长串输入，其实是有些不方便的
-    如果我们能通过改进程序，让需要被计算的文件，直接拖到 py 上，并且 同时能传入参数 md5,sha1 运行时就会方便很多了    
     
     于是，我们 在 md5_sha1.py 的基础上，新建 sha.py 对程序进行3个方面的改动：
     1. 通过 pyperclip 来获取要被校验的 md5 / sha1 码
@@ -74,7 +72,6 @@
     于是我们对sha.py 进行测试，通过 控制变量法 找出报错的代码，用 sys.exc_info() 捕获错误
     发现错误是因为没有 pyperclip 模块造成的
     于是观察了运行窗口，发现运行的程序是 c:\windows\python.exe，这个原生的 python 没有安装 pyperclip 包的
-    那么，如果有安装 pyperclip 的话是不是就能解决这个问题呢
     我们进入了有安装 pyperclip 的 stuff_venv 试试看
     通过把要运行的.py 文件 copy到 stuff_venv 目录下，拖动要运行的文件 sha.py, 发现成功解决了该问题，没有报错
     那么自然，在原生的 python 里，直接安装 pyperclip 应该也能解决这个问题，我们不再做尝试
@@ -104,6 +101,19 @@
     10. 回到文件夹，右键点击文件 empty.txt，发现 argv 里捕获到了 被点击文件的地址 ['C:\idea\argv_pause.py','C:\idea\empty.txt']
     11. 修改 pydemo 的默认值为 D:\python\stuff_venv\scripts\python.exe C:\idea\clip_test.py %1 ，让虚拟环境里的 python 来作为执行程序
     12. 回到文件夹，右键点击文件 empty.txt，成功运行，虚拟环境里安装的 pyperclip 也 import 成功
+    
+    我们接着尝试用 pydemo，来打开 white space.txt，出现闪退
+    在上一轮修改中，sha.py 已经有了try...except 和 sys.exc_info()，依旧没有抓住错误，猜测在except 语句下，可能再次发生错误
+    由于 empty.txt 没有报错，我们猜测报错可能跟 white space.txt 的名字有空格有关系
+    通过 控制变量法 ，发现 file = open(addr + '.txt', 'rb') 报错
+    原因是通过 regedit 运行py的方式，传入 sys.argv 的时候，把 white space.txt 没有作为一个整体传入
+    py argv.py a b，得到的 sys.argv 是 ['argv.py','a','b']
+    py argv.py "a b" ，得到的 sys.argv 是 ['argv.py','a b']  # 注意这里命令行的输入必须是 双引号
+    
+    为了解决这个问题，我们修改 regedit 的 pydemo 的默认值为 D:\python\stuff_venv\scripts\python.exe C:\idea\clip_test.py "%1" 
+    
+    
+    
     
     
     
