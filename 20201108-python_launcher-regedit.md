@@ -119,8 +119,18 @@
     
     15. 修改完之后，右键点击 white space.txt，运行成功
     
-    小结：我们在编程的时候，要尽量避免文件名中有空格，防止中间环节出现问题
+    tips：我们在编程的时候，要尽量避免文件名中有空格，防止中间环节出现问题
           但是在自己编程的时候，同时要考虑到用户可能会使用 有空格的文件名，要提前把这样的问题处理好
+          
+    继续对程序进行修改，使用input来进行阻塞防止闪退，在程序里面有点难看，而且多余
+    同时 try...except...也还是会漏掉错误，于是继续修改 regedit
+    16. 把 command 的默认值改为 cmd /c D:\python\stuff_venv\scripts\python.exe C:\idea\clip_test.py "%1" & pause
+    17. 右键点击 empty.txt ，点击 pydemo，运行成功，但是由于input，需要多按一次
+    18. 删除掉 sha.py 的 input，再试，发现没有闪退，只按一次 enter就能退出程序
+    19. 删除掉 sha.py 里面的 try...except，然后试着写错一个地方，再用pydemo 运行，发现像常规的 cmd一样报错
+    
+          
+   
     
     
     
