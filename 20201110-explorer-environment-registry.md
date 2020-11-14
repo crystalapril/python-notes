@@ -1,4 +1,4 @@
-# explorer-pid-environment
+# explorer-pid-environment-registry
 
 ### explorer.exe
 
@@ -50,6 +50,48 @@
     HKEY_CURRENT_USER\Environment
     进入上面地址的 environment，与用户环境变量对比，发现变量和值均一一对应
     同上面一样，修改 regedit 的参数和值，用户环境变量也相应的变动，反之亦然
+    
+### registry
+
+    上面我们提到了regedit，是 registry editor 的缩写
+    现在我们说说 registry 注册表
+    
+    registry 是windows里 hierarchical 的数据库
+    类似文件系统，分层的，最顶层有几个，然后可以展开，可以有目录，也可以有文件 的一个数据库
+    windows 提供了一套函数（C语言的）去操作这个数据库，增删改查
+    https://docs.python.org/3/library/winreg.html
+    python 有个模块，可以使用 windows 提供的这套函数
+    
+    而之前我们见过的 regedit 也是一个windows 自带的程序，可以对 registry 进行增删改查的工具
+    regedit 不是注册表本身，主要不要混淆，是一个程序
+    registry 注册表，是一个数据库
+    
+    windows 自带的 reg.exe 是个命令行程序，也可以修改 registry，但是没有 regedit.exe 直观
+    （类似于 software office 和 wps office 程序都可以运行 .word 文档一样）
+    
+    而我们常用的修改环境变量的工具，其实也是一个操纵注册表的程序，对，是程序！
+    但是 regedit 是通用的
+    修改环境变量的程序是带有目的，只对注册表中环境变量的部分做出特别的处理
+    通过这个程序修改环境变量，和通过 regedit 修改环境变量是操作的同一个数据库 registry 里的同一个部分
+    所以才会有上面的，一边修改了，另一边就看见了
+    
+    我们通过 cmd 读取环境变量里的数据时，例如：
+    echo %PATH%
+    echo %OS%
+    echo %TMP%
+    cmd 在启动的时候，会去读取注册表里的 
+    HKEY_CURRENT_USER\Environment
+    HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Session Manager\Environment
+    然后根据他们的内容，计算出环境变量，然后让这个cmd 进程的环境变量设置为这个
+    这个工作，也可能是 explorer.exe 做的
+    环境变量严格来说，是进程的属性
+    
+    
+    
+    
+    
+    
+    
     
     
     
