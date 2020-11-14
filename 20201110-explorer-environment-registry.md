@@ -111,6 +111,37 @@
         print((k, os.environ[k]))
     input('press enter to exit')
     
+    在cmd 里，py environ.py
+    这里，py.exe 是一个程序，cmd启动了这个程序，创建了一个新的进程
+    两个进程都有各自的环境变量
+    py的已经print出来了
+    cmd的可以通过 echo %PATH% ， echo %OS% ,echo %TEST%  看到
+    通过观察，发现两者是一致的，这是最常见的方式
+    cmd的进程创建了 py的进程，py的进程继承了 cmd 的环境变量，维持不变 
+    
+    在 cmd里执行 
+    >>>set windows=mmp
+    >>>echo %windows%
+    mmp
+    这说明，set 修改了cmd 自己的环境变量，添加了一个 windows，值是 mmp
+    >>>py environ.py
+    {...,'WINDOWS':'mmp'}
+    
+    打开新的 cmd
+    >>>py environ.py
+    {...,'WINDIR':'C:\\WINDOWS'}
+    没有出现 'WINDOWS':'mmp'
+    这期间，没有改动过注册表，以及环境变量那个界面
+    
+    回到旧的 cmd
+    >>>set windows=disgusting
+    >>>echo %windows%
+    disgusting
+    
+    
+    
+    
+    
     
     
     
