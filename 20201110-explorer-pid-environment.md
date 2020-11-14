@@ -18,5 +18,12 @@
     
 ### environment
 
-    windows
+    windows environment
+    主要是指定 windows 系统运行中的一些参数
+    主要分为用户的环境变量，系统的环境变量两大类，其中分别包含：
+    用户环境变量：path, temp, test, tmp 等 
+    系统环境变量：path, os, pathext, username, windir 等等
+    以上都属于环境变量的范围，不仅仅是 path
+    
+    
 
