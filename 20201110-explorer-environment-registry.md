@@ -11,11 +11,8 @@
     再次调用 taskmgr，发现各程序依旧在运行
     也就是，explorer.exe 负责绘制屏幕，包括壁纸以及桌面图标等
     explorer.exe 关掉之后，桌面的屏幕就没有了，但是电脑其实还在运行
-    
-### pid
 
-    process id 进程id
-    
+
 ### environment
 
     windows environment
@@ -69,6 +66,8 @@
     windows 自带的 reg.exe 是个命令行程序，也可以修改 registry，但是没有 regedit.exe 直观
     （类似于 software office 和 wps office 程序都可以运行 .word 文档一样）
     
+### environment & registry    
+    
     而我们常用的修改环境变量的工具，其实也是一个操纵注册表的程序，对，是程序！
     但是 regedit 是通用的
     修改环境变量的程序是带有目的，只对注册表中环境变量的部分做出特别的处理
@@ -105,12 +104,11 @@
     如果我们写个程序，忽略那两个地方，任意设置新进程的环境变量，不理注册表，注册表的那两个地方对于新进程来说就什么都不是    
     
     eg. 我们创建一个 environ.py    
+    from pprint import pprint
     import os
-    for k in os.environ:
-      if k.startswith('TEST'):
-        print((k, os.environ[k]))
+    pprint(dict(os.environ))
     input('press enter to exit')
-    
+
     在cmd 里，py environ.py
     这里，py.exe 是一个程序，cmd启动了这个程序，创建了一个新的进程
     两个进程都有各自的环境变量
@@ -129,19 +127,80 @@
     
     打开新的 cmd
     >>>py environ.py
-    {...,'WINDIR':'C:\\WINDOWS'}
-    没有出现 'WINDOWS':'mmp'
+    {...,'WINDIR':'C:\\WINDOWS'}   # 没有出现 'WINDOWS':'mmp'    
     这期间，没有改动过注册表，以及环境变量那个界面
     
     回到旧的 cmd
     >>>set windows=disgusting
     >>>echo %windows%
     disgusting
+    >>>py environ.py
+    {...,'WINDOWS':'disgusting'}
     
+    去到新的 cmd
+    >>>echo %windows%
+    windows
+    >>>py environ.py
+    {...,'WINDIR':'C:\\WINDOWS'}   # 没有出现 'WINDOWS':'disgusting' 
     
+    通过上面的栗子，可以看到，注册表的两个地方，并不能完全决定环境变量
+    老的 cmd 修改了 windows 这个变量，老的 cmd 启动进程py.exe的时候，py.exe继承了cmd 自己的环境变量，不管注册表
+    新的 cmd 没有修改 windows变量，新启动的 py.exe进程也就没有
     
+   
     
+### process & pid
+
+    进程 process
+    我们每开一个程序，就启动一个进程 process
+    pid，是 process id 的缩写，也即进程id
     
+    我们通过修改 environ.py，来观察进程的特点
+    import os
+    for k in os.environ:
+      if k.startswith('TEST'):
+        print((k, os.environ[k]))
+    input('press enter to exit')
+    
+    在老的 cmd 里 
+    >>>set TEST_ENV=hello
+    >>>echo %TEST_ENV%
+    hello
+    >>>py environ.py
+    ('TEST_ENV','hello')
+    
+    我们打开任务管理器，win + R： taskmgr
+    点击名称，按名称排序，看到2个cmd.exe，一个pid=15216， 另一个pid=13276
+    一个py.exe,pid=12088
+    
+    我们在新的 cmd 里执行
+    >>>wmic process where "(processid=12088)" get processid,parentprocessid,executablepath
+    ExecutablePath      ParentProcessId    ProcessId
+    C:\WINDOWS\py.exe   15216              12088
+    也即，py.exe 的id是12088，爸爸的id是 15216
+    
+    关掉新的 cmd，现在进程里只剩一个 cmd.exe，pid 是 15216
+    再打开一个新的 cmd, 进程里出现了新的 cmd.exe,pid = 13340,在新的cmd里执行：
+    >>>wmic process where "(processid=15216)" get processid,parentprocessid,executablepath
+    ExecutablePath                ParentProcessId    ProcessId
+    C:\WINDOWS\system32\cmd.exe   7256               15216    
+    
+    >>>wmic process where "(processid=7256)" get processid,parentprocessid,executablepath
+    ExecutablePath                ParentProcessId    ProcessId
+    C:\WINDOWS\Explorer.EXE       7208               7256     
+    可以看到 explorer.exe 是爷爷，启动了 cmd.exe (爸爸)，cmd.exe 启动了 py.exe (孙子)
+    
+    关掉旧的 cmd 里启动的py.exe
+    双击 environ.py,在任务管理器里找 py.exe 的pid，发现是 13992    
+    >>>wmic process where "(processid=13992)" get processid,parentprocessid,executablepath
+    ExecutablePath                ParentProcessId    ProcessId
+    C:\WINDOWS\Explorer.EXE       7256               13992     
+    
+    由此得知：
+    双击启动： explorer.exe ----> py.exe
+    cmd 启动： explorer.exe ----> cmd.exe ---->py.exe
+    
+        
     
     
     
