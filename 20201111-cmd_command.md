@@ -1,5 +1,10 @@
 # cmd command
 
+- assoc & ftype
+- echo
+- wmic
+
+
 ### assoc & ftype
 
     assoc 命令 
@@ -32,6 +37,19 @@
     
     echo %PATH%  返回 windows 系统环境变量的 path
     echo %OS%    返回 windows 的操作系统名称
+    
+### wmic
+
+    wmic (Windows Management Instrumentation)，Windows管理工具
+    提供了从命令行接口和批命令脚本执行系统管理的支持
+    
+    1.可以通过在 cmd里执行 wmic来查询进程的父进程的 pid
+    >>>wmic process where "(processid=13992)" get processid,parentprocessid,executablepath
+    ExecutablePath                ParentProcessId    ProcessId
+    C:\WINDOWS\Explorer.EXE       7256               13992     
+    
+
+
     
     
     
