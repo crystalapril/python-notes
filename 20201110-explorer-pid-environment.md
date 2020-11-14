@@ -24,6 +24,26 @@
     用户环境变量：path, temp, test, tmp 等 
     系统环境变量：path, os, pathext, username, windir 等等
     以上都属于环境变量的范围，不仅仅是 path
+    windows path 由一系列的路径构成
+    系统运行一个程序而没有告诉它程序所在的完整路径时，系统除了在当前目录下面寻找此程序外，还可以到path中指定的路径去找
+    这也是为什么，我们在安装python 的时候，需要把python.exe 的路径添加到环境变量里，否则可能无法直接通过 cmd 运行
+    
+    一般来说，系统搜索环境变量的顺序是，从左到右，从上到下
+    如果有安装一个程序的不同版本，左边的，上面的会被优先搜到，被默认执行
+    
+    修改用户的环境变量，可以直接通过搜索栏进入
+    修改系统的环境变量，需要管理员权限，得通过计算机属性来进入
+    
+    安装 python launcher 的时候，发现 py.exe 的路径在用户和系统的环境变量path里都没有找到
+    py.exe 一般安装在 C:\WINDOWS 下面，而 C:\WINDOWS 有时候被显示为 %SYSTEMROOT% , 因此在cmd 里启动 py 能直接运行
+    
+    environment regedit
+    
+    
+    
+    
+    
+    
     
     
 
