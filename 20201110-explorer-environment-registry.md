@@ -84,7 +84,36 @@
     HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Session Manager\Environment
     然后根据他们的内容，计算出环境变量，然后让这个cmd 进程的环境变量设置为这个
     这个工作，也可能是 explorer.exe 做的
+    
     环境变量严格来说，是进程的属性
+    环境变量严格来说，是进程的属性!! 
+    严格地说，
+    HKEY_CURRENT_USER\Environment
+    HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Session Manager\Environment    
+    这两个地方储存的并不是环境变量，他们只是一段数据而已，储存着默认的环境变量值
+    当 explorer.exe 启动一段程序，产生一个新的进程的时候，explorer.exe 会去读取注册表的那两个地方，以此来设置新的进程的环境变量
+    
+    也即，一个进程 A 启动另一个进程 B， A可以自己控制要不要去读取注册表上的那两个位置，A也可以不管那两个位置的
+    那两个位置的内容，会不会成为 B 的环境变量是由 A 决定的
+    如果 A 是 explorer.exe ，那它会去到这两个位置，而其他的进程就不一定
+    因此，B 的环境变量是什么，跟 registry 没有关系，是由 B 的爸爸决定的， B 的爸爸说是什么才是什么
+    因此，严格的说，registry 上的那两个地方不是环境变量
+    
+    由于 windows 里很多进程的爸爸都是 explorer.exe 
+    而 explorer 会去读取 registry 里的那两个地方，来计算它儿子的环境变量
+    所以，才通常管注册表那个地方叫做环境变量
+    如果我们写个程序，忽略那两个地方，任意设置新进程的环境变量，不理注册表，注册表的那两个地方对于新进程来说就什么都不是    
+    
+    eg. 我们创建一个 environ.py    
+    import os
+    for k in os.environ:
+      if k.startswith('TEST'):
+        print((k, os.environ[k]))
+    input('press enter to exit')
+    
+    
+    
+    
     
     
     
