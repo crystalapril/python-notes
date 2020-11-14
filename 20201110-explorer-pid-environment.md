@@ -37,7 +37,20 @@
     安装 python launcher 的时候，发现 py.exe 的路径在用户和系统的环境变量path里都没有找到
     py.exe 一般安装在 C:\WINDOWS 下面，而 C:\WINDOWS 有时候被显示为 %SYSTEMROOT% , 因此在cmd 里启动 py 能直接运行
     
+    
     environment regedit
+    
+    除了上述在计算机属性里进入环境变量的界面，修改参数以外
+    还可以通过 regedit 来修改
+    win + R : regedit 
+    HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Session Manager\Environment
+    进入上面地址的 environment ，与系统环境变量对比，发现变量和值均一一对应
+    同时，修改增删 regedit 的参数和值，系统环境变量界面也相应的有了变化，反之亦然
+    
+    HKEY_CURRENT_USER\Environment
+    进入上面地址的 environment，与用户环境变量对比，发现变量和值均一一对应
+    同上面一样，修改 regedit 的参数和值，用户环境变量也相应的变动，反之亦然
+    
     
     
     
