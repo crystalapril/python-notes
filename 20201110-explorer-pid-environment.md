@@ -11,4 +11,12 @@
     再次调用 taskmgr，发现各程序依旧在运行
     也就是，explorer.exe 负责绘制屏幕，包括壁纸以及桌面图标等
     explorer.exe 关掉之后，桌面的屏幕就没有了，但是电脑其实还在运行
+    
+### pid
+
+    process id 进程id
+    
+### environment
+
+    windows
 
