@@ -16,9 +16,12 @@
     查看文件类型为例如 Python.File  的默认执行程序
     >>>ftype Python.File
     Python.File="C:\WINDOWS\py.exe" "%L" %*
+    # %* ---命令执行传入的参数
     
     >>>ftype txtfile
     txtfile=%SystemRoot%\system32\NOTEPAD.EXE %1
+    # %1 ---被命令打开的文件名
+
     
     
     
