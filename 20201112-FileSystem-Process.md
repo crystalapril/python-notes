@@ -94,7 +94,40 @@
     >>>wmic process where "(processid=13992)" get processid,parentprocessid,executablepath
     ExecutablePath                ParentProcessId    ProcessId
     C:\WINDOWS\Explorer.EXE       7256               13992     
+   
     
+    我们进入py 的交互模式
+    >>>import os
+    >>>os.getpid()
+    8236
+    >>>os.getppid()   # parent process id
+    10564
+    
+    打开任务管理器 win+R: taskmgr
+    点击表头，按名称排序，win7系统需要自己添加 pid 列
+    看到 pid 8236 对应的python.exe, ppid 10564 对应的是 py.exe
+    (注意，python.exe 的父进程是 py.exe，py.exe是通过python.exe 来干活的，自己不干活 )
+    
+    再打开一个cmd
+    >>>wmic process where "(processid=8236)" get processid,parentprocessid,executablepath
+    ExecutablePath                ParentProcessId    ProcessId
+    C:\...\python38\python.exe    10564              8236   
+    >>>wmic process where "(processid=10564)" get processid,parentprocessid,executablepath
+    ExecutablePath                ParentProcessId    ProcessId
+    C:\WINDOWS\py.exe             6184               10564   
+    >>>wmic process where "(processid=6184)" get processid,parentprocessid,executablepath
+    ExecutablePath                ParentProcessId    ProcessId
+    C:\WINDOWS\system32\cmd.exe   3396               6184   
+    >>>wmic process where "(processid=3396)" get processid,parentprocessid,executablepath
+    ExecutablePath                ParentProcessId    ProcessId
+    C:\WINDOWS\Explorer.EXE       3360               3396  
+   
+      
     由此得知：
     双击启动： explorer.exe ----> py.exe
     cmd 启动： explorer.exe ----> cmd.exe ---->py.exe
+    交互式：   explorer.exe ----> cmd.exe ---->py.exe ----> python.exe
+    
+
+    
+    
