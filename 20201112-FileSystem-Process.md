@@ -94,8 +94,7 @@
     >>>wmic process where "(processid=13992)" get processid,parentprocessid,executablepath
     ExecutablePath                ParentProcessId    ProcessId
     C:\WINDOWS\Explorer.EXE       7256               13992     
-   
-    
+      
     我们进入py 的交互模式
     >>>import os
     >>>os.getpid()
@@ -121,13 +120,18 @@
     >>>wmic process where "(processid=3396)" get processid,parentprocessid,executablepath
     ExecutablePath                ParentProcessId    ProcessId
     C:\WINDOWS\Explorer.EXE       3360               3396  
-   
-      
+         
     由此得知：
     双击启动： explorer.exe ----> py.exe
     cmd 启动： explorer.exe ----> cmd.exe ---->py.exe
     交互式：   explorer.exe ----> cmd.exe ---->py.exe ----> python.exe
     
 
-    
+    >>>import os
+    >>>os.startfile('notepad')
+    弹出了一个记事本，我们查看任务管理器里的 notepad 的 pid=11092
+    >>>wmic process where "(processid=11092)" get processid,parentprocessid,executablepath
+    ExecutablePath                ParentProcessId    ProcessId
+    C:\...\python38\python.exe    8236               11092
+    可以看到，这个 notepad 的父进程是 python.exe
     
