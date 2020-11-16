@@ -110,9 +110,11 @@
     pyw.exe 没有这个标记，启动的时候，就没有黑框
     
     
-    4. 
+    4. tkinter 在 命令行运行 和 交互式运行的区别
+    
+    我们以模拟时钟的 gui 为例
     eg.         # 用 tkinter 创建一个时钟 
-    clock.py
+    clock1.py
     import tkinter as tk
     import datetime
     top = tk.Tk()
@@ -128,7 +130,50 @@
       >>>top.title()
       '10'
     
-    这个并没有实现时钟的功能，需要点一下，才能更新时间，没有时钟是酱紫的，所以我们做了改进，让clock自动更新时间       
+    这个并没有实现时钟的功能，需要点一下，才能更新时间，没有时钟是酱紫的，所以我们做了改进，让clock自动更新时间  
+    那么如何让 时钟自动更新，并且一直不停，我们想到了while True，并且用sleep函数来每秒停顿一下
+    
+    clock2.py
+    import tkinter as tk
+    import datetime
+    top = tk.Tk()
+    print('before')
+    while True:
+        top.title(datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'))    
+        time.sleep(1)
+    print('after')
+    top.mainloop()
+    运行之后，发现黑框里有‘before’出现，但是时钟没有白框，也就是 tk 的窗口
+    
+    我们进入py 交互式逐行查看究竟
+    >>>import tkinter as tk
+    >>>import datetime
+    >>>top = tk.Tk()    # 弹出白框
+    >>>top.title(datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'))   # title修改为时间
+    >>>top.title(datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'))   # 时间更新
+    
+    由此看出，交互式与 py clock2.py，运行的情况大不相同
+    
+    clock_consumer.py
+    import tkinter as tk
+    from datetime import datetime
+    top = tk.Tk()
+    n = 0
+    while True:
+      input(str(n))
+      n += 1
+      top.title(datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+      
+    我们在 cmd里 
+    >py  clock_consumer.py
+    一开始，弹出窗口，title是 tk，窗口有反应（可以拖动大小）
+    在 cmd里敲回车，窗口的标题变成了当前时间，窗口依然有反应（可以拖动大小）
+    继续敲回车，依然会更新时间，窗口依然有反应
+    
+    我们再进入交互式
+    >>>import tkinter as tk
+    >>>import time
+    
     
     clock.py   # 修改后，自动更新时间
     import tkinter as tk
