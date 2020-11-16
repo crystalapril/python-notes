@@ -34,15 +34,16 @@
     'if {"[1398758379497print %# %b %f %h...%Y %D]"=="break"} break\n' 
     # 看不懂，top.bind('<ButtonPress>') 应该与top.title() 类似，返回当前的
     
-    >>>top.bind('<ButtonPress>',lambda e: print(e))
+    >>>top.bind('<ButtonPress>',lambda e: print(e))  # top.bind('<ButtonPress>',lambda e: print(e)) 就是在 <ButtonPress> 发生的时候，会调用后面的 lambda函数
     '13987593784508<lambda>'
     >>> <ButtonPress event num=1 x=123 y=123>   
     <ButtonPress event num=1 x=134 y=35>        # 我们点击了窗口，调用了 lambda,lambda 调用了print
-    <ButtonPress event num=1 x=254 y=223>     
+    <ButtonPress event num=1 x=254 y=223>      
     >>>top.bind('<ButtonPress>',lambda e: print(e.x, e.y, e.num))  # 用 e.x, e.y, e.num 把3 个fields取出来，构造了一个tuple
-    >>> (147,157,1)
+    >>> (147,157,1)  
     (125,23,1)
     (183,134,1)
+    
     
     
     
