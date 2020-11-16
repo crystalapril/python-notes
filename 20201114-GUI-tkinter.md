@@ -205,11 +205,22 @@
     因此，clock2.py里因为没有进入交互式，也没有 update 这样的机制，就卡住了
     >>>sleep(10)  # 拉动tk 窗口但是没有反应
     
+    clock3.py
+    import tkinter as tk
+    import datetime
+    top = tk.Tk()
+    print('before')
+    while True:
+        top.update()
+        top.title(datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'))    
+        time.sleep(1)
+    print('after')
+    top.mainloop()
+    
+        
     
     
-    
-    
-    clock2.py   # 修改后，自动更新时间
+    clock4.py   # after
     import tkinter as tk
     import datetime
     top = tk.Tk()
