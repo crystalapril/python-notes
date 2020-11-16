@@ -135,3 +135,37 @@
     C:\...\python38\python.exe    8236               11092
     可以看到，这个 notepad 的父进程是 python.exe
     
+### process in windows/ non windows
+
+    process 在 windows 和 非windows 的运行区别比较大
+    
+    windows ：
+    windows 用 CreateProcess 来产生进程，通过传递给 CreateProcess 一个程序的名字，windows产生一个新的进程去执行那个程序
+    process 产生后，就固定了，只能执行最开始说好的程序，执行完毕，进程结束
+    
+    非 windows：
+    进程只是一个 壳/容器
+    当进程执行某个程序时，这个程序可以调用一系列的叫做 exec 的函数，让这个进程执行别的程序
+    这个进程可以保留，当原来的程序从 exec 那里停止后，可以换新的程序继续开始执行    
+    调用进程用 fork，没有参数的，把当前进程复制一份
+    然后子进程里调用 exec 函数， 子进程一开始还是在接着执行之前的程序，用 exec 把自己给替换了
+    fork + exec 组合达到了 CreateProcess 的效果
+    
+    看起来比 windows 麻烦，但是其实要灵活方便很多
+    可以只 fork， 不exec
+    或者只 exec 不 fork
+    甚至 exec exec exec exec
+    
+    有个 redis 内存型数据库的备份就用的 fork做的、
+    fork了，父进程接着干活，子进程做备份，做完了就退出
+    因为备份的时候，需要“拍照”，要备份的静态的数据，数据库一直变动，就无法备份
+    需要 子进程拍个照，取个静态，然后做备份，同时不影响数据库的其他工作
+    这些操作 windows 无法实现，redis也不支持 windows
+    
+    
+    
+
+    
+    
+    
+    
