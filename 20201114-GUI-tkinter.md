@@ -4,7 +4,7 @@
 
 ### Tkinter
 
-    Tkinter 是python 自带的一个 gui 模块，比较古老了
+    Tkinter （Tk interface）是python 自带的一个 gui 模块，比较古老了
     我们通过Tkinter 来了解一下诸如Tkinter，wxPython, QT 这类 GUI 的一个基本模式
     
     1.tk.Tk(), title(), bind(), <ButtonPress>
@@ -173,9 +173,43 @@
     我们再进入交互式
     >>>import tkinter as tk
     >>>import time
+    >>>top = tk.Tk()   # 弹出白框
+    >>>time.sleep(5)   # 停顿了5秒
+    
+    >>>import tkinter as tk
+    >>>import time
+    >>>top = tk.Tk();time.sleep(5)   
+    # 预期：白框框出现，然后等待5秒，提示符出现
+    # 结果：白框没有立刻出现，等待5秒后，提示符重新出现的同时，白框框才出现
+    
+    >>>import tkinter as tk
+    >>>import time
+    >>>top = tk.Tk();print('before');time.sleep(5);print('after')
+    # 白框没有立刻出现，'before'先出现，等待5秒后，'after'出现后，白框出现了
+    
+    >>>import tkinter as tk
+    >>>import time
+    >>>top = tk.Tk();top.update();print('before');time.sleep(5);print('after')   # 注意，新增了 update()
+    # 白框立刻出现，随后'before'，等待5秒，'after'
+    
+    事实上，python给 tkinter 开了后门
+    在交互模式里，py 把命令执行完之后，等待下一条输入之前，它会悄悄的执行 top.update() 或类似的机制
+    >>>top = tk.Tk() 
+    >>>                     # 交互模式执行完了，它就悄悄的update，所以马上就看到白框了
+    
+    >>>top.title('world');print('before');sleep(5);print('after')
+    # 会先出来 'before'，然后停顿5秒，然后 'after', 然后 title 变成 'world'
+    >>>top.title('hello');top.update();sleep(3)
+    # title 立刻变成 'hello',然后停顿3秒，出现下一个提示符
+    
+    因此，clock2.py里因为没有进入交互式，也没有 update 这样的机制，就卡住了
+    >>>sleep(10)  # 拉动tk 窗口但是没有反应
     
     
-    clock.py   # 修改后，自动更新时间
+    
+    
+    
+    clock2.py   # 修改后，自动更新时间
     import tkinter as tk
     import datetime
     top = tk.Tk()
