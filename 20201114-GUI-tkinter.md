@@ -205,6 +205,17 @@
     因此，clock2.py里因为没有进入交互式，也没有 update 这样的机制，就卡住了
     >>>sleep(10)  # 拉动tk 窗口但是没有反应
     
+    clock1.py里，我们做了一个点击之后就更新时间的程序
+    python的代码里面，处理了点击这个事件
+    但是，无论是拖动窗口，还是调整窗口大小，clock1.py里面，没有写相应的处理这些的代码
+    那么，总有一个地方需要处理这样的事件，类似处理鼠标拖动窗口大小
+    如果python 在 sleep，就没有机会去调用那些代码
+    update 就是去调用那些代码
+    例如，我们在交互式里
+    >>>top.bind('<Button-1>',print)   # 点击窗口，交互式里会输出
+    >>>top.sleep(5)      # 点击窗口，就没反应了
+    
+    那么，根据我们观察和测试的情况，我们对 clock进行改进
     clock3.py
     import tkinter as tk
     import datetime
@@ -217,9 +228,9 @@
     print('after')
     top.mainloop()
     
+    改完之后运行，能自动更新时间了，窗口也可以拖动了，但是有点慢    
+    我们接着对 clock 进行改进，引入 after
         
-    
-    
     clock4.py   # after
     import tkinter as tk
     import datetime
