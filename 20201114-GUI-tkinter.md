@@ -243,6 +243,12 @@
     top.after(1000, update_time)
     top.mainloop()
     
+    top.after(ms,f) 就是在 ms 毫秒后执行函数 f
+    但是，after不会让窗口卡住
+    运行后，时间自动更新了，窗口也不卡，可以自由拖动
+    
+    
+    
     
     
     
