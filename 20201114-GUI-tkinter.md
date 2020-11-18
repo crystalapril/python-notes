@@ -231,7 +231,36 @@
     改完之后运行，能自动更新时间了，窗口也可以拖动了，但是有点慢    
     我们接着对 clock 进行改进，引入 after
         
+    
+    5. after()
+    
     clock4.py   # after
+    import tkinter as tk
+    import datetime
+    top = tk.Tk()
+    def update_time():
+        top.title(datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'))  
+        top.after(1000, update_time）
+    top.after(1000, update_time)
+    top.mainloop()
+    
+    top.after(ms,f) 就是在 ms 毫秒后执行函数 f
+    但是，after不会让窗口卡住
+    运行后，时间自动更新了，窗口也不卡，可以自由拖动
+    
+    6. Label
+    进入 python 交互模式
+    >>>import tkinter as tk
+    >>>top = tk.Tk()    #弹出白框
+    >>>output = tk.Label(top)   
+    >>>output.pack()     # 白框变小了
+    >>>output['text'] = 'hello'     # 白框的窗口处正中间出现了 'hello'
+    >>>output['text'] = 'world'     # 'hello' 的正下方出现了 'world'
+    
+    也就是说，创建一个 Label ，然后pack， 然后设置它的 text ，就可以控制窗口显示的内容了
+    那么，我们把 clock改一改，让时间显示在窗口，而不是标题栏
+    
+    clock5.py   # Label, pack, text
     import tkinter as tk
     import datetime
     top = tk.Tk()
@@ -243,9 +272,9 @@
     top.after(1000, update_time)
     top.mainloop()
     
-    top.after(ms,f) 就是在 ms 毫秒后执行函数 f
-    但是，after不会让窗口卡住
-    运行后，时间自动更新了，窗口也不卡，可以自由拖动
+    
+    
+    
     
     
     
