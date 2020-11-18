@@ -290,14 +290,7 @@
     >>>c.pack()          # 'world' 的正下方出现了 'python'
     
     开一个新的python 交互式，调换 pack的顺序
-    >>>import tkinter as tk
-    >>>top = tk.Tk()     # 弹出白框
-    >>>a=tk.Label(top)
-    >>>a['text']='hello'
-    >>>b=tk.Label(top)
-    >>>b['text']='world'
-    >>>c=tk.Label(top)
-    >>>c['text']= 'python'   
+    ...前半段跟上面相同...
     >>>c.pack()          # 窗口出现了 'python'
     >>>a.pack()          # 'python'的正下方出现了 'hello'
     >>>b.pack()          # 'hello'的正下方出现了 'world'
@@ -322,15 +315,7 @@
     先出现 'before', sleep 5s, 'after',然后 'python','hello','world'
     
     开一个新的python 交互式, 加入 update
-    >>>import tkinter as tk
-    >>>from time import sleep
-    >>>top = tk.Tk()     # 弹出白框
-    >>>a=tk.Label(top)
-    >>>a['text']='hello'
-    >>>b=tk.Label(top)
-    >>>b['text']='world'
-    >>>c=tk.Label(top)
-    >>>c['text']= 'python'   
+    ...前半段跟上面相同...
     >>>c.pack()          
     >>>a.pack()          
     >>>b.pack()     
@@ -341,15 +326,7 @@
     先出现 'python','hello','world' 然后'before', sleep 5s, 'after'
     
     开一个新的python 交互式,调换顺序
-    >>>import tkinter as tk
-    >>>from time import sleep
-    >>>top = tk.Tk()     # 弹出白框
-    >>>a=tk.Label(top)
-    >>>a['text']='hello'
-    >>>b=tk.Label(top)
-    >>>b['text']='world'
-    >>>c=tk.Label(top)
-    >>>c['text']= 'python'         
+    ...前半段跟上面相同...     
     >>>a.pack()          
     >>>b.pack()    
     >>>top.update()
@@ -361,6 +338,30 @@
     
     
     7. tk.LEFT  tk.TOP  tk.RIGHT
+    ...前半段跟上面相同...
+    >>>a.pack(side= tk.LEFT)          
+    >>>b.pack(side= tk.LEFT)        
+    >>>c.pack(side= tk.LEFT)    'hello','world','python' 按从左到右出现在了一行
+    
+    >>>a.pack(side= tk.TOP)          
+    >>>b.pack(side= tk.TOP)        
+    >>>c.pack(side= tk.TOP)    'hello','world','python' 按从上到下出现
+    
+    >>>a.pack(side= tk.RIGHT)          
+    >>>b.pack(side= tk.RIGHT)        
+    >>>c.pack(side= tk.RIGHT)    'python','world','hello'  跟 left的顺序反过来了，从右到左了
+    
+    总结：
+    
+    tk.Tk() 是创建顶层的窗口，有标题栏的那种
+    tk.Label(top) 是创建一个 widget（小装置，小部件）
+    pack 就是控制这些 widget 的布局，摆放
+    bind 定义了怎么处理窗口接受到的各种事件
+    但是真正执行代码的工作是 update, mainloop 来实现
+    因此，不管是 tk.Tk()， Label(top)，pack(), 在执行 update 或者 mainloop之前，都看不到
+    只是因为在交互模式里，有点特殊，执行完提示符出来后，交互模式会悄悄的 update
+    
+    
     
     
     
