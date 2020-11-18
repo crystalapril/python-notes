@@ -28,7 +28,7 @@
     >>>top.bind('<ButtonPress>')
     ''
     >>>top.bind('<ButtonPress>',print)          # top.bind(事件的名称，函数)，当事件发生的时候，就会调用该函数，这里绑定了 print 
-    '1398758379497print'
+    '1398758379497print' 
     >>> <ButtonPress event num=1 x=179 y=125>   # 我们点击了标题栏，没有反应
     <ButtonPress event num=1 x=159 y=82>        # 我们点击了窗口3次，调用了 print ，分别出现了右侧的信息，event，坐标系
     <ButtonPress event num=1 x=222 y=256>     
@@ -248,7 +248,9 @@
     但是，after不会让窗口卡住
     运行后，时间自动更新了，窗口也不卡，可以自由拖动
     
+    
     6. Label
+    
     进入 python 交互模式
     >>>import tkinter as tk
     >>>top = tk.Tk()    #弹出白框
@@ -271,6 +273,104 @@
     output.pack()
     top.after(1000, update_time)
     top.mainloop()
+    
+    运行成功，终于变成一个在窗口出自动更新的时钟了
+    
+    我们再观察一下 Label ,pack 的顺序
+    >>>import tkinter as tk
+    >>>top = tk.Tk()     # 弹出白框
+    >>>a=tk.Label(top)
+    >>>a['text']='hello'
+    >>>a.pack()          # 窗口出现了 'hello'
+    >>>b=tk.Label(top)
+    >>>b['text']='world'
+    >>>b.pack()          # 'hello'的正下方出现了 'world'
+    >>>c=tk.Label(top)
+    >>>c['text']= 'python'   
+    >>>c.pack()          # 'world' 的正下方出现了 'python'
+    
+    开一个新的python 交互式，调换 pack的顺序
+    >>>import tkinter as tk
+    >>>top = tk.Tk()     # 弹出白框
+    >>>a=tk.Label(top)
+    >>>a['text']='hello'
+    >>>b=tk.Label(top)
+    >>>b['text']='world'
+    >>>c=tk.Label(top)
+    >>>c['text']= 'python'   
+    >>>c.pack()          # 窗口出现了 'python'
+    >>>a.pack()          # 'python'的正下方出现了 'hello'
+    >>>b.pack()          # 'hello'的正下方出现了 'world'
+    所以只有 pack() 调用的时候，窗口才会发生变化
+    
+    开一个新的python 交互式, 加入 sleep
+    >>>import tkinter as tk
+    >>>from time import sleep
+    >>>top = tk.Tk()     # 弹出白框
+    >>>a=tk.Label(top)
+    >>>a['text']='hello'
+    >>>b=tk.Label(top)
+    >>>b['text']='world'
+    >>>c=tk.Label(top)
+    >>>c['text']= 'python'   
+    >>>c.pack()          
+    >>>a.pack()          
+    >>>b.pack()          
+    >>>print('before')
+    >>>sleep(5)
+    >>>print('after')
+    先出现 'before', sleep 5s, 'after',然后 'python','hello','world'
+    
+    开一个新的python 交互式, 加入 update
+    >>>import tkinter as tk
+    >>>from time import sleep
+    >>>top = tk.Tk()     # 弹出白框
+    >>>a=tk.Label(top)
+    >>>a['text']='hello'
+    >>>b=tk.Label(top)
+    >>>b['text']='world'
+    >>>c=tk.Label(top)
+    >>>c['text']= 'python'   
+    >>>c.pack()          
+    >>>a.pack()          
+    >>>b.pack()     
+    >>>top.update()
+    >>>print('before')
+    >>>sleep(5)
+    >>>print('after')
+    先出现 'python','hello','world' 然后'before', sleep 5s, 'after'
+    
+    开一个新的python 交互式,调换顺序
+    >>>import tkinter as tk
+    >>>from time import sleep
+    >>>top = tk.Tk()     # 弹出白框
+    >>>a=tk.Label(top)
+    >>>a['text']='hello'
+    >>>b=tk.Label(top)
+    >>>b['text']='world'
+    >>>c=tk.Label(top)
+    >>>c['text']= 'python'         
+    >>>a.pack()          
+    >>>b.pack()    
+    >>>top.update()
+    >>>print('before')
+    >>>sleep(5)
+    >>>print('after')
+    >>>c.pack()  
+    先出现 'hello','world' 然后'before', sleep 5s, 'after'，'python'
+    
+    
+    7. tk.LEFT  tk.TOP  tk.RIGHT
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
     
