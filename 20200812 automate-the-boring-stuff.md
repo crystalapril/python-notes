@@ -143,6 +143,7 @@
     7.1.3 re.group(), re.groups() 
     7.1.4 re.findall()， 返回 list of strings of every match
           string 没有 group的时候，返回 [s1,s2]；有group的时候，返回[(s1,s2),(s3,s4)]   
+          re.finditer() , 返回 iterator
     7.1.5 re.sub(str1,str2) ，替换，str1 替换 str2 里面与 regex 匹配的内容
     7.1.6 re.DOTALL ，让 . (dot character)可以匹配一切字符，包括换行符
     7.1.7 re.IGNORECASE , re.I ，case-insensitive
@@ -188,7 +189,25 @@
         \s  [\n\t\space] 
         \S  [^\n\t\space]        
    
-    7.7
+    7.7 https://regex101.com/
+        我们可以把写好的 pattern 放到 regrex 校验的网址先去校验
+        对于比较复杂的 pattern，可以引入变量，拆分来写
+        
+        本章作业 project1 eg. ：
+        day = r'(([012]\d)|(3[01]))'
+        month = r'((0\d)|(1[12]))'
+        year = r'([12]\d{3})'
+        rdate = re.compile(rf'({day}\/{month}\/{year})')  
+        # 注意，正则表达式本身没有引入变量的功能，需要用到字符串中引入变量的做法，f-string，或者 format 等
+        
+        如何把 rdate 放到网址中进行校验呢
+        可以在交互模式中 print(rdate)，得到的结果应该就是标准的正则表达式的形式，不含变量的，然后放入网站验证
+        >>>print(rdate)
+        re.compile('((([012]\\d)|(3[01]))\\/((0\\d)|(1[12]))\\/([12]\\d{3}))')
+        
+    7.8
+        
+
         
        
 
