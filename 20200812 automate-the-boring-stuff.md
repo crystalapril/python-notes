@@ -151,7 +151,13 @@
     
     7.2 escape characters \
     
-    7.3 | pipe
+    7.3 | pipe 表示 or ，A|B 等同于 A 或 B 都可以
+    
+        那么，想要表示 and怎么办，我们可以用 (?=A expr)(?=B expr)
+        
+        (?=expr)
+        means "match expr but after that continue matching at the original match-point."        
+        
     
     7.4 匹配符号    
 
