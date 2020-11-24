@@ -154,11 +154,10 @@
     
     7.3 | pipe 表示 or ，A|B 等同于 A 或 B 都可以
     
-        那么，想要表示 and怎么办，我们可以用 (?=A expr)(?=B expr) ，non-consuming regular expression
-        
+        那么，想要表示 and怎么办，我们可以用 (?=A expr)(?=B expr) 
+        non-consuming regular expression         
         (?=expr)
-        means "match expr but after that continue matching at the original match-point."        
-        
+        means "match expr but after that continue matching at the original match-point."                    
     
     7.4 匹配符号    
 
@@ -205,7 +204,25 @@
         >>>print(rdate)
         re.compile('((([012]\\d)|(3[01]))\\/((0\\d)|(1[12]))\\/([12]\\d{3}))')
         
-    7.8
+    7.8 zero width assertions 零宽断言
+        Look ahead positive (?=)    : Find expression A where expression B follows  ，A(?=B) 
+        Look ahead negative (?!)   ： Find expression A where expression B does not follow: A(?!B)
+        Look behind positive (?<=) ： Find expression A where expression B precedes: (?<=B)A
+        Look behind negative (?<!) ： Find expression A where expression B does not precede: (?<!B)A
+        
+        以 'foobarbarfoo' 为例:
+        bar(?=bar)     finds the 1st bar ("bar" which has "bar" after it)
+        bar(?!bar)     finds the 2nd bar ("bar" which does not have "bar" after it)
+        (?<=foo)bar    finds the 1st bar ("bar" which has "foo" before it)
+        (?<!foo)bar    finds the 2nd bar ("bar" which does not have "foo" before it)
+        
+        
+### 8 Input Validation
+
+    8.1
+
+    
+
         
 
         
