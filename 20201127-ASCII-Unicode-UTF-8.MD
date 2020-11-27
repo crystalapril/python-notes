@@ -33,9 +33,6 @@
         
     大家都把这个方案叫做 ANSI 的 ASCII 编码（American Standard Code for Information Interchange，美国信息互换标准代码）
     当时世界上所有的计算机都用同样的ASCII方案来保存英文文字。
-    具体参见：
-    https://en.wikipedia.org/wiki/ASCII
-    https://baike.baidu.com/item/ASCII/309296?fromtitle=ascii%E7%A0%81&fromid=99077&fr=aladdin
     
     32～126(共95个)是字符(32是空格），其中48～57为0到9十个阿拉伯数字。
     65～90为26个大写英文字母，97～122号为26个小写英文字母，其余为一些标点符号、运算符号等，例如：            
@@ -50,6 +47,9 @@
 |0011 1101  |      075   |  61        |    0x3D      |  = 等号            |
 |0100 0101  |     0105   |  69        |    0x45      |  E  大写字母E      |
 |0110 1110  |     0156   |  110       |    0x6E      |  n 小写字母n       |   
+具体参见：
+https://en.wikipedia.org/wiki/ASCII
+https://baike.baidu.com/item/ASCII/309296?fromtitle=ascii%E7%A0%81&fromid=99077&fr=aladdin
 
 ### Unicode
 
