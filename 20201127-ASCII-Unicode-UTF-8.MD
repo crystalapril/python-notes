@@ -141,10 +141,7 @@ https://baike.baidu.com/item/ASCII/309296?fromtitle=ascii%E7%A0%81&fromid=99077&
     0000 0080-0000 07FF | 110xxxxx 10xxxxxx
     0000 0800-0000 FFFF | 1110xxxx 10xxxxxx 10xxxxxx
     0001 0000-0010 FFFF | 11110xxx 10xxxxxx 10xxxxxx 10xxxxxx
-    
-    UTF-8 优点很多，但是 UTF-8 等编码体积比较大，占电脑空间比较多
-    如果面向的使用人群绝大部分都是中国人，用 GBK 等编码也可以
-    
+     
     
 
 
