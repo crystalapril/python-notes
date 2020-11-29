@@ -1,4 +1,4 @@
-# hashlib 之 md5 & sha1
+# hashlib - md5 & sha1
 
 ### method
 
