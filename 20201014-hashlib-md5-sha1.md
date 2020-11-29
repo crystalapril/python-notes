@@ -1,4 +1,4 @@
-# md5 & sha1
+# hashlib 之 md5 & sha1
 
 ### method
 
@@ -88,7 +88,7 @@
 
     >>> cal(addr,code)
     
-### update
+### hash.update
 
     如果需要运算 md5 、sha1 的文件特别大怎么办，可能读取的时候，就没办法一口气读完
     
