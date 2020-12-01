@@ -106,7 +106,7 @@
     
     那么我们改进一下计算 sha1 的程序 sha.py
     
-    import sys,pyperclip,hashlib
+    import sys,pyperclip,hashlib,os
     # get sha code from outside
     whole = pyperclip.paste()         # 用 pyperclip 来获取外部的 sha1
     whole_split = whole.split(' ')    # 外部的数据 大概长这个样子 SHA1:K234FA...JLUA23F，所以需要只取后半部分
@@ -114,17 +114,20 @@
     # calculate sha code of file
     addr = sys.argv[1]                # 获取文件地址
     file = open(addr, 'rb')           # 把文件传给 file 对象，注意，只要不read()，就不会产生大的内存消耗
-    data = b'1'
     sha = hashlib.sha1()              # 创建一个计算 sha1 的hash 对象
-    while data:
-        data = file.read(1024)     # 注意read()，是可以分批读取的，这样可以降低内存的使用，data 读取完之后就没有了，就剩 b''
-        sha.update(data)           # 分批接收 read() 传过来的数据，并且累加，但是不会占太多内存 
+    size = os.stat(addr).st_size      # 通过 os.stat() 获取文件的内容，包括创建时间等，这里 st_size 就是文件的大小
+    while data := file.read(1024):    # 注意read()，是可以分批读取的，这样可以降低内存的使用，data 读取完之后就没有了，就剩 b''           
+        sha.update(data)              # 分批接收 read() 传过来的数据，并且累加，但是不会占太多内存 
     sha_calcu = sha.hexdigest().lower()     # 最后计算 update() 收到的所有的 bytes，计算 sha1 的摘要
     # compare
     addr_split = addr.split('\\')
     print(addr_split[-1]+' sha1'+ ':'+ sha_calcu)
     print(sha_paste)
-    print(True) if sha_paste == sha_calcu else print(False)
+    print(sha_paste == sha_calcu)  
+    
+    这里要强调一下 while data := file.read(1024): 这个句
+    :=  是 Assignment expressions（赋值表达式）
+    python3.8 以后发布的 ，海象运算符
     
 
     
