@@ -125,12 +125,49 @@
     print(sha_paste)
     print(sha_paste == sha_calcu)  
     
-    这里要强调一下 while data := file.read(1024): 这个句
-    :=  是 Assignment expressions（赋值表达式）
-    python3.8 以后发布的 ，海象运算符
     
+### ：= Assignment expressions
+    
+    我们看到上面 sha.py 中的 while data := file.read(1024): 这个句
+    表达的意思是，将 file.read(1024) 赋值给data ，然后判断 data 是否为真，如果是，while True: 运行下面的代码
+        
+    :=  是 Assignment expressions（赋值表达式），又叫做海象运算符
+    python3.8 以后发布的
+    以前的 python ，赋值就必须是单独的一句，不能跟其他表达式混合
+    如 ，data = file.read(1024)
+    赋值后的 data 再带入到 while data:  ，然后进行条件判断    
+    有了赋值表达式之后，while data := file.read(1024)，一句话完成了赋值和条件判断，要简洁很多
+        
+    while data := file.read(1024):
+        sha.update(data)
+    
+    把上面的 while 语句，改成 for 的话，也可以写成：
+    for data in iter(lambda: read.(size),b''):
+        sha.update(data)
+        
+    这个 for 语句等价于：
+    iterable = iter(lambda: file.read(size), b'')
+    iterator = iter(iterable)
+    try:
+        while True:
+            data = next(iterator)
+            sha.update(data)
+    except StopIteration:
+        pass
+    
+    
+### os.stat
 
+    sha.py 中出现了一个 os.stat(addr).st_size  
     
+    os模块是 operating system 的缩写
+    os.stat() 用于获取文件的内容
+    eg.
+    >>>import os
+    >>>os.stat(r'E:\python\ideal\sha.py')
+    os.stat_result(st_mode=33206, st_ino=844424930144477, st_dev=2023566340, st_nlink=1, st_uid=0, st_gid=0, st_size=927, st_atime=1606699983, st_mtime=1606896282, st_ctime=1606806140)
+    这里st_atime， st_mtime 都是表示时间的属性，比如某个时间到创建文档这个期间的秒数，需要换算一下，得到创建时间
+
     
     
     
