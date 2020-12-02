@@ -29,4 +29,39 @@
     一直到 iterator 取完，抛出 StopIteration
     用 try...except...语句接住
     
+    那么有的同学可能会问了，如果 expression 本身就是 iterator 怎么办
+    for 循环还会对其进行 iter()吗， iter(iterator) 会得到什么
+    带着这个疑问，我们来看 2 个例子
+    eg.1
+    >>>next([1])  # [1] 是 list，list 是 iterable 
+    TypeError: 'list' object is not an iterator  # 这句说明，next() 只能对 iterator 用，不能对 iterable 用
+    eg.2
+    for x in sorted(xs):
+        statement
+    把上面的 for 循环转换成 while 循环：
+    i = iter(sorted(xs))   # 这里的 for 循环时没有 iter()的，转换成 while 里面就有一个 iter()
+    try:
+        while True:
+            next(i)
+    except StopIteration:
+        pass
+        
+    当 expression 本来就有 iter()的时候, for转换还是会加一个 iter
+    因为 for 循环不知道 expression 是不是 iterator，不能智能识别
+    为了以防万一，都加上一个 iter()
+    而 iter(iterator) == iterator
+    
+    eg.3
+    for data in iter(lambda:fire.read(1024),b''):
+        statement
+    转换后：
+    iterator = iter(iter(lambda:fire.read(1024),b''))   # 被套了2个 iter()
+    
+    
+    
+    
+    
+    
 ### iterable & iterator
+
+
