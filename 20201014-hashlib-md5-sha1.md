@@ -146,8 +146,8 @@
         sha.update(data)
         
     这个 for 语句等价于：
-    iterable = iter(lambda: file.read(size), b'')
-    iterator = iter(iterable)
+    iterable = iter(lambda: file.read(size), b'')      # 例如 list是 iterable
+    iterator = iter(iterable)                          # 通过 iter() 将list 转换成 iterator, 就可以使用 next() 了
     try:
         while True:
             data = next(iterator)
