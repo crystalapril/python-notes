@@ -55,9 +55,13 @@
     for data in iter(lambda:file.read(1024),b''):
         statement
     转换后：
-    iterator = iter(iter(lambda:fire.read(1024),b''))   # 被套了2个 iter()
+    iterator = iter(iter(lambda:fire.read(1024),b''))   # 被套了2个 iter()   
     
-    那么为什么 iter(iterator) 也要是 iterator 呢
+    
+### iterable & iterator
+
+    1.为什么 iter(iterator) == iterator 
+    
     我们来看这2个例子：
     map(str,[1,2,3])， 返回一个 iterator
     sorted([1,2,3])， 返回一个 list
@@ -72,9 +76,17 @@
     for x in map(str,[1,2,3]):
         statement
     但是 for 没有那么智能，会根据 in 后面的结果来调整，它只能死板的调用 iter()
-    所以上面的代码，也会经历 iter(map(str,[1,2,3])) 来获得一个 iterator
+    所以上面的代码，也会经历 iter(map(str,[1,2,3])) 来获得一个 iterator，然后 next()
+    因此这就要求 iter(iterator) 的结果依旧是 iterator
+    而 for 只需要无脑的加 iter() 就可以了
+    
+    iter(iterable) -> iterator
+    iter(iterator) -> iterator
+    
+    iterator 同时也是 iterable，因为把它传递给 iter()得到了一个 iterator
+    
+    2.iterator 跟 iterable 的区别是什么
+    
+    为什么 next([1,2,3]) 不行，必须要 next(iter([1,2,3])) 先把list 边成 iterator 才行
     
     
-### iterable & iterator
-
-
