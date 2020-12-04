@@ -142,7 +142,7 @@
     因为 iterator 只能取一圈，取完了就 StopIteration 了
     而 iterable 可以取很多圈，每取一次，通过 iter() ，转变成独立的 iterator，通过 next(iterator) 来取出具体的数
     因此 next() 也不能直接用于 list，tuple 这些 iterable上面
-    否则是取一圈之后抛 StopIteration，还是接着从头开始取，变成无限循环，都不对
+    否则是取一圈之后抛 StopIteration，还是接着从头开始取，但是这样子就无法区分头尾，都不对
     
     2.这个区分使得 for 要加 iter()
     
