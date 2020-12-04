@@ -88,5 +88,29 @@
     2.iterator 跟 iterable 的区别是什么
     
     为什么 next([1,2,3]) 不行，必须要 next(iter([1,2,3])) 先把list 边成 iterator 才行
+    为什么 iterable 没有 __next__
+    
+    我们来看一个例子
+    xs = [1,2,3]
+    a = iter(xs)
+    b = iter(xs)  # a 和 b 的位置是独立的
+    next(a)
+    next(b)
+    next(b)
+    next(a)
+    
+    如果让 list 直接成为 iterator，就没法有这么一个”趟“的概念
+    iter(iterable) -> iterator， 这个 iterator 就可以逛一圈
+    也只能逛一圈，逛到底了就 StopIteration，next 就一直抛异常
+    
+    如果 next 可以直接作用在 iterable 上，比如 list，那是不是也只能逛一圈？
+    ys = sorted(xs)
+    for y in ys:
+        print(y)
+    n = 0
+    for y in ys:
+        n += y
+        
+    sorted 返回 list，然后正常的 python里逛了两圈
     
     
