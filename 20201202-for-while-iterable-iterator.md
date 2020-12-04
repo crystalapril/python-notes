@@ -111,6 +111,38 @@
     for y in ys:
         n += y
         
-    sorted 返回 list，然后正常的 python里逛了两圈
+    sorted 返回 list，然后正常的 python里逛了两圈，一圈打印，一圈求和
+    这是通过 iterator 这个概念来完成的， 一个 iterator 就是一圈
+    如果是 iterable， 或者 list 本身就是 iterator，该怎么逛 2 圈
+    第二圈是不是就没了，结果是初始值 0 
+    
+    我们再看 zip
+    >>>list(zip([1,2],'ab'))
+    [(1,'a'),(2,'b')]
+    zip 需要同时看 2个 iterator，第一个用 next 取一下，第二个用next取一下，然后产生一个 tuple
+    然后再来，交替的 next两个甚至多个 iterator
+    
+    xs = [1,2]
+    ys = list(zip(xs,xs))
+    zip 会交替的取，但是这又是同一个 xs
+    如果让 list 自己可以 next 的话，那 zip 就会交替从一个 list 里取，那结果就一样了
+    而真正的 python里，zip 会悄悄的对参数们都调用 iter
+    来获得他们各自的独立一圈，不是这个参数的一圈完了之后，再下一个参数的一圈，而是让他们都交叉起来
+    >>>xs = [1,2]
+    >>>ys = list(zip(xs,xs))
+    >>>ys
+    [(1,1),(2,2)]
+    
+    >>>help(zip)
+    zip(*iterables) --> a zip object yielding tuples until an input is exhausted.
+    就是说，zip 会悄悄的对 iterable 调用 iter，然后交叉的 next 它们
+    
+    总结
+    1.为什么要区分 iterable 和 iterator？
+    
+    2.这个区分使得 for 要加 iter()
+    
+    3.for 无脑加的这个 iter，使得 iter(iterator) 也是 iterator，同时 iterator 也是 iterable的
+    
     
     
