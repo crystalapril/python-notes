@@ -83,7 +83,7 @@
     iter(iterable) -> iterator
     iter(iterator) -> iterator
     
-    iterator 同时也是 iterable，因为把它传递给 iter()得到了一个 iterator
+    iterator 同时也是 iterable，因为把它传递给 iter()可以得到一个 iterator
     
     2.iterator 跟 iterable 的区别是什么
     
@@ -113,8 +113,8 @@
         
     sorted 返回 list，然后正常的 python里逛了两圈，一圈打印，一圈求和
     这是通过 iterator 这个概念来完成的， 一个 iterator 就是一圈
-    如果是 iterable， 或者 list 本身就是 iterator，该怎么逛 2 圈
-    第二圈是不是就没了，结果是初始值 0 
+    如果是 iterable， 或者让 list 本身就是 iterator，该怎么逛 2 圈
+    第二圈是不是就没了，n 的结果是初始值 0 
     
     我们再看 zip
     >>>list(zip([1,2],'ab'))
@@ -139,6 +139,8 @@
     
     总结
     1.为什么要区分 iterable 和 iterator？
+    因为 iterator 只能取一圈，取完了就 StopIteration 了
+    而 iterable 可以取很多圈，每取一次，通过 iter() ，转变成独立的 iterator，通过 next(iterator) 来取出具体的数
     
     2.这个区分使得 for 要加 iter()
     
