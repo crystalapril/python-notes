@@ -27,7 +27,13 @@
     windows 就是写到 页文件里 ，pagefile
     linux 就是写到交换空间里，swap
     
-    windows 跟某些进程借物理内存应急，把这些进程
+    windows 向某些进程借物理内存应急，把这些进程使用的物理内存里的数据写到 pagefile 里去
+    然后就把物理内存拿走干别的去
+    之后，如果这个被借的内存的进程需要用的时候
+    windows 又从 pagefile 里把数据读回物理内存，再还给进程
+    windows 用 pagefile 来周转
+    
+    
     
     
     
