@@ -171,7 +171,11 @@
     >>>os.stat(r'E:\python\ideal\sha.py')
     os.stat_result(st_mode=33206, st_ino=844424930144477, st_dev=2023566340, st_nlink=1, st_uid=0, \
     st_gid=0, st_size=927, st_atime=1606699983, st_mtime=1606896282, st_ctime=1606806140)
-    这里st_atime， st_mtime 都是表示时间的属性，比如某个时间到创建文档这个期间的秒数，需要换算一下，得到创建时间
+    
+    这里 st_ 这个前缀可能是 stat 的缩写，全部都带这个前缀
+    上面显示的这些跟文件夹里的属性报告都能对上
+    st_atime，st_mtime，st_ctime都是表示时间的属性，也是能跟文件夹报告的那些时间对的上的
+    但是需要转换一下格式，比如起始时间到创建文档这个期间的秒数，换算一下，得到创建日期
 
     
     
