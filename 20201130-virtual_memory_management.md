@@ -1,6 +1,5 @@
 # Virtual memory management
 
-
 ### Virtual memory management
     
     虚拟内存管理 Virtual memory management
@@ -16,6 +15,19 @@
     
     假设要计算一个大文件，例如 20g 的电影，用 read()
     那么 python 就会找 windows 要内存，一直要，不够了就从其他进程里抢内存
-    但是计算机的内存一共就 8g 
+    但是计算机的内存一共就 8g ，现在要20g
+    那 windows 就悄悄的把一部分内存，写到磁盘里
+    假装给 python 了，那么 data = file.read() 也可以执行成功
+    不过这个 20g 的 bytes 其实大半内容都在磁盘里
+    
+    这是现代操作系统的标配，虚拟内存管理
+    data = file.read() ，执行完了，有一个 20g 的 bytes 的虚拟内存
+    实际物理内存肯定没有用到那么多，大部分都被写到磁盘里去了
+    
+    windows 就是写到 页文件里 ，pagefile
+    linux 就是写到交换空间里，swap
+    
+    windows 跟某些进程借物理内存应急，把这些进程
+    
     
     
