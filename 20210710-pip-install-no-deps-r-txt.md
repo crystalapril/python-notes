@@ -77,6 +77,25 @@
       >> rm -rf init      # -r 递归删除  -f 删除不用询问      
       >> rm -rf no-deps
       
+    12.安装 eth-abi，因为eth-abi依赖 toolz库，toolz库有2个版本，一个是 cytoolz（c编辑器得版本），另一个是纯python得版本
+       选择其中一个就可以，pip会默认先安装 cytoolz ，在windows上就会报错，因此也用上面类似得办法通过 .txt 文件来安装
+       linux：
+       >> python -m venv eth
+       >> eth/bin/pip install eth-abi -i https://pypi.douban.com/simple
+       >> eth/bin/pip freeze
+       
+       拷贝结果至 eth.txt，并删除 cytoolz==0.11.0
+       windows cmd：
+       >> python -m venv eth
+       >> eth\script\pip install -r eth.txt -i https://pypi.douban.com/simple --no-deps
+       安装成功，测试一下
+       
+       >> py
+       >> import eth_abi   # 注意：这里不是 import eth-abi，这个名字中间有“-”在windows里是无法import的
+                                   pip安装的那个名字，跟import的不一定对应的
+     
+       
+       
 
     
       
