@@ -12,7 +12,7 @@
     3.在linux 里安装 web3
       >> web3/bin/pip install web3   
     
-    4.检查web3 虚拟环境里面已安装的包
+    4.pip freeze 检查web3 虚拟环境里面已安装的包
       >> web3/bin/pip freeze
       aiohttp==3.7.4.post0
       async-timeout==3.0.1
@@ -44,7 +44,16 @@
       -r requirement，根据txt的要求来安装
       --no-deps，是安装时不依赖其他包，只安装 txt里指定的包，必须要加上这项，否则pip又会自动安装 cytoolz等
       
-    8.我们可以在 linux里，检验 --no-deps的功能，创建一个 no-deps 的虚拟环境
+    8.安装发现报错，lru-dict依然需要 c编译器，于是回到 web3.txt,继续删除 lru-dict==1.1.7,再次安装
+      >> D:\Python\web3_venv\Scripts\pip install -r C:\Users\april\Desktop\web3.txt -i https://pypi.douban.com/simple --no-deps
+      安装成功
+      
+    9.在pycharm里，为新web3虚拟环境配置新的project，让 project 可以被导入刚安装的 web3相关的安装包
+      >> import web3
+      发现报错，提示没有安装web3依赖的 cytoolz等，但是pycharm的 py文件里，可以对 web3模块的相关命令，进行补全
+      因此，我们可以在 pycharm里面编辑，然后在 linux里面运行py文件
+      
+    10.我们可以在 linux里，检验 --no-deps的功能，创建一个 no-deps 的虚拟环境
       >> python -m venv no-deps
       >> no-deps/bin/pip install eth-abi --no-deps -i https://pypi.douban.com/simple
       >> no-deps/bin/pip list
@@ -56,13 +65,20 @@
       可以看到这里，只安装了 eth-abi ，eth-abi依赖的cytoolz，没有被安装
       pip，setuptools 是创建虚拟环境时，自动生成的 
       
-    9.我们可以创建一个 init 虚拟环境，来检验 pip，setuptools 
+    9.我们可以在linux 里创建一个 init 虚拟环境，来检验 pip，setuptools 
       >> python -m venv init
       >> init/bin/pip list
       Package    Version
       ---------- -------
       pip        21.1.1
       setuptools 56.0.0
+      
+    11.删除刚刚创建的2个测试虚拟环境
+      >> rm -rf init      # -r 递归删除  -f 删除不用询问      
+      >> rm -rf no-deps
+      
+
+    
       
       
     
