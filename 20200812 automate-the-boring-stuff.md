@@ -219,7 +219,34 @@
         
 ### 8 Input Validation
 
-    8.1
+    8.1 pip install pyinputplus
+    
+    8.2 pyinputplus 包含以下函数：
+    
+    inputStr() Is like the built-in input() function but has the general PyInputPlus features.     
+
+    inputNum() Ensures the user enters a number and returns an int or float
+
+    inputChoice() Ensures the user enters one of the provided choices
+
+    inputMenu() Is similar to inputChoice(), but provides a menu with numbered or lettered options
+
+    inputDatetime() Ensures the user enters a date and time
+
+    inputYesNo() Ensures the user enters a “yes” or “no” response
+
+    inputBool() Is similar to inputYesNo(), but takes a “True” or “False” response and returns a Boolean value
+
+    inputEmail() Ensures the user enters a valid email address
+
+    inputFilepath() Ensures the user enters a valid file path and filename, 
+    and can optionally check that a file with that name exists
+
+    inputPassword() Is like the built-in input(), but displays * characters as the user types so that passwords, 
+    or other sensitive information, aren’t displayed on the screen
+    
+    eg. inputNum
+    
 
     
 
