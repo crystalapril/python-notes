@@ -225,17 +225,27 @@
     
     inputStr() Is like the built-in input() function but has the general PyInputPlus features.     
 
-    inputNum() Ensures the user enters a number and returns an int or float
+    inputNum(), inputInt(), and inputFloat() 输入数字，如果输入错误会提示要求输入数字    
+        
+    可选参数：    
+    - min,   max,     greaterThan, lessThan 
+     
+    - limit, timeout, default 
+    eg. limit=2, default='N/A'
+    eg. timeout=10
+     
+    - allowRegexes, blockRegexes (两个同时存在时，allowRegexes override blockRegexes)
+    eg. allowRegexes=[r'(i|v|x|l|c|d|m)+', r'zero'], blockRegexes=[r'[02468]$']
 
     inputChoice() Ensures the user enters one of the provided choices
 
     inputMenu() Is similar to inputChoice(), but provides a menu with numbered or lettered options
 
-    inputDatetime() Ensures the user enters a date and time
+    inputDatetime() Ensures the user enters a date and time 
 
-    inputYesNo() Ensures the user enters a “yes” or “no” response
+    inputYesNo() 输入 yes\no
 
-    inputBool() Is similar to inputYesNo(), but takes a “True” or “False” response and returns a Boolean value
+    inputBool() 输入 True/False
 
     inputEmail() Ensures the user enters a valid email address
 
@@ -244,8 +254,7 @@
 
     inputPassword() Is like the built-in input(), but displays * characters as the user types so that passwords, 
     or other sensitive information, aren’t displayed on the screen
-    
-    eg. inputNum
+
     
 
     
