@@ -254,6 +254,12 @@
 
     inputPassword() Is like the built-in input(), but displays * characters as the user types so that passwords, 
     or other sensitive information, aren’t displayed on the screen
+    
+    
+    inputCustom() ，to perform your own custom validation logic by passing the function to inputCustom()
+    eg. 自己构造 addsUpToTen() 函数，调用 inputCustom(addsUpToTen) （注意里面没有括号）
+    
+    
 
     
 
