@@ -243,7 +243,7 @@
 
     inputDatetime() Ensures the user enters a date and time 
 
-    inputYesNo() 输入 yes\no
+    inputYesNo() 输入 yes\no（也可以输入y\n，甚至自己指定eg. yesVal='ok', noVal='no'，因此可以使用外语）
 
     inputBool() 输入 True/False
 
