@@ -260,6 +260,32 @@
     eg. 自己构造 addsUpToTen() 函数，调用 inputCustom(addsUpToTen) （注意里面没有括号）
     
     
+### 9 reading and writing files
+
+    9.1 pathlib module
+    
+    9.2 from pathlib import Path
+    
+    Path 有如下功能：
+    
+    9.2.1 Path('spam', 'bacon', 'eggs')  --> WindowsPath('spam/bacon/eggs')
+          Path(r'C:\Users\Al', filename) --> C:\Users\Al\accounts.txt
+          
+          myFiles = ['accounts.txt', 'details.csv', 'invite.docx']
+          for filename in myFiles:
+              print(Path(r'C:\Users\Al', filename))
+    
+    9.2.2 str(Path('spam', 'bacon', 'eggs')) --> 'spam\\bacon\\eggs'
+    
+    9.2.3 
+    
+    9.2.4
+    
+    9.2.5
+    
+    9.2.6
+    
+    9.3
 
     
 
