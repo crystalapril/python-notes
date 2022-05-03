@@ -288,12 +288,20 @@
           str(Path('C:/Users/Al')/ Path('spam'))  --> 'C:\\Users\\Al\\spam'          
     
     9.2.5 Path.cwd()  # current working directory # 查看当前目录    
+    
           os.chdir('C:\\Windows\\System32')       # 切换工作目录     
     
     9.2.6 Path(r'E:/python/boring4pycharm/test').mkdir()  # 创建文件夹
           os.makedirs(r'E:/python/boring4pycharm/test/test/test')  # 可以创建一系列的中间层级的文件夹，以保证地址存在
           
-    9.2.7
+    9.2.7 Path.home()   --> WindowsPath('C:/Users/april')
+    
+    9.2.8 .\   # 本文件夹，一般来说 .\a.txt 与 a.txt 是一回事
+          ..\  # 母文件夹，eg.  ..\a.txt
+          
+          Path.cwd().is_absolute()   --> True   # 查看是否是绝对路径
+          
+    9.2.9 
     
     9.3
 
