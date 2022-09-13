@@ -283,9 +283,11 @@
     
     9.2.4 r'C:\Users\Al' + '\\' + 'spam'       --> 'C:\\Users\\Al\\spam'
           '\\'.join([r'C:\Users\Al', 'spam'])  --> 'C:\\Users\\Al\\spam'
+          # 但是不推荐用这个办法，因为在windows和linux里面，使用'\\'可能会因不兼容出现bug
           
           Path('C:/Users/Al')/ Path('spam')       -->  WindowsPath('C:/Users/Al/spam') 
-          str(Path('C:/Users/Al')/ Path('spam'))  --> 'C:\\Users\\Al\\spam'          
+          str(Path('C:/Users/Al')/ Path('spam'))  --> 'C:\\Users\\Al\\spam' 
+          # 使用Path() 和 / 的话，不用担心切换系统问题，尽量使用 / (forward slash)
     
     9.2.5 Path.cwd()  # current working directory # 查看当前目录    
     
