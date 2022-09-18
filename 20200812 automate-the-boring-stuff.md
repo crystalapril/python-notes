@@ -311,7 +311,14 @@
            os.path.isabs(path)           # 返回 True，如果参数path是绝对路径
            os.path.relpath(path,start)   # 返回相对路径，从start到path
     
-    9.2.11
+    9.2.11 eg1. 
+           p = Path('C:/Users/Al/spam.txt')
+           p.anchor --> 'C:\\',  p.parent --> WindowsPath('C:/Users/Al') # This is a Path object, not a string.
+           p.name --> 'spam.txt',  p.stem --> 'spam',  p.suffix --> '.txt',  p.drive --> 'C:'
+           
+           eg2.
+    
+    9.2.12
     
     9.3
 
