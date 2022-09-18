@@ -307,9 +307,9 @@
     9.2.9 Path.cwd()/Path('my/relative/path')   # 显示绝对路径（前面是当前目录）
           Path.home()/Path('my/relative/path')  # 显示绝对路径（前面是家目录）
           
-    9.2.10 os.path.abspath(path)
-           os.path.isabs(path)
-           os.path.relpath(path)
+    9.2.10 os.path.abspath(path)         # 返回参数 path的绝对路径
+           os.path.isabs(path)           # 返回 True，如果参数path是绝对路径
+           os.path.relpath(path,start)   # 返回相对路径，从start到path
     
     9.2.11
     
