@@ -316,7 +316,16 @@
            p.anchor --> 'C:\\',  p.parent --> WindowsPath('C:/Users/Al') # This is a Path object, not a string.
            p.name --> 'spam.txt',  p.stem --> 'spam',  p.suffix --> '.txt',  p.drive --> 'C:'
            
+           Path.cwd().parents[0] --> WindowsPath('C:/Users/Al/AppData/Local/Programs/Python')
+           Path.cwd().parents[1] --> WindowsPath('C:/Users/Al/AppData/Local/Programs')
+           
            eg2.
+           cpath = 'C:\\Windows\\System32\\calc.exe'
+           os.path.dirname(cpath)  --> 'calc.exe'
+           os.path.basename(cpath) --> 'C:\\Windows\\System32'
+           
+           os.path.split(cpath) --> ('C:\\Windows\\System32', 'calc.exe')
+           cpath.split(os.sep)  --> ['C:', 'Windows', 'System32', 'calc.exe']           
     
     9.2.12
     
