@@ -327,9 +327,14 @@
            os.path.split(cpath) --> ('C:\\Windows\\System32', 'calc.exe')
            cpath.split(os.sep)  --> ['C:', 'Windows', 'System32', 'calc.exe']           
     
-    9.2.12
+    9.2.12 os.path.getsize(path)  # 返回path文件大小
+           os.listdir(path)       # 返回list，里面含path中的文件名
+           os.path.join()             
+   
+    9.3 glob patterns
     
-    9.3
+    
+    9.4 
 
     
 
