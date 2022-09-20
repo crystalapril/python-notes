@@ -336,7 +336,12 @@
         p = Path('C:/Users/april/Desktop')
         list(p.glob('*'))      list(p.glob('*.txt'))      list(p.glob('project?.docx')      list(p.glob('*.?x?')   
     
-    9.4 
+    9.4 p.exists()   # 当地址存在时，返回True，反之，返回False
+        p.is_file()  # 当地址存在，且是一个文件时，返回True，反之，返回False
+        p.is_dir()   # 当地址存在，且是一个目录时，返回True，反之，返回False
+    
+    9.5
+        
 
     
 
