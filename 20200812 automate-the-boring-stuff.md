@@ -332,7 +332,9 @@
            os.path.join()             
    
     9.3 glob patterns
-    
+        eg.
+        p = Path('C:/Users/april/Desktop')
+        list(p.glob('*'))      list(p.glob('*.txt'))      list(p.glob('project?.docx')      list(p.glob('*.?x?')   
     
     9.4 
 
