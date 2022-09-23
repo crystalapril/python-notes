@@ -340,7 +340,17 @@
         p.is_file()  # 当地址存在，且是一个文件时，返回True，反之，返回False
         p.is_dir()   # 当地址存在，且是一个目录时，返回True，反之，返回False
     
-    9.5
+    9.5 shelve 
+        eg.
+        shelfFile = shelve.open('mydata')
+        shelfFile['cats'] = ['Zophie', 'Pooka', 'Simon']
+        shelfFile.close()
+        
+        type(shelfFile)    shelfFile['cats']    list(shelfFile.keys())    list(shelfFile.values())
+        
+    
+    9.6
+    
         
 
     
