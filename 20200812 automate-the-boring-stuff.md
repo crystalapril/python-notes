@@ -346,11 +346,24 @@
         shelfFile['cats'] = ['Zophie', 'Pooka', 'Simon']
         shelfFile.close()
         
-        type(shelfFile)    shelfFile['cats']    list(shelfFile.keys())    list(shelfFile.values())
+        type(shelfFile)    shelfFile['cats']    list(shelfFile.keys())    list(shelfFile.values())        
+    
+    9.6 pprint
+        eg.
+        cats = [{'name': 'Zophie', 'desc': 'chubby'}, {'name': 'Pooka', 'desc': 'fluffy'}]
+        pprint.pformat(cats)
+        fileObj = open('myCats.py', 'w')
+        fileObj.write('cats = ' + pprint.pformat(cats) + '\n')
+        fileObj.close()
+        
+        import myCats
+        myCats.cats    myCats.cats[0]    myCats.cats[0]['name']
+        
         
     
-    9.6
-    
+### 10
+
+### 11
         
 
     
