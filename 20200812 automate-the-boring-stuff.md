@@ -357,11 +357,25 @@
         fileObj.close()
         
         import myCats
-        myCats.cats    myCats.cats[0]    myCats.cats[0]['name']
-        
+        myCats.cats    myCats.cats[0]    myCats.cats[0]['name']       
         
     
-### 10
+### 10 Organizing Files
+
+    10.1 shutil module
+    
+    10.1.1 shutil.copy()   # 可以 copy 一个文件到另一个文件夹并，重命名
+           eg.
+           p = Path('E:/python/boring4pycharm')
+           shutil.copy(p / 'spam.txt', p / 'some_folder')
+           shutil.copy(p / 'eggs.txt', p / 'some_folder/eggs2.txt')
+           
+           shutil.copytree()
+           
+           
+    10.1.2
+    
+    10.2 
 
 ### 11
         
