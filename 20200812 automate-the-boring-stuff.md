@@ -364,7 +364,7 @@
 
     10.1 shutil module
     
-    10.1.1 shutil.copy()   # 可以 copy 一个文件到另一个文件夹并，重命名
+    10.1.1 shutil.copy(source, destination)   # 可以 copy 一个文件到另一个文件夹并，重命名
            eg.
            p = Path('E:/python/boring4pycharm')
            shutil.copy(p / 'spam.txt', p / 'some_folder')
