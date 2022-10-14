@@ -362,20 +362,26 @@
     
 ### 10 Organizing Files
 
-    10.1 shutil module
-    
+    10.1 shutil module    
     10.1.1 shutil.copy(source, destination)   # 可以 copy 一个文件到另一个文件夹并，重命名
-           eg.
-           p = Path('E:/python/boring4pycharm')
-           shutil.copy(p / 'spam.txt', p / 'some_folder')
-           shutil.copy(p / 'eggs.txt', p / 'some_folder/eggs2.txt')
+           eg.  p = Path('E:/python/boring4pycharm')
+                shutil.copy(p / 'spam.txt', p / 'some_folder')
+                shutil.copy(p / 'eggs.txt', p / 'some_folder/eggs2.txt')
            
-           shutil.copytree()
+    10.1.2 shutil.copytree(source, destination)
+           eg.  shutil.copytree(p / 'spam', p / 'spam_backup')           
            
-           
-    10.1.2
+    10.2 shutil.move(source, destination)   # 将一个文件移动到另一个位置
+           eg.  shutil.move('C:\\bacon.txt', 'C:\\eggs')
     
-    10.2 
+    10.3.1 os.unlink(path)      # 删除该path下的文件
+    
+           os.rmdir(path)       # 删除该path的文件夹，但是文件夹必须为空
+           shutil.rmtree(path)  # 删除该path下面的全部文件和文件夹
+    
+    10.3.2 
+    
+    10.4
 
 ### 11
         
