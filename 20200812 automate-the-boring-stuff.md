@@ -375,13 +375,33 @@
            eg.  shutil.move('C:\\bacon.txt', 'C:\\eggs')
     
     10.3.1 os.unlink(path)      # 删除该path下的文件
+           eg.
+           from pathlib import Path
+           for filename in Path.home().glob('*.rxt'):
+               #os.unlink(filename)     # 在运行删除键时，先print，以避免误删
+               print(filename)
     
            os.rmdir(path)       # 删除该path的文件夹，但是文件夹必须为空
-           shutil.rmtree(path)  # 删除该path下面的全部文件和文件夹
+           shutil.rmtree(path)  # 删除该path下面的全部文件和文件夹，会不可逆的删除
     
-    10.3.2 
+    10.4 send2trash module   # 通过send2trash删除某文件更安全，如果误删，可以在回收站里还原
+         pip install send2trash
+    10.4.1 send2trash.send2trash(filename)   # 通过send2trash.send2trash() 把文件放入回收站
+           eg.
+           import send2trash
+           send2trash.send2trash('bacon.txt')    
     
-    10.4
+    10.5 os.walk()    # 遍历目录树
+         eg.
+         for folderName, subfolders, filenames in os.walk('C:\\delicious'):
+         print('The current folder is ' + folderName)
+         for subfolder in subfolders:
+             print('SUBFOLDER OF ' + folderName + ': ' + subfolder)
+         for filename in filenames:
+             print('FILE INSIDE ' + folderName + ': '+ filename)
+
+    
+    10.6
 
 ### 11
         
