@@ -399,9 +399,27 @@
              print('SUBFOLDER OF ' + folderName + ': ' + subfolder)
          for filename in filenames:
              print('FILE INSIDE ' + folderName + ': '+ filename)
-
     
-    10.6
+    10.6 zipfile module
+    10.6.1 zipfile.ZipFile('file.zip')
+           eg.
+           >>from pathlib import Path
+           >>p = Path('E:/python/boring4pycharm')
+           >>exampleZip = zipfile.ZipFile(p/'example.zip')
+           >>exampleZip.namelist()
+           ['return_0.c', 'some_folder/', 'some_folder/eggs2.txt', 'some_folder/spam.txt', 'spam.txt']
+           >>spamInfo = exampleZip.getinfo('spam.txt')
+           >>spamInfo.file_size
+           5367
+           >>spamInfo.compress_size
+           1293
+           >>f'Compressed file is {round(spamInfo.file_size/spamInfo.compress_size,2)}x smaller!'
+           'Compressed file is 4.15x smaller!'
+           >>exampleZip.close()
+           
+    10.6.2
+    
+    10.7
 
 ### 11
         
