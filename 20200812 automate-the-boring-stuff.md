@@ -364,32 +364,18 @@
 
     10.1 shutil module    
     10.1.1 shutil.copy(source, destination)   # 可以 copy 一个文件到另一个文件夹并，重命名
-           eg.  p = Path('E:/python/boring4pycharm')
-                shutil.copy(p / 'spam.txt', p / 'some_folder')
-                shutil.copy(p / 'eggs.txt', p / 'some_folder/eggs2.txt')
            
     10.1.2 shutil.copytree(source, destination)
-           eg.  shutil.copytree(p / 'spam', p / 'spam_backup')           
            
     10.2 shutil.move(source, destination)   # 将一个文件移动到另一个位置
-           eg.  shutil.move('C:\\bacon.txt', 'C:\\eggs')
     
-    10.3.1 os.unlink(path)      # 删除该path下的文件
-           eg.
-           from pathlib import Path
-           for filename in Path.home().glob('*.rxt'):
-               #os.unlink(filename)     # 在运行删除键时，先print，以避免误删
-               print(filename)
-    
+    10.3.1 os.unlink(path)      # 删除该path下的文件   
            os.rmdir(path)       # 删除该path的文件夹，但是文件夹必须为空
            shutil.rmtree(path)  # 删除该path下面的全部文件和文件夹，会不可逆的删除
     
     10.4 send2trash module   # 通过send2trash删除某文件更安全，如果误删，可以在回收站里还原
          pip install send2trash
     10.4.1 send2trash.send2trash(filename)   # 通过send2trash.send2trash() 把文件放入回收站
-           eg.
-           import send2trash
-           send2trash.send2trash('bacon.txt')    
     
     10.5 os.walk()    # 遍历目录树
          eg.
@@ -403,21 +389,22 @@
     10.6 zipfile module
     10.6.1 zipfile.ZipFile('file.zip')
            eg.
-           >>from pathlib import Path
-           >>p = Path('E:/python/boring4pycharm')
-           >>exampleZip = zipfile.ZipFile(p/'example.zip')
-           >>exampleZip.namelist()
-           ['return_0.c', 'some_folder/', 'some_folder/eggs2.txt', 'some_folder/spam.txt', 'spam.txt']
-           >>spamInfo = exampleZip.getinfo('spam.txt')
-           >>spamInfo.file_size
-           5367
-           >>spamInfo.compress_size
-           1293
-           >>f'Compressed file is {round(spamInfo.file_size/spamInfo.compress_size,2)}x smaller!'
-           'Compressed file is 4.15x smaller!'
-           >>exampleZip.close()
+           from pathlib import Path
+           p = Path('E:/python/boring4pycharm')
+           exampleZip = zipfile.ZipFile(p/'example.zip')  
+           exampleZip.namelist()      # exampleZip下面包含的所有文件的文件名
+           spamInfo = exampleZip.getinfo('spam.txt')  # 获取
+           spamInfo.file_size         
+           spamInfo.compress_size
+           f'Compressed file is {round(spamInfo.file_size/spamInfo.compress_size,2)}x smaller!'
+           exampleZip.close()
            
-    10.6.2
+    10.6.2 exampleZip.extractall()     # 提取全部文件
+           exampleZip.extractall('C:\\delicious')   # 放入指定文件夹
+           
+           exampleZip.extract('spam.txt')   # 从exampleZip 文档中提取一个spam文件
+    
+    10.6.3
     
     10.7
 
