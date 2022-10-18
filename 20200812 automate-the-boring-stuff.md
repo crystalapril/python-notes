@@ -404,11 +404,13 @@
            
            exampleZip.extract('spam.txt')   # 从exampleZip 文档中提取一个spam文件
     
-    10.6.3
-    
-    10.7
+    10.6.3 zipfile.ZipFile('new.zip', 'w')  # 创建一个new.zip 打包文件，
+           newZip.write('spam.txt', compress_type=zipfile.ZIP_DEFLATED) # 向newzip文件里面写入需要打包的文件
+           注意：write会覆盖new.zip之前存在的其他文件，只是添加可以用 zipfile.ZipFile('file.zip','a')               
 
 ### 11
+
+### 12
         
 
     
