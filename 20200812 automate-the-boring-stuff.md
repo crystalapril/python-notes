@@ -408,7 +408,18 @@
            newZip.write('spam.txt', compress_type=zipfile.ZIP_DEFLATED) # 向newzip文件里面写入需要打包的文件
            注意：write会覆盖new.zip之前存在的其他文件，只是添加可以用 zipfile.ZipFile('file.zip','a')               
 
-### 11
+### 11 Debugging
+
+    11.1 raise Exception('This is the error message.')
+         try...except Exception as err         
+    
+    11.2 traceback module
+         traceback.format_exc()
+    
+    11.3
+    
+    11.4
+    
 
 ### 12
         
