@@ -419,7 +419,11 @@
     11.3 assert    # 仅供程序员调试使用，一般用户不会见到这个，assert不能用来替代raise exception，也不用于替代测试工作
          AssertionError         
     
-    11.4
+    11.4 logging module
+         logging.basicConfig()
+         eg. logging.basicConfig(level=logging.DEBUG, format='%(asctime)s -  %(levelname)s)
+         logging.debug()
+         eg. logging.debug('End of factorial(%s%%)'  % (n))
     
     11.5
     
