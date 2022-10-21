@@ -420,10 +420,17 @@
          AssertionError         
     
     11.4 logging module
-         logging.basicConfig()
-         eg. logging.basicConfig(level=logging.DEBUG, format='%(asctime)s -  %(levelname)s)
-         logging.debug()
-         eg. logging.debug('End of factorial(%s%%)'  % (n))
+    11.4.1 logging.basicConfig()
+           eg. logging.basicConfig(level=logging.DEBUG, format='%(asctime)s -  %(levelname)s)         
+           logging.debug()
+           eg. logging.debug('End of factorial(%s%%)'  % (n))
+           
+    11.4.2 logging level
+           DEBUG       logging.debug()        最低级别，用于打印信息
+           INFO        logging.info()         用于记录某些事件，或确定工作节点运行正常
+           WARNING     logging.warning()      给出警告，但暂不处理
+           ERROR       logging.error()        记录错误
+           CRITICAL    logging.critical()     最高级别，记录导致程序崩溃的错误
     
     11.5
     
