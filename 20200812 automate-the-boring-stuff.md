@@ -431,6 +431,13 @@
            WARNING     logging.warning()      给出警告，但暂不处理
            ERROR       logging.error()        记录错误
            CRITICAL    logging.critical()     最高级别，记录导致程序崩溃的错误
+           
+    11.4.3 logging.disable()
+           eg. logging.disable(logging.CRITICAL)   # logging.disable()会让所有的报错失效，不仅仅是critical，包括error等
+           
+    11.4.4 logging.basicConfig(filename='filename.txt',...)  # 把错误信息输出到txt文件
+           eg. logging.basicConfig(filename='myProgramLog.txt', level=logging.DEBUG, format='
+               %(asctime)s -  %(levelname)s -  %(message)s')
     
     11.5
     
