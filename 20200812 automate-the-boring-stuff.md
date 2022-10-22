@@ -439,12 +439,17 @@
            eg. logging.basicConfig(filename='myProgramLog.txt', level=logging.DEBUG, format='
                %(asctime)s -  %(levelname)s -  %(message)s')
     
-    11.5
-    
-    11.6
-    
+    11.5 debug  # 可以用pycharm的debug功能 ，不同的编译器处理会有细微的差别
+         step in       一行行往下走，如果进入子函数，从子行数第一行开始，一行行的运行
+         step over     一行行往下走，进入子函数，如果子函数无断点，则把子函数当做一步，如果子函数有断点，从断点处开始执行
+         step out      跳出子函数，如果无断点，直接跳出子函数，如果有断点，执行完断点后再跳出子函数
+         breakpoints   设置断点            
 
 ### 12
+
+### 13
+
+### 14
         
 
     
