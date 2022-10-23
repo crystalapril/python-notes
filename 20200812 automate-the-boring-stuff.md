@@ -448,14 +448,30 @@
 ### 12 Web Scraping
 
     12.1 webbrowser module 
+         webbrower.open('https://www.google.com')
     
     12.2 requests module 
+         request.get() 
+         eg. res = requests.get('https://automatetheboringstuff.com/files/rj.txt')  # 下载网页上的文本信息等
+             res.raise_for_status()   # 查看是否成功获取网页信息
+             res.status_code   # status_code 200表示正常
+             len(res.text)     # 查看获取的文本信息长度              
+        
+         open(), write()
+         res.iter_content()    
+         eg. playFile = open('RomeoAndJuliet.txt', 'wb')   # 创建一个txt文件
+             # 注意这里必须要用wb（write binary）二进制模式来写入，为了保持Unicode encoding
+             for chunk in res.iter_content(100000):  # 用for 循环，iter_content()返回一块块内容，chunks都是 bytes 类型
+                playFile.write(chunk)    
+             playFile.close()
+
+    12.3 HTML
     
-    12.3 bs4 
+    12.4 bs4 module
     
-    12.4 selenium module 
+    12.5 selenium module 
     
-    12.5
+    12.6
 
 ### 13
 
