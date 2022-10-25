@@ -472,12 +472,15 @@
                <h1 id="myHeader">   
     12.3.2 view page source   # 鼠标右键点击view page source ，可以查看网页源代码    
     12.3.3 developer tools
+    12.3.4 copy-CSS selector
     
-    12.4 bs4 module
+    12.4 bs4 module # Beautiful Soup version 4， 用于提取 HTML 页面的信息
+    12.4.1 bs4.BeautifulSoup() 
     
     12.5 selenium module 
     
     12.6
+
 
 ### 13
 
