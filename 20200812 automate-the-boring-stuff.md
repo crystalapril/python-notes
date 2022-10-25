@@ -466,6 +466,12 @@
              playFile.close()
 
     12.3 HTML
+    12.3.1 text is surrounded by tags, enclosed by angle brackets
+           eg. <strong>Hello</strong>, world!   # <strong> 是给hello加粗
+               Al's free <a href="https://inventwithpython.com">Python books</a>.  # <a> 表示里面有个link，href是引用link
+               <h1 id="myHeader">   
+    12.3.2 view page source   # 鼠标右键点击view page source ，可以查看网页源代码    
+    12.3.3 developer tools
     
     12.4 bs4 module
     
