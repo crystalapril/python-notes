@@ -473,9 +473,48 @@
     12.3.2 view page source   # 鼠标右键点击view page source ，可以查看网页源代码    
     12.3.3 developer tools
     12.3.4 copy-CSS selector
-    
+
     12.4 bs4 module # Beautiful Soup version 4， 用于提取 HTML 页面的信息
     12.4.1 bs4.BeautifulSoup() 
+    12.4.2 BeautifulSoup object的 select() 方法，可以传递一个CSS-selector的参数，去查找    
+           eg. soup.select('div')          # 查找所有名字为 div 的元素
+               soup.select('#author')      # 查找 id="author" 元素
+               soup.select('.notice')      # 所有使用class属性，名为notice的元素
+               soup.select('div span')     # 所有名为 <span> 的元素，且被<div>包含 
+               soup.select('div > span')   # 所有名为 <span> 的元素，且被<div>直接包含，中间没有其他元素 
+               soup.select('input[name]')  # 所有名为 <input> 的元素，含有name这个属性，name可以有任意值
+               soup.select('input[type="button"]') # 所有名为<input>的元素，有type这个属性，type的值为button
+    
+           eg. >>> exampleFile = open('example.html')
+               >>> exampleSoup = bs4.BeautifulSoup(exampleFile.read(), 'html.parser')
+               >>> elems = exampleSoup.select('#author')
+               >>> type(elems[0])
+               <class 'bs4.element.Tag'>
+               >>> str(elems[0]) # The Tag object as a string.
+               '<span id="author">Al Sweigart</span>'
+               >>> elems[0].getText()
+               'Al Sweigart'
+               >>> elems[0].attrs
+               {'id': 'author'}
+               
+           eg. >>> pElems = exampleSoup.select('p')
+               >>> str(pElems[0])
+               '<p>Download my <strong>Python</strong> book from <a href="https://inventwithpython.com">my website</a>.</p>'
+               >>> pElems[0].getText()
+               'Download my Python book from my website.'
+               >>> str(pElems[1])
+               '<p class="slogan">Learn Python the easy way!</p>'
+               >>> pElems[1].getText()
+               'Learn Python the easy way!'
+    12.4.3 BeautifulSoup object的get()方法
+           eg. >>> soup = bs4.BeautifulSoup(open('example.html'), 'html.parser')
+               >>> spanElem = soup.select('span')[0]
+               >>> str(spanElem)
+               '<span id="author">Al Sweigart</span>'
+               >>> spanElem.get('id')
+               'author'
+               >>> spanElem.get('some_nonexistent_addr') == None
+               True   
     
     12.5 selenium module 
     
