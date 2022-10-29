@@ -516,10 +516,39 @@
                >>> spanElem.get('some_nonexistent_addr') == None
                True   
     
-    12.5 selenium module 
-    
-    12.6
+    12.5 selenium module  # web 自动化工具
+    12.5.1  from selenium import webdriver
+            browser = webdriver.Firefox()    # 使用火狐来打开网页
+            type(browser)
+            browser.get('https://inventwithpython.com')   # 打开该网页
+            try:
+                elem = browser.find_element('name',' cover-thumb')   # 查找name= cover-thumb
+                print('Found <%s> element with that class name!' % (elem.tag_name))
+            except:
+                print('was not able to find an element with that name.')
 
+            linkElem = browser.find_element('link text','Read Online for Free')  # 查找link text = Read Online for Free
+            type(linkElem)
+            linkElem.click()  # 类似与鼠标点击开了该页面
+    
+    12.5.2  browser.get('https://login.metafilter.com')
+            userElem = browser.find_element('id','user_name')  # 查找 id =user_name
+            userElem.send_keys('your_real_username_here')      # 输入用户名
+            passwordElem = browser.find_element('id','user_pass')
+            passwordElem.send_keys('your_real_password_here')   # 输入密码
+            passwordElem.submit()         # 提交
+    
+    12.5.3  from selenium.webdriver.common.keys import Keys
+            browser = webdriver.Firefox()
+            browser.get('https://nostarch.com')
+            htmlElem = browser.find_element('tag name','html')
+            htmlElem.send_keys(Keys.END)   # 到页面的底部
+            htmlElem.send_keys(Keys.HOME)  # 回到主页
+    
+    12.5.4  browser.back()
+            browser.forward()
+            browser.refresh()   # 刷新浏览器
+            browser.quit()      # 退出浏览器
 
 ### 13
 
