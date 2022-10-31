@@ -583,6 +583,16 @@
         'Row 1, Column B is Apples'
         >>> 'Cell %s is %s' % (c.coordinate, c.value)
         'Cell B1 is Apples'
+        
+        >>> sheet.cell(row=1, column=2).value
+        'Apples'
+        >>> for i in range(1, 8, 2): # Go through every other row:
+        ...     print(i, sheet.cell(row=i, column=2).value)
+        ...
+        1 Apples
+        3 Pears
+        5 Apples
+        7 Strawberries
     
     13.3
     
