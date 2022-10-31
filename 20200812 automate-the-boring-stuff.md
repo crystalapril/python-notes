@@ -550,7 +550,47 @@
             browser.refresh()   # 刷新浏览器
             browser.quit()      # 退出浏览器
 
-### 13
+### 13 Working with Excel Speadsheets
+
+    openpyxl module
+    13.1 spreadSheet
+         >>> wb = openpyxl.load_workbook('example.xlsx')
+         >>> type(wb)
+         <class 'openpyxl.workbook.workbook.Workbook'>    
+         >>> wb.sheetnames # The workbook's sheets' names.
+         ['Sheet1', 'Sheet2', 'Sheet3']
+         >>> sheet = wb['Sheet3']   # Get a sheet from the workbook.
+         >>> sheet
+         <Worksheet "Sheet3">
+         >>> type(sheet)
+         <class 'openpyxl.worksheet.worksheet.Worksheet'>
+         >>> sheet.title   # Get the sheet's title as a string.
+         'Sheet3'
+         >>> anotherSheet = wb.active   # Get the active sheet.
+         >>> anotherSheet
+         <Worksheet "Sheet1">
+
+    13.2 cell
+        >>> sheet = wb['Sheet1'] # Get a sheet from the workbook.
+        >>> sheet['A1'] # Get a cell from the sheet.
+        <Cell 'Sheet1'.A1>
+        >>> sheet['A1'].value # Get the value from the cell.
+        datetime.datetime(2015, 4, 5, 13, 34, 2)
+        >>> c = sheet['B1'] # Get another cell from the sheet.
+        >>> c.value
+        'Apples'
+        >>> 'Row %s, Column %s is %s' % (c.row, c.column, c.value)
+        'Row 1, Column B is Apples'
+        >>> 'Cell %s is %s' % (c.coordinate, c.value)
+        'Cell B1 is Apples'
+    
+    13.3
+    
+    13.4
+    
+    13.5
+    
+   
 
 ### 14
         
