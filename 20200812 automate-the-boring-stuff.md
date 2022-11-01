@@ -594,16 +594,47 @@
         5 Apples
         7 Strawberries
     
-    13.3
+    13.3 max_row, get_column_letter, column_index_from_string
+        >>> sheet.max_row # Get the highest row number.
+        7
+        >>> sheet.max_column # Get the highest column number.
+        >>> from openpyxl.utils import get_column_letter, column_index_from_string
+        >>> get_column_letter(1) # Translate column 1 to a letter.
+        'A'
+        >>> get_column_letter(sheet.max_column)
+        'C'
+        >>> column_index_from_string('A') # Get A's number.
+        1
     
-    13.4
+    13.4 sheet['A1':'C3']
+        >>> tuple(sheet['A1':'C3']) # Get all cells from A1 to C3.
+       ((<Cell 'Sheet1'.A1>,<Cell 'Sheet1'.B1>,<Cell 'Sheet1'.C1>)...(<Cell 'Sheet1'.A3>,<Cell 'Sheet1'.B3>,<Cell 'Sheet1'.C3>))
+       >>> for rowOfCellObjects in sheet['A1':'C3']:
+       ...     for cellObj in rowOfCellObjects:
+       ...         print(cellObj.coordinate, cellObj.value)
+       
+       A1 2015-04-05 13:34:02
+       B1 Apples
+       C1 73
+       ....
     
-    13.5
-    
-   
+    13.5 list(sheet.columns)[1], 
+        >>> list(sheet.columns)[1] # Get second column's cells.
+        (<Cell 'Sheet1'.B1>, <Cell 'Sheet1'.B2> ... <Cell 'Sheet1'.B6>, <Cell 'Sheet1'.B7>)
+        >>> for cellObj in list(sheet.columns)[1]:
+                print(cellObj.value)
+        Apples
+        Cherries
+        Pears
+        ...   
 
-### 14
-        
+### 14 
+
+
+### 15
+
+
+      
 
     
 
