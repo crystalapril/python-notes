@@ -671,10 +671,35 @@
         >>> sheet.column_dimensions['B'].width = 20
         >>> wb.save('dimensions.xlsx')
     
-    13.11 merge_cells
+    13.11 sheet.merge_cells(), sheet.unmerge_cells()
+        >>> sheet.merge_cells('A1:D3') # Merge all these cells.
+        >>> sheet['A1'] = 'Twelve cells merged together.'
+        >>> sheet.merge_cells('C5:D5') # Merge these two cells.
+        >>> sheet['C5'] = 'Two merged cells.'
+        >>> wb.save('merged.xlsx')
+
+        >>> sheet.unmerge_cells('A1:D3') # Split these cells up.
+        >>> sheet.unmerge_cells('C5:D5')
     
+    13.12 freeze_panes 
+        >>> wb = openpyxl.load_workbook('produceSales.xlsx')
+        >>> sheet = wb.active
+        >>> sheet.freeze_panes = 'A2' # Freeze the rows above A2.
+        >>> sheet.freeze_panes = None  # 解冻
     
-    13.12
+    13.13 openpyxl.chart  # 制作图表
+        >>> sheet = wb.active
+        >>> for i in range(1, 11): # create some data in column A
+        ...     sheet['A' + str(i)] = i
+        >>> refObj = openpyxl.chart.Reference(sheet, min_col=1, min_row=1, max_col=1, max_row=10)
+        >>> seriesObj = openpyxl.chart.Series(refObj, title='First series')
+
+        >>> chartObj = openpyxl.chart.BarChart()
+        >>> chartObj.title = 'My Chart'
+        >>> chartObj.append(seriesObj)
+
+        >>> sheet.add_chart(chartObj, 'C5')
+        >>> wb.save('sampleChart.xlsx')
 
 ### 14 
 
