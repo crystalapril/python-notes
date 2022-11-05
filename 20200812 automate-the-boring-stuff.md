@@ -628,6 +628,32 @@
         Pears
         ...   
 
+    13.6 sheet.title, wb.sheetnames
+        >>> wb = openpyxl.Workbook() # Create a blank workbook.
+        >>> wb.sheetnames # It starts with one sheet.
+        ['Sheet']
+        >>> sheet.title = 'Spam Bacon Eggs Sheet' # Change title.
+        >>> wb.sheetnames
+        ['Spam Bacon Eggs Sheet']
+        >>> wb.save('example_copy.xlsx') # Save the workbook.
+
+    13.7 wb.create_sheet(), del wb['Sheet1'], sheet['A1'] = 'Hello, world!'
+        >>> wb.create_sheet() # Add a new sheet.
+        <Worksheet "Sheet1">
+        >>> wb.create_sheet(index=0, title='First Sheet') # Create a new sheet at index 0.
+        <Worksheet "First Sheet">
+        >>> wb.sheetnames
+        ['First Sheet', 'Sheet', 'Sheet1']        
+        >>> del wb['Sheet1']
+        >>> wb.sheetnames
+        ['First Sheet', 'Sheet']
+        >>> sheet = wb['Sheet']
+        >>> sheet['A1'] = 'Hello, world!' # Edit the cell's value.
+        >>> sheet['A1'].value
+        'Hello, world!'
+    
+    13.8
+
 ### 14 
 
 
