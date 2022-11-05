@@ -652,7 +652,29 @@
         >>> sheet['A1'].value
         'Hello, world!'
     
-    13.8
+    13.8 Font object
+        >>> from openpyxl.styles import Font 
+        >>> fontObj1 = Font(name='Times New Roman', bold=True)  # Create a font object
+        >>> sheet['A1'].font = fontObj1
+        >>> sheet['A1'] = 'Bold Times New Roman'
+        >>> fontObj2 = Font(size=24, italic=True)
+        >>> sheet['B3'].font = fontObj2
+        >>> sheet['B3'] = '24 pt Italic'
+    
+    13.9 formulas
+        >>> sheet['A1'] = 200
+        >>> sheet['A2'] = 300
+        >>> sheet['A3'] = '=SUM(A1:A2)' # Set the formula.
+    
+    13.10 sheet.row_dimensions, sheet.column_dimensions
+        >>> sheet.row_dimensions[1].height = 70  # 当height=0 或 width=0的时候，就被隐藏了
+        >>> sheet.column_dimensions['B'].width = 20
+        >>> wb.save('dimensions.xlsx')
+    
+    13.11 merge_cells
+    
+    
+    13.12
 
 ### 14 
 
