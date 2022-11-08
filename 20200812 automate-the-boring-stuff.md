@@ -706,6 +706,35 @@
 ### 15 Working with PDF and Word Documents
 
     15.1 PyPDF2 module
+    15.1.1 open('m.pdf','rb'), PyPDF2.PdfFileReader(pdfFileObj) ,pdfReader.getPage(0), pageObj.extractText()
+        >>> import PyPDF2
+        >>> pdfFileObj = open('meetingminutes.pdf', 'rb')   # 从pdf里面提取的二进制文件被写入到 pdfFileObj
+        >>> pdfReader = PyPDF2.PdfFileReader(pdfFileObj)    # 转成 PdfFileReader object，并储存在变量 pdfReader里
+        >>> pdfReader.numPages       # 页面数
+        19
+        >>> pageObj = pdfReader.getPage(0)    # 通过getPage() 获得第一页，page object
+        >>> pageObj.extractText()             # 提取页面内容，字符串
+    
+    15.1.2 pdfReader.isEncrypted,pdfReader.decrypt('password')   
+        >>> pdfReader = PyPDF2.PdfFileReader(open('encrypted.pdf', 'rb'))
+        >>> pdfReader.isEncrypted
+           True
+        >>> pdfReader.getPage(0)
+        Traceback (most recent call last):
+               raise utils.PdfReadError("file has not been decrypted")
+           PyPDF2.utils.PdfReadError: file has not been decrypted
+           
+        >>> pdfReader = PyPDF2.PdfFileReader(open('encrypted.pdf', 'rb'))  # 这里必须重新打开一次，
+        >>> pdfReader.decrypt('rosebud')
+        1               # 密码输入正确，返回1，输入错误，返回0
+        
+    15.1.3 Copying Pages   # PyPDF2不能单纯的复制页面，需要先创建一个新的pdf，然后复制页面到新pdf去
+    
+    
+    15.1.4
+    
+    15.1.5
+    
     
     15.2
     
