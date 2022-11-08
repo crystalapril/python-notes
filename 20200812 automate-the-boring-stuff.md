@@ -701,10 +701,24 @@
         >>> sheet.add_chart(chartObj, 'C5')
         >>> wb.save('sampleChart.xlsx')
 
-### 14 
+### 14 Working with Google Spreadsheets
+
+### 15 Working with PDF and Word Documents
+
+    15.1 PyPDF2 module
+    
+    15.2
+    
+    15.3
+    
+    15.4
 
 
-### 15
+
+### 16 Working with CSV Files and JSON Data
+
+
+### 17 Keeping Time, Scheduling Tasks, and Launching Programs
 
 
       
