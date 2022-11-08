@@ -728,10 +728,24 @@
         >>> pdfReader.decrypt('rosebud')
         1               # 密码输入正确，返回1，输入错误，返回0
         
-    15.1.3 Copying Pages   # PyPDF2不能单纯的复制页面，需要先创建一个新的pdf，然后复制页面到新pdf去
+    15.1.3 PyPDF2.PdfFileWriter()   
+           eg. 合并pdf    # PyPDF2不能单纯的复制页面，需要先创建一个新的pdf，然后复制页面到新pdf去
+           >>> pdf1File = open('meetingminutes.pdf', 'rb')
+           >>> pdf2File = open('meetingminutes2.pdf', 'rb')
+           >>> pdf1Reader = PyPDF2.PdfFileReader(pdf1File)
+           >>> pdf2Reader = PyPDF2.PdfFileReader(pdf2File)
+           >>> pdfWriter = PyPDF2.PdfFileWriter()    
+           >>> for pageNum in range(pdf1Reader.numPages):
+                   pageObj = pdf1Reader.getPage(pageNum)
+                   pdfWriter.addPage(pageObj)
+           >>> for pageNum in range(pdf2Reader.numPages):
+                   pageObj = pdf2Reader.getPage(pageNum)   # 页面的复制无法从中间复制，只能在末尾处开始复制
+                   pdfWriter.addPage(pageObj)
+           >>> pdfOutputFile = open('combinedminutes.pdf', 'wb')  # 这里也是wb，用二进制的模式写入
+           >>> pdfWriter.write(pdfOutputFile)  
     
+    15.1.4 rotateClockwise(),rotateCounterClockwise()
     
-    15.1.4
     
     15.1.5
     
