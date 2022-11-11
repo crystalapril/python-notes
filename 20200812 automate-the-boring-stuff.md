@@ -728,7 +728,7 @@
         >>> pdfReader.decrypt('rosebud')
         1               # 密码输入正确，返回1，输入错误，返回0
         
-    15.1.3 PyPDF2.PdfFileWriter()   
+    15.1.3 PyPDF2.PdfFileWriter(), addPage()   
            eg. 合并pdf    # PyPDF2不能单纯的复制页面，需要先创建一个新的pdf，然后复制页面到新pdf去
            >>> pdf1File = open('meetingminutes.pdf', 'rb')
            >>> pdf2File = open('meetingminutes2.pdf', 'rb')
@@ -745,9 +745,18 @@
            >>> pdfWriter.write(pdfOutputFile)  
     
     15.1.4 rotateClockwise(),rotateCounterClockwise()
+        >>> minutesFile = open('meetingminutes.pdf', 'rb')
+        >>> pdfReader = PyPDF2.PdfFileReader(minutesFile)
+        >>> page = pdfReader.getPage(0)
+        >>> page.rotateClockwise(90)    # 顺时针旋转90度
+        >>> pdfWriter = PyPDF2.PdfFileWriter()
+        >>> pdfWriter.addPage(page)
+        >>> resultPdfFile = open('rotatedPage.pdf', 'wb')
+        >>> pdfWriter.write(resultPdfFile)    
     
+    15.1.5 Overlaying Pages
     
-    15.1.5
+    15.1.6
     
     
     15.2
