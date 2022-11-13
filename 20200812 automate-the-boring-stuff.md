@@ -754,9 +754,22 @@
         >>> resultPdfFile = open('rotatedPage.pdf', 'wb')
         >>> pdfWriter.write(resultPdfFile)    
     
-    15.1.5 Overlaying Pages
+    15.1.5 Page.mergePage(page1)
+        >>> minutesFile = open('meetingminutes.pdf', 'rb')
+        >>> pdfReader = PyPDF2.PdfFileReader(minutesFile)
+        >>> minutesFirstPage = pdfReader.getPage(0)
+        >>> pdfWatermarkReader = PyPDF2.PdfFileReader(open('watermark.pdf', 'rb'))
+        >>> minutesFirstPage.mergePage(pdfWatermarkReader.getPage(0))   # 将 watermark的水印添加到 minutesFirstPage去
+
+    15.1.6 pdfWriter.encrypt('password')
+       >>> pdfWriter = PyPDF2.PdfFileWriter()
+       >>> pdfWriter.encrypt('swordfish')     # 给pdf文件设置密码
+       >>> resultPdf = open('encryptedminutes.pdf', 'wb')
+       >>> pdfWriter.write(resultPdf)
     
-    15.1.6
+    15.1.7
+    
+    15.1.8
     
     
     15.2
