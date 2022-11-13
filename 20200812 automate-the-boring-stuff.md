@@ -766,17 +766,49 @@
        >>> pdfWriter.encrypt('swordfish')     # 给pdf文件设置密码
        >>> resultPdf = open('encryptedminutes.pdf', 'wb')
        >>> pdfWriter.write(resultPdf)
+
+
+    15.2 python-docx module (import docx)
     
-    15.1.7
+    15.2.1 docx.Document('demo.docx'), doc.paragraphs
+        >>> import docx
+        >>> doc = docx.Document('demo.docx')  # 通过 docx.Document() 读取docx文件
+        >>> len(doc.paragraphs)               # doc.paragraphs返回一个list，说明该文件中有7段 paragraph
+           7
+        >>> doc.paragraphs[0].text            # 第一段 paragraph 的文本内容
+           'Document Title'
+        >>> doc.paragraphs[1].text
+           'A plain paragraph with some bold and some italic'
+        >>> len(doc.paragraphs[1].runs)       # 第二段 paragraph 里面包含 4 个run，runs也是返回一个list
+           4
+        >>> doc.paragraphs[1].runs[0].text    # 第二段 paragraph 的第一个 run 的文本
+           'A plain paragraph with some '
+        >>> doc.paragraphs[1].runs[1].text    # 每个 run 的区别主要为格式不同
+           'bold'
+        >>> doc.paragraphs[1].runs[2].text
+           ' and some '
+        >>> doc.paragraphs[1].runs[3].text
+           'italic'
+           
+        eg2.
+        def getText(filename):
+            doc = docx.Document(filename)
+            fullText = []
+            for para in doc.paragraphs:
+                fullText.append(para.text)
+            return '\n'.join(fullText)
+
+    15.2.2 Styling Paragraph and Run Objects
     
-    15.1.8
+    
+    15.2.3 
     
     
-    15.2
+    15.2.4 
     
-    15.3
     
-    15.4
+    15.2.5 
+
 
 
 
