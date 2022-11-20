@@ -831,10 +831,20 @@
     >>> doc.save('headings.docx')
     
     15.2.6 Adding Line and Page Breaks
+       >>> doc = docx.Document()
+       >>> doc.add_paragraph('This is on the first page!')
+       <docx.text.Paragraph object at 0x0000000003785518>
+       >>> doc.paragraphs[0].runs[0].add_break(docx.enum.text.WD_BREAK.PAGE)    # add_break()出现了分页的效果
+       >>> doc.add_paragraph('This is on the second page!')        # 显示在了第二页
+       <docx.text.Paragraph object at 0x00000000037855F8>
+       >>> doc.save('twoPage.docx')
     
-    15.2.7 
+    15.2.7 Adding Pictures
+    >>> doc.add_picture('zophie.png', width=docx.shared.Inches(1), height=docx.shared.Cm(4))
+    <docx.shape.InlineShape object at 0x00000000036C7D30>
 
-
+    15.2.8 Creating PDFs from Word Documents
+    pip install --user -U pywin32==224
 
 
 ### 16 Working with CSV Files and JSON Data
