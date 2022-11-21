@@ -874,7 +874,12 @@
        >>> outputFile.close()
     
     16.1.3 The delimiter and lineterminator Keyword Arguments
-    
+       >>> csvFile = open('example.tsv', 'w', newline='')
+       >>> csvWriter = csv.writer(csvFile, delimiter='\t', lineterminator='\n\n')
+       >>> csvWriter.writerow(['apples', 'oranges', 'grapes'])
+       24
+       >>> csvWriter.writerow(['spam', 'spam', 'spam', 'spam', 'spam', 'spam'])
+       32
     
     16.1.4 DictReader and DictWriter CSV Objects
     
