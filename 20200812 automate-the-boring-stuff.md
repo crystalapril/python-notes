@@ -865,16 +865,29 @@
            Row #2 ['4/5/2015 3:41', 'Cherries', '85']           
     
     16.1.2 writer Objects
+       >>> outputFile = open('output.csv', 'w', newline='')   # 如果没有 newline=''，每行之间会间隔一行
+       >>> outputWriter = csv.writer(outputFile)
+       >>> outputWriter.writerow(['spam', 'eggs', 'bacon', 'ham'])
+       21
+       >>> outputWriter.writerow([1, 2, 3.141592, 4])
+       16
+       >>> outputFile.close()
     
-    16.1.3 
+    16.1.3 The delimiter and lineterminator Keyword Arguments
     
-    16.1.4 
+    
+    16.1.4 DictReader and DictWriter CSV Objects
     
     16.1.5
     
-    16.1.6
+
     
-    16.2 json
+    16.2 json module
+    16.2.1
+    
+    16.2.2
+    
+    16.2.3
 
 
 ### 17 Keeping Time, Scheduling Tasks, and Launching Programs
