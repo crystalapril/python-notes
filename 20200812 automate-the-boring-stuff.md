@@ -849,6 +849,33 @@
 
 ### 16 Working with CSV Files and JSON Data
 
+    16.1 csv module    
+    16.1.1 reader Objects, csv.reader(exampleFile)
+         >>> import csv
+         >>> exampleFile = open('example.csv')
+         >>> exampleReader = csv.reader(exampleFile)    # 返回 reader object
+         >>> exampleData = list(exampleReader)
+         >>> exampleData
+           [['4/5/2015 13:34', 'Apples', '73'], ['4/5/2015 3:41', 'Cherries', '85'],
+           ['4/6/2015 12:46', 'Pears', '14'], ['4/8/2015 8:59', 'Oranges', '52']]
+         
+         >>> for row in exampleReader:    # exampleReader只能读取或循环一次，第二次提取需要再次调用 csv.reader(file)
+                 print('Row #' + str(exampleReader.line_num) + ' ' + str(row))   
+           Row #1 ['4/5/2015 13:34', 'Apples', '73']      # exampleReader.line_num 为当前行数，从 1 开始
+           Row #2 ['4/5/2015 3:41', 'Cherries', '85']           
+    
+    16.1.2 writer Objects
+    
+    16.1.3 
+    
+    16.1.4 
+    
+    16.1.5
+    
+    16.1.6
+    
+    16.2 json
+
 
 ### 17 Keeping Time, Scheduling Tasks, and Launching Programs
 
