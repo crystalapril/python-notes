@@ -881,8 +881,25 @@
        >>> csvWriter.writerow(['spam', 'spam', 'spam', 'spam', 'spam', 'spam'])
        32
     
-    16.1.4 DictReader and DictWriter CSV Objects
-    
+    16.1.4 DictReader and DictWriter CSV Objects  
+        >>> exampleFile = open('exampleWithHeader.csv')
+        >>> exampleDictReader = csv.DictReader(exampleFile)
+        >>> for row in exampleDictReader:
+        ...     print(row['Timestamp'], row['Fruit'], row['Quantity'])   # 可以用字典的形式读取
+        
+        >>> exampleFile = open('example.csv')   
+        >>> exampleDictReader = csv.DictReader(exampleFile, ['time', 'name','amount'])
+        >>> for row in exampleDictReader:   # 如果原始文件没有header行（没有字典的key），也可以自定义，然后来调取
+        ...     print(row['time'], row['name'], row['amount'])
+        
+        >>> outputFile = open('output.csv', 'w', newline='')
+        >>> outputDictWriter = csv.DictWriter(outputFile, ['Name', 'Pet', 'Phone'])
+        >>> outputDictWriter.writeheader()   # 可以把['Name', 'Pet', 'Phone']作为header写入csv
+        >>> outputDictWriter.writerow({'Name': 'Alice', 'Pet': 'cat', 'Phone': '555-1234'})
+        20
+        >>> outputDictWriter.writerow({'Name': 'Bob', 'Phone': '555-9999'}) #可以打乱顺序，或者空着某个key
+        15
+
     16.1.5
     
 
