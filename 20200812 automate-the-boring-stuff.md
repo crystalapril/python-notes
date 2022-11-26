@@ -899,20 +899,25 @@
         20
         >>> outputDictWriter.writerow({'Name': 'Bob', 'Phone': '555-9999'}) #可以打乱顺序，或者空着某个key
         15
-
-    16.1.5
-    
-
     
     16.2 json module
-    16.2.1
+    16.2.1 Reading JSON with the loads() Function
+        >>> stringOfJsonData = '{"name": "Zophie", "isCat": true, "miceCaught": 0,"felineIQ": null}'
+        >>> import json
+        >>> jsonDataAsPythonValue = json.loads(stringOfJsonData)
+        >>> jsonDataAsPythonValue
+        {'isCat': True, 'miceCaught': 0, 'name': 'Zophie', 'felineIQ': None}
     
-    16.2.2
-    
-    16.2.3
+    16.2.2 Writing JSON with the dumps() Function
+        >>> pythonValue = {'isCat': True, 'miceCaught': 0, 'name': 'Zophie','felineIQ': None}
+        >>> stringOfJsonData = json.dumps(pythonValue)
+        >>> stringOfJsonData    # 注意：json 格式里面是双引号
+        '{"isCat": true, "felineIQ": null, "miceCaught": 0, "name": "Zophie" }'      
 
 
 ### 17 Keeping Time, Scheduling Tasks, and Launching Programs
+
+### 18 
 
 
       
