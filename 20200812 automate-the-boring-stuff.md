@@ -917,7 +917,28 @@
 
 ### 17 Keeping Time, Scheduling Tasks, and Launching Programs
 
-### 18 
+    17.1 time module
+    17.1.1 time.time(),time.ctime(), time.sleep()
+        >>> import time
+        >>> time.time()
+        1543813875.3518236  # 这个是从unix epoch 到现在经历的秒数
+        >>> time.ctime()    # time.ctime() 也可以接受参数，eg.time.ctime(time.time()) 
+        'Mon Jun 15 14:00:38 2020'
+        >>> time.sleep(5)
+    
+    17.1.2
+    
+    17.1.3
+    
+    17.2 
+    
+    17.3
+
+### 18 Sending Email and Text Messages
+
+### 19 Manipulating Images
+
+### 20 Controlling the Keyboard and Mouse with GUI Automation
 
 
       
