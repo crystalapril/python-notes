@@ -917,7 +917,7 @@
 
 ### 17 Keeping Time, Scheduling Tasks, and Launching Programs
 
-    17.1 time module
+    17.1 time module    
     17.1.1 time.time(),time.ctime(), time.sleep()
         >>> import time
         >>> time.time()
@@ -926,13 +926,38 @@
         'Mon Jun 15 14:00:38 2020'
         >>> time.sleep(5)
     
-    17.1.2
+    17.2 datetime module    
+    17.2.1 datetime.datetime.now(), datetime.datetime()
+        >>> import datetime
+        >>> datetime.datetime.now()
+        datetime.datetime(2022, 11, 28, 21, 51, 24, 795553)
+        >>> dt = datetime.datetime(2022, 11, 28, 21, 51, 24)
+        >>> dt.year,dt.month,dt.day
+        (2022, 11, 28)
+        >>> dt.hour,dt.minute,dt.second
+        (21, 51, 24)
     
-    17.1.3
+    17.2.2 datetime.datetime.fromtimestamp()
+        >>> datetime.datetime.fromtimestamp(1000000)
+        datetime.datetime(1970, 1, 12, 21, 46, 40)
+        >>> datetime.datetime.fromtimestamp(time.time())   # 跟 datetime.datetime.now() 实现的功能一样
+        datetime.datetime(2022, 11, 28, 21, 57, 58, 122447)
+        >>> halloween2019 = datetime.datetime(2019, 10, 31, 0, 0, 0)
+        >>> newyears2020 = datetime.datetime(2020, 1, 1, 0, 0, 0)
+        >>> newyears2020 > halloween2019    # datetime object 之间可以比较大小，比较新的日期较大
+        True
     
-    17.2 
+    17.2.3 datetime.timedelta()
     
-    17.3
+    17.2.4
+    
+    17.2.5
+    
+    
+    
+    17.3 threading module
+    
+    17.4
 
 ### 18 Sending Email and Text Messages
 
