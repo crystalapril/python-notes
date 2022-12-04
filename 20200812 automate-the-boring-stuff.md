@@ -947,11 +947,34 @@
         >>> newyears2020 > halloween2019    # datetime object 之间可以比较大小，比较新的日期较大
         True
     
-    17.2.3 datetime.timedelta()
+    17.2.3 datetime.timedelta()    
+        >>> dt
+        datetime.datetime(2018, 12, 2, 18, 38, 50, 636181)
+        >>> thousandDays = datetime.timedelta(days=1000)  # datetime.timedelta() 返回一段期间，而不是一个时点
+        >>> dt + thousandDays
+        datetime.datetime(2021, 8, 28, 18, 38, 50, 636181)
+        >>> dt - (thousandDays*2)     # datetime.timedelta() 的返回值，可以被用于加减乘除        
     
-    17.2.4
+    17.2.4 strftime() : Converting datetime Objects into Strings
+        >>> oct21st = datetime.datetime(2019, 10, 21, 16, 29, 0)
+        >>> oct21st.strftime('%Y/%m/%d %H:%M:%S')   # 注意：strftime() 的调用，前面没有 datetime.datetime
+        '2019/10/21 16:29:00'
+        >>> oct21st.strftime('%I:%M %p')
+        '04:29 PM'
+        >>> oct21st.strftime("%B of '%y")
+        "October of '19"
+
+    17.2.5 datetime.datetime.strptime(): Converting Strings into datetime Objects
+       >>> datetime.datetime.strptime('2019/10/21 16:29:00', '%Y/%m/%d %H:%M:%S')
+       datetime.datetime(2019, 10, 21, 16, 29)
+       >>> datetime.datetime.strptime("October of '19", "%B of '%y")
+       datetime.datetime(2019, 10, 1, 0, 0)    
     
-    17.2.5
+    17.2.6 
+    
+    17.2.7 
+    
+    17.2.8 
     
     
     
