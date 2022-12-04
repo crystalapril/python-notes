@@ -803,32 +803,32 @@
         runObj.style = 'Quote Char'    
     
     15.2.3 text attributes: doc.paragraphs[0].style, doc.paragraphs[1].runs[0].style 
-    >>> doc = docx.Document('demo.docx')
-    >>> doc.paragraphs[0].style # The exact id may be different:
-    _ParagraphStyle('Title') id: 3095631007984
-    >>> doc.paragraphs[0].style = 'Normal'             # 格式为 normal
-    >>> doc.paragraphs[1].runs[0].style = 'QuoteChar'
-    >>> doc.paragraphs[1].runs[1].underline = True     # 添加下划线
-    >>> doc.save('restyled.docx')
+        >>> doc = docx.Document('demo.docx')
+        >>> doc.paragraphs[0].style # The exact id may be different:
+        _ParagraphStyle('Title') id: 3095631007984
+        >>> doc.paragraphs[0].style = 'Normal'             # 格式为 normal
+        >>> doc.paragraphs[1].runs[0].style = 'QuoteChar'
+        >>> doc.paragraphs[1].runs[1].underline = True     # 添加下划线
+        >>> doc.save('restyled.docx')
     
     15.2.4 Writing Word Documents: doc.add_paragraph('Hello, world!'), save() 
-    >>> doc = docx.Document()
-    >>> doc.add_paragraph('Hello, world!', 'Title')       # 第二个参数格式是可选的，可以有，可以没有
-    <docx.text.Paragraph object at 0x000000000366AD30>    # 返回 Paragraph object
-    >>> paraObj1 = doc.add_paragraph('This is a second paragraph.')   # 接 hello world 后面，下一行
-    >>> paraObj2 = doc.add_paragraph('This is a yet another paragraph.')
-    >>> paraObj1.add_run(' This text is being added to the second paragraph.')  # 接在 paraObj1 的后面，同一行
-    <docx.text.Run object at 0x0000000003A2C860>          # 返回 Run object
-    >>> doc.save('multipleParagraphs.docx')
+        >>> doc = docx.Document()
+        >>> doc.add_paragraph('Hello, world!', 'Title')       # 第二个参数格式是可选的，可以有，可以没有
+        <docx.text.Paragraph object at 0x000000000366AD30>    # 返回 Paragraph object
+        >>> paraObj1 = doc.add_paragraph('This is a second paragraph.')   # 接 hello world 后面，下一行
+        >>> paraObj2 = doc.add_paragraph('This is a yet another paragraph.')
+        >>> paraObj1.add_run(' This text is being added to the second paragraph.')  # 接在 paraObj1 的后面，同一行
+        <docx.text.Run object at 0x0000000003A2C860>          # 返回 Run object
+        >>> doc.save('multipleParagraphs.docx')
     
     15.2.5 Adding Headings
-    >>> doc.add_heading('Header 0', 0)      # 一共有5级header，从0-4，依次变小，0默认为title
-    <docx.text.Paragraph object at 0x00000000036CB3C8>
-    >>> doc.add_heading('Header 1', 1)
-    <docx.text.Paragraph object at 0x00000000036CB630>
-    >>> doc.add_heading('Header 2', 2)
-    <docx.text.Paragraph object at 0x00000000036CB828>
-    >>> doc.save('headings.docx')
+        >>> doc.add_heading('Header 0', 0)      # 一共有5级header，从0-4，依次变小，0默认为title
+        <docx.text.Paragraph object at 0x00000000036CB3C8>
+        >>> doc.add_heading('Header 1', 1)
+        <docx.text.Paragraph object at 0x00000000036CB630>
+        >>> doc.add_heading('Header 2', 2)
+        <docx.text.Paragraph object at 0x00000000036CB828>
+        >>> doc.save('headings.docx')
     
     15.2.6 Adding Line and Page Breaks
        >>> doc = docx.Document()
@@ -840,8 +840,8 @@
        >>> doc.save('twoPage.docx')
     
     15.2.7 Adding Pictures
-    >>> doc.add_picture('zophie.png', width=docx.shared.Inches(1), height=docx.shared.Cm(4))
-    <docx.shape.InlineShape object at 0x00000000036C7D30>
+        >>> doc.add_picture('zophie.png', width=docx.shared.Inches(1), height=docx.shared.Cm(4))
+        <docx.shape.InlineShape object at 0x00000000036C7D30>
 
     15.2.8 Creating PDFs from Word Documents
     pip install --user -U pywin32==224
@@ -968,17 +968,32 @@
        >>> datetime.datetime.strptime('2019/10/21 16:29:00', '%Y/%m/%d %H:%M:%S')
        datetime.datetime(2019, 10, 21, 16, 29)
        >>> datetime.datetime.strptime("October of '19", "%B of '%y")
-       datetime.datetime(2019, 10, 1, 0, 0)    
+       datetime.datetime(2019, 10, 1, 0, 0)   
+       
     
-    17.2.6 
+    17.3 threading module  # 可以通过 threading 模块，进行多线程操作
     
-    17.2.7 
+    17.3.1 threading.Thread(target=takeANap)
+        eg. threadDemo.py
+        import threading, time
+        print('Start of program.')
+        def takeANap():
+            time.sleep(5)
+            print('Wake up!')
+        threadObj = threading.Thread(target=takeANap)
+        threadObj.start()
+        print('End of program.')
+        --------------------------
+        Start of program.
+        End of program.
+        Wake up!
     
-    17.2.8 
+    17.3.2 Passing Arguments to the Thread’s Target Function
     
+    17.3.3
     
+    17.3.4
     
-    17.3 threading module
     
     17.4
 
