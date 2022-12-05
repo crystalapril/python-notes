@@ -995,12 +995,17 @@
         >>> threadObj.start()  # 注意：这里target=print,print 后面不能有()，也不可以写成 print('Cats', 'Dogs', 'Frogs', sep=' & ')
         Cats & Dogs & Frogs
     
-    17.3.3
+    17.4 subprocess module   # python 自带模块，可以进行多线程操作允许启动一个新进程
+    17.4.1 subprocess.Popen()   # 启动一个子进程
+    >>> import subprocess
+    >>> subprocess.Popen('C:\\Windows\\System32\\calc.exe')   # 打开 windows 下的计算器
+    <subprocess.Popen object at 0x0000000003055A58>
     
-    17.3.4
+    17.4.2 poll() 
     
+    17.4.3
     
-    17.4
+    17.5 
 
 ### 18 Sending Email and Text Messages
 
