@@ -973,7 +973,7 @@
     
     17.3 threading module  # 可以通过 threading 模块，进行多线程操作
     
-    17.3.1 threading.Thread(target=takeANap)
+    17.3.1 threading.Thread(target=takeANap)  # 注意:不要用多线程读写同一个对象
         eg. threadDemo.py
         import threading, time
         print('Start of program.')
@@ -989,6 +989,11 @@
         Wake up!
     
     17.3.2 Passing Arguments to the Thread’s Target Function
+        >>> print('Cats', 'Dogs', 'Frogs', sep=' & ')
+        Cats & Dogs & Frogs
+        >>> threadObj = threading.Thread(target=print, args=['Cats', 'Dogs', 'Frogs'],kwargs={'sep': ' & '})
+        >>> threadObj.start()  # 注意：这里target=print,print 后面不能有()，也不可以写成 print('Cats', 'Dogs', 'Frogs', sep=' & ')
+        Cats & Dogs & Frogs
     
     17.3.3
     
